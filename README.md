@@ -69,7 +69,7 @@ async def on_member_join(member):
 	inviter = await tracker.fetch_inviter(member) # inviter is the member who invited
 ```
 
-For further information please read the docs
+**_For further information please read the docs__**
 
 # Links
 **[Documentation](https://docs.discordutils.gq)**
