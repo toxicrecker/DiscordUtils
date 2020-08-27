@@ -1,5 +1,5 @@
 # DiscordUtils
-A very useful library made to be used in with [discord.py](https://pypi.org/project/discord.py/)
+A very useful library made to be used with [discord.py](https://pypi.org/project/discord.py/)
 
 # Installation
 `pip install DiscordUtils`
