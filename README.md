@@ -73,6 +73,7 @@ For further information please read the docs
 
 # Links
 **[Documentation](https://docs.discordutils.gq)**
+**[PyPi](https://pypi.org/project/DiscordUtils)**
 
 # Support
 DM/PM `toxic_recker#1628` on Discord
