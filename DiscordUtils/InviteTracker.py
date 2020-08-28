@@ -75,5 +75,5 @@ class InviteTracker(object):
 								cached_invite_list.append(new_invite)
 								return new_invite_key
 								break
-			else:
-				return None
+		else:
+			return None
