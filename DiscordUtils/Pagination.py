@@ -65,7 +65,7 @@ class AutoEmbedPaginator(object):
 				await msg.edit(embed=self.embeds[len(self.embeds)-1])
 				
 class CustomEmbedPaginator(object)
-	def __init__(self, ctx, timeout:int=60, auto_footer=False):
+	def __init__(self, ctx, **kwargs):
 		self.embeds = None
 		self.ctx = ctx
 		self.bot = ctx.bot
