@@ -64,7 +64,7 @@ class AutoEmbedPaginator(object):
                     self.embeds[len(self.embeds)-1].set_footer(text=f'({self.current_page+1}/{len(self.embeds)})')
                 await msg.edit(embed=self.embeds[len(self.embeds)-1])
                 
-class CustomEmbedPaginator(object)
+class CustomEmbedPaginator(object):
     def __init__(self, ctx, **kwargs):
         self.embeds = None
         self.ctx = ctx
