@@ -76,7 +76,5 @@ async def on_member_join(member):
 
 **[PyPi](https://pypi.discordutils.gq)**
 
-**[PayPal](https://paypal.me/z4ka)** For Donations
-
 # Support
 DM/PM `toxic_recker#1628` on Discord
