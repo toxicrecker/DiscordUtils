@@ -78,3 +78,6 @@ async def on_member_join(member):
 
 # Support
 DM/PM `toxic_recker#1628` on Discord
+
+# Donating
+[PayPal](https://paypal.me/z4ka)
