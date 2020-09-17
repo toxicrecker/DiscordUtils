@@ -77,4 +77,4 @@ async def on_member_join(member):
 **[PyPi](https://pypi.discordutils.gq)**
 
 # Support
-DM/PM `toxic_recker#1628` on Discord
+DM/PM `toxic_recker#6764` on Discord
