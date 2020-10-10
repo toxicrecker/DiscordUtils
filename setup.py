@@ -19,5 +19,5 @@ setuptools.setup(
     ],
     python_requires='>= 3.6',
     include_package_data=True,
-    install_requires=["discord.py", "aiohttp", "asyncio"]
+    install_requires=["discord.py"]
 )
