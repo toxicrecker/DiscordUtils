@@ -34,8 +34,8 @@ class AutoEmbedPaginator(object):
                     for reaction in msg.reactions:
                         if reaction.message.author.id == self.bot.user.id:
                             await msg.remove_reaction(str(reaction.emoji), reaction.message.author)
-                    return
-                    break
+                    # returns message object so user can do more things with it
+                    return msg
             else:
                 reaction, user = await self.bot.wait_for("reaction_add",check=check)
             if str(reaction.emoji) == self.control_emojis[0]:
@@ -58,8 +58,8 @@ class AutoEmbedPaginator(object):
                 for reaction in msg.reactions:
                     if reaction.message.author.id == self.bot.user.id:
                         await msg.remove_reaction(str(reaction.emoji), reaction.message.author)
-                return
-                break
+                # returns message object so user can do more things with it
+                return msg
             elif str(reaction.emoji) == self.control_emojis[3]:
                 self.current_page = self.current_page + 1
                 self.current_page = len(self.embeds)-1 if self.current_page > len(self.embeds)-1 else self.current_page
