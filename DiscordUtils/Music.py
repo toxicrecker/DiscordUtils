@@ -68,7 +68,7 @@ async def get_video_data(url, search, bettersearch, loop):
             channel_url = data["uploader_url"]
             return Song(source, url, title, description, views, duration, thumbnail, channel, channel_url, False)
         elif search:
-            ytdl = youtube_dl.YoutubeDL({"format": "bestaudio/best", "restrictfilenames": True, "noplaylist": True, "nocheckcertificate": True, "ignoreerrors": False, "logtostderr": False, "quiet": True, "no_warnings": True, "default_search": True, "source_address": "0.0.0.0"})
+            ytdl = youtube_dl.YoutubeDL({"format": "bestaudio/best", "restrictfilenames": True, "noplaylist": True, "nocheckcertificate": True, "ignoreerrors": False, "logtostderr": False, "quiet": True, "no_warnings": True, "default_search": "auto", "source_address": "0.0.0.0"})
             data = await loop.run_in_executor(None, lambda: ytdl.extract_info(url, download=False))
             try:
                 data = data["entries"][0]
