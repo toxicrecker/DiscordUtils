@@ -116,7 +116,7 @@ class CustomEmbedPaginator(object):
         self.embeds = embeds
         if not send_to:
             send_to = self.ctx
-        wait_for = ctx.author if send_to == self.ctx else send_to
+        wait_for = self.ctx.author if send_to == self.ctx else send_to
         if self.auto_footer:
             self.embeds[0].set_footer(text=f'({self.current_page+1}/{len(self.embeds)})')
         msg = await send_to.send(embed=self.embeds[0])
