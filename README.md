@@ -4,8 +4,6 @@ A very useful library made to be used in with [discord.py](https://pypi.org/proj
 # Installation
 `pip install DiscordUtils`
 
----
-
 # Example code
 
 ### DiscordUtils.Pagination.AutoEmbedPaginator
@@ -25,8 +23,6 @@ async def paginate(ctx):
     embeds = [embed1, embed2, embed3]
     await paginator.run(embeds)
 ```
-
----
 
 ### DiscordUtils.Pagination.CustomEmbedPaginator
 ```python
@@ -50,8 +46,6 @@ async def paginate(ctx):
     embeds = [embed1, embed2, embed3]
     await paginator.run(embeds)
 ```
-
----
 
 ### DiscordUtils.InviteTracker
 ```python
@@ -86,8 +80,6 @@ async def on_guild_remove(guild):
 async def on_member_join(member):
     inviter = await tracker.fetch_inviter(member) # inviter is the member who invited
 ```
-
----
 
 ### DiscordUtils.Music
 ```python
@@ -181,11 +173,8 @@ async def remove(ctx, index):
 
 For further information please read the docs
 
----
-
 # Links
 **[Documentation](https://docs.discordutils.gq)**
-
 **[Github](https://github.discordutils.gq)**
 
 # Support
