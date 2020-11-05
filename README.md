@@ -174,8 +174,8 @@ async def remove(ctx, index):
 For further information please read the docs
 
 # Links
-**[Documentation](https://docs.discordutils.gq)**
-**[Github](https://github.discordutils.gq)**
+- **[Documentation](https://docs.discordutils.gq)**
+- **[Github](https://github.discordutils.gq)**
 
 # Support
 DM/PM `toxic_recker#6764` on Discord
