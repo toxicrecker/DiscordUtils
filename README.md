@@ -4,10 +4,18 @@ A very useful library made to be used in with [discord.py](https://pypi.org/proj
 # Installation
 `pip install DiscordUtils`
 
+---
+
 # Example code
 
 ### DiscordUtils.Pagination.AutoEmbedPaginator
 ```python
+import discord
+from discord.ext import commands
+import DiscordUtils
+
+bot = commands.Bot(command_prefix=">")
+
 @bot.command()
 async def paginate(ctx):
     embed1 = discord.Embed(color=ctx.author.color).add_field(name="Example", value="Page 1")
@@ -18,8 +26,16 @@ async def paginate(ctx):
     await paginator.run(embeds)
 ```
 
+---
+
 ### DiscordUtils.Pagination.CustomEmbedPaginator
 ```python
+import discord
+from discord.ext import commands
+import DiscordUtils
+
+bot = commands.Bot(command_prefix=">")
+
 @bot.command()
 async def paginate(ctx):
     embed1 = discord.Embed(color=ctx.author.color).add_field(name="Example", value="Page 1")
@@ -35,13 +51,15 @@ async def paginate(ctx):
     await paginator.run(embeds)
 ```
 
+---
+
 ### DiscordUtils.InviteTracker
 ```python
 import discord
 from discord.ext import commands
 import DiscordUtils
 
-bot = commands.AutoShardedBot(command_prefix=">")
+bot = commands.Bot(command_prefix=">")
 tracker = DiscordUtils.InviteTracker(bot)
 
 @bot.event
@@ -69,13 +87,15 @@ async def on_member_join(member):
     inviter = await tracker.fetch_inviter(member) # inviter is the member who invited
 ```
 
+---
+
 ### DiscordUtils.Music
 ```python
 import discord
 from discord.ext import commands
 import DiscordUtils
 
-bot = commands.AutoShardedBot(command_prefix=">")
+bot = commands.Bot(command_prefix=">")
 music = DiscordUtils.Music()
 
 @bot.command()
@@ -160,6 +180,8 @@ async def remove(ctx, index):
 ```
 
 For further information please read the docs
+
+---
 
 # Links
 **[Documentation](https://docs.discordutils.gq)**
