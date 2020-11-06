@@ -1,10 +1,10 @@
 # DiscordUtils
 A very useful library made to be used in with [discord.py](https://pypi.org/project/discord.py/)
 
-# Installation
+## Installation
 `pip install DiscordUtils`
 
-# Example code
+## Example code
 
 ### DiscordUtils.Pagination.AutoEmbedPaginator
 ```python
@@ -173,9 +173,9 @@ async def remove(ctx, index):
 
 For further information please read the docs
 
-# Links
+## Links
 - **[Documentation](https://docs.discordutils.gq)**
 - **[Github](https://github.discordutils.gq)**
 
-# Support
+## Support
 DM/PM `toxic_recker#6764` on Discord
