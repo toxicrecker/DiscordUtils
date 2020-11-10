@@ -159,7 +159,7 @@ async def remove(ctx, index):
     await ctx.send(f"Removed {song.name} from queue")
 ```
 
-For further information please read the docs
+- For further information please read the documentation.
 
 # Links
 **[Documentation](https://docs.discordutils.gq)**
