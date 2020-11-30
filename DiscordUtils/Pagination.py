@@ -180,8 +180,12 @@ class CustomEmbedPaginator(object):
                     elif cmd.lower() == "clear" or cmd.lower() == "lock":
                         self.current_page = 0
                         for reaction in msg.reactions:
-                            if reaction.message.author.id == self.bot.user.id:
-                                await msg.remove_reaction(str(reaction.emoji), reaction.message.author)
+                            try:
+                                await msg.clear_reactions()
+                                break
+                            except discord.Forbidden or discord.HTTPException:
+                                if reaction.message.author.id == self.bot.user.id:
+                                    await msg.remove_reaction(str(reaction.emoji), reaction.message.author)
                         return msg
                         break
                     elif cmd.startswith("page"):
