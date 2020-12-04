@@ -31,6 +31,7 @@ async def paginate(ctx):
     paginator.add_reaction('🔐', "lock")
     paginator.add_reaction('⏩', "next")
     paginator.add_reaction(bot.get_emoji(1234567890), "last")
+    paginator.add_reaction(bot.get_emoji(0987654321), f"remove {bot.get_emoji(1234567890)}")
     embeds = [embed1, embed2, embed3]
     await paginator.run(embeds)
 ```
