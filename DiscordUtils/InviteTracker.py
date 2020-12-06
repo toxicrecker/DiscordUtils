@@ -1,19 +1,22 @@
-import discord
-import asyncio
 import sys
+
+import discord
+
 
 class Cache(object):
     def __init__(self):
         self.cache = {}
         self.size = 40
+
     def __iter__(self):
         return self.cache
+
 
 class InviteTracker(object):
     def __init__(self, bot):
         self.bot = bot
         self.__cache = Cache()
-        
+
     async def cache_invites(self):
         for guild in self.bot.guilds:
             self.__cache.cache[guild.id] = {}
@@ -26,7 +29,7 @@ class InviteTracker(object):
                 self.__cache.size = sys.getsizeof(self.__cache.cache)
             except discord.errors.Forbidden:
                 pass
-        
+
     async def update_invite_cache(self, invite):
         try:
             if not invite.guild.id in self.__cache.cache.keys():
@@ -37,7 +40,7 @@ class InviteTracker(object):
             self.__cache.size = sys.getsizeof(self.__cache.cache)
         except discord.errors.Forbidden:
             return
-    
+
     async def remove_invite_cache(self, invite):
         for key in self.__cache.cache:
             for lists in self.__cache.cache[key]:
@@ -46,12 +49,12 @@ class InviteTracker(object):
                     self.__cache.cache[key][lists].remove(invite)
                     self.__cache.size = sys.getsizeof(self.__cache.cache)
                     break
-                    
+
     async def remove_guild_cache(self, guild):
         if guild.id in self.__cache.cache.keys():
             self.__cache.size = sys.getsizeof(self.__cache.cache)
             del self.__cache.cache[guild.id]
-                
+
     async def update_guild_cache(self, guild):
         try:
             invs = await guild.invites()
@@ -63,7 +66,7 @@ class InviteTracker(object):
             self.__cache.size = sys.getsizeof(self.__cache.cache)
         except discord.errors.Forbidden:
             return
-        
+
     async def fetch_inviter(self, member):
         invited_by = None
         invs = {}
@@ -82,7 +85,7 @@ class InviteTracker(object):
                     cached_invite_list = self.__cache.cache[member.guild.id][cached_invite_key]
                     for new_invite in new_invite_list:
                         for old_invite in cached_invite_list:
-                            if new_invite.code == old_invite.code and new_invite.uses-old_invite.uses >= 1:
+                            if new_invite.code == old_invite.code and new_invite.uses - old_invite.uses >= 1:
                                 cached_invite_list.remove(old_invite)
                                 cached_invite_list.append(new_invite)
                                 self.__cache.size = sys.getsizeof(self.__cache.cache)

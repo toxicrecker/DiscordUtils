@@ -38,47 +38,50 @@ class AutoEmbedPaginator(object):
                         if reaction.message.author.id == self.bot.user.id:
                             await msg.remove_reaction(str(reaction.emoji), reaction.message.author)
                     return msg
-                    break
             else:
                 reaction, user = await self.bot.wait_for("reaction_add", check=check)
             if str(reaction.emoji) == self.control_emojis[0]:
-                self.current_page = 0
-                if self.remove_reactions:
-                    await msg.remove_reaction(str(reaction.emoji), user)
-                if self.auto_footer:
-                    self.embeds[0].set_footer(text=f'({self.current_page + 1}/{len(self.embeds)})')
-                await msg.edit(embed=self.embeds[0])
+                if self.current_page > 0:
+                    self.current_page = 0
+                    if self.remove_reactions:
+                        await msg.remove_reaction(str(reaction.emoji), user)
+                    if self.auto_footer:
+                        self.embeds[0].set_footer(text=f'({self.current_page + 1}/{len(self.embeds)})')
+                    await msg.edit(embed=self.embeds[0])
             elif str(reaction.emoji) == self.control_emojis[1]:
-                self.current_page = self.current_page - 1
-                self.current_page = 0 if self.current_page < 0 else self.current_page
-                if self.remove_reactions:
-                    await msg.remove_reaction(str(reaction.emoji), user)
-                if self.auto_footer:
-                    self.embeds[self.current_page].set_footer(text=f'({self.current_page + 1}/{len(self.embeds)})')
-                await msg.edit(embed=self.embeds[self.current_page])
+                if self.current_page > 0:
+                    self.current_page = self.current_page - 1
+                    self.current_page = 0 if self.current_page < 0 else self.current_page
+                    if self.remove_reactions:
+                        await msg.remove_reaction(str(reaction.emoji), user)
+                    if self.auto_footer:
+                        self.embeds[self.current_page].set_footer(text=f'({self.current_page + 1}/{len(self.embeds)})')
+                    await msg.edit(embed=self.embeds[self.current_page])
             elif str(reaction.emoji) == self.control_emojis[2]:
                 self.current_page = 0
                 for reaction in msg.reactions:
                     if reaction.message.author.id == self.bot.user.id:
                         await msg.remove_reaction(str(reaction.emoji), reaction.message.author)
                 return msg
-                break
             elif str(reaction.emoji) == self.control_emojis[3]:
-                self.current_page = self.current_page + 1
-                self.current_page = len(self.embeds) - 1 if self.current_page > len(
-                    self.embeds) - 1 else self.current_page
-                if self.remove_reactions:
-                    await msg.remove_reaction(str(reaction.emoji), user)
-                if self.auto_footer:
-                    self.embeds[self.current_page].set_footer(text=f'({self.current_page + 1}/{len(self.embeds)})')
-                await msg.edit(embed=self.embeds[self.current_page])
+                if self.current_page < (len(self.embeds) - 1):
+                    self.current_page = self.current_page + 1
+                    self.current_page = len(self.embeds) - 1 if self.current_page > len(
+                        self.embeds) - 1 else self.current_page
+                    if self.remove_reactions:
+                        await msg.remove_reaction(str(reaction.emoji), user)
+                    if self.auto_footer:
+                        self.embeds[self.current_page].set_footer(text=f'({self.current_page + 1}/{len(self.embeds)})')
+                    await msg.edit(embed=self.embeds[self.current_page])
             elif str(reaction.emoji) == self.control_emojis[4]:
-                self.current_page = len(self.embeds) - 1
-                if self.remove_reactions:
-                    await msg.remove_reaction(str(reaction.emoji), user)
-                if self.auto_footer:
-                    self.embeds[len(self.embeds) - 1].set_footer(text=f'({self.current_page + 1}/{len(self.embeds)})')
-                await msg.edit(embed=self.embeds[len(self.embeds) - 1])
+                if self.current_page < (len(self.embeds) - 1):
+                    self.current_page = len(self.embeds) - 1
+                    if self.remove_reactions:
+                        await msg.remove_reaction(str(reaction.emoji), user)
+                    if self.auto_footer:
+                        self.embeds[len(self.embeds) - 1].set_footer(text=f'({self.current_page + 1}/'
+                                                                          f'{len(self.embeds)})')
+                    await msg.edit(embed=self.embeds[len(self.embeds) - 1])
 
 
 class CustomEmbedPaginator(object):
@@ -134,9 +137,9 @@ class CustomEmbedPaginator(object):
             await msg.add_reaction(emoji)
         msg = await msg.channel.fetch_message(msg.id)
 
-        def check(reaction, user):
-            return user == wait_for and reaction.message.id == msg.id and (str(reaction.emoji) in self.control_emojis or
-                                                                           reaction.emoji in self.control_emojis)
+        def check(r, u):
+            return u == wait_for and r.message.id == msg.id and (str(r.emoji) in self.control_emojis or
+                                                                 r.emoji in self.control_emojis)
 
         while True:
             if self.timeout > 0:
@@ -148,7 +151,6 @@ class CustomEmbedPaginator(object):
                             await msg.remove_reaction(str(reaction.emoji), reaction.message.author)
                     self.current_page = 0
                     return msg
-                    break
             else:
                 reaction, user = await self.bot.wait_for("reaction_add", check=check)
             for emoji in self.control_emojis:
@@ -156,64 +158,67 @@ class CustomEmbedPaginator(object):
                     index = self.control_emojis.index(emoji)
                     cmd = self.control_commands[index]
                     if cmd.lower() == "first":
-                        self.current_page = 0
-                        if self.remove_reactions:
-                            await msg.remove_reaction(str(reaction.emoji), user)
-                        if self.auto_footer:
-                            self.embeds[0].set_footer(text=f'({self.current_page + 1}/{len(self.embeds)})')
-                        await msg.edit(embed=self.embeds[0])
+                        if self.current_page > 0:
+                            self.current_page = 0
+                            if self.remove_reactions:
+                                await msg.remove_reaction(str(reaction.emoji), user)
+                            if self.auto_footer:
+                                self.embeds[0].set_footer(text=f'({self.current_page + 1}/{len(self.embeds)})')
+                            await msg.edit(embed=self.embeds[0])
                     elif cmd.lower() == "last":
-                        self.current_page = len(self.embeds) - 1
-                        if self.remove_reactions:
-                            await msg.remove_reaction(str(reaction.emoji), user)
-                        if self.auto_footer:
-                            self.embeds[len(self.embeds) - 1].set_footer(
-                                text=f'({self.current_page + 1}/{len(self.embeds)})')
-                        await msg.edit(embed=self.embeds[len(self.embeds) - 1])
+                        if self.current_page < (len(self.embeds) - 1):
+                            self.current_page = len(self.embeds) - 1
+                            if self.remove_reactions:
+                                await msg.remove_reaction(str(reaction.emoji), user)
+                            if self.auto_footer:
+                                self.embeds[len(self.embeds) - 1].set_footer(
+                                    text=f'({self.current_page + 1}/{len(self.embeds)})')
+                            await msg.edit(embed=self.embeds[len(self.embeds) - 1])
                     elif cmd.lower() == "next":
-                        self.current_page += 1
-                        self.current_page = len(self.embeds) - 1 if self.current_page > len(
-                            self.embeds) - 1 else self.current_page
-                        if self.remove_reactions:
-                            await msg.remove_reaction(str(reaction.emoji), user)
-                        if self.auto_footer:
-                            self.embeds[self.current_page].set_footer(
-                                text=f'({self.current_page + 1}/{len(self.embeds)})')
-                        await msg.edit(embed=self.embeds[self.current_page])
+                        if self.current_page < (len(self.embeds) - 1):
+                            self.current_page += 1
+                            self.current_page = len(self.embeds) - 1 if self.current_page > len(
+                                self.embeds) - 1 else self.current_page
+                            if self.remove_reactions:
+                                await msg.remove_reaction(str(reaction.emoji), user)
+                            if self.auto_footer:
+                                self.embeds[self.current_page].set_footer(
+                                    text=f'({self.current_page + 1}/{len(self.embeds)})')
+                            await msg.edit(embed=self.embeds[self.current_page])
                     elif cmd.lower() == "back":
-                        self.current_page = self.current_page - 1
-                        self.current_page = 0 if self.current_page < 0 else self.current_page
-                        if self.remove_reactions:
-                            await msg.remove_reaction(str(reaction.emoji), user)
-                        if self.auto_footer:
-                            self.embeds[self.current_page].set_footer(
-                                text=f'({self.current_page + 1}/{len(self.embeds)})')
-                        await msg.edit(embed=self.embeds[self.current_page])
+                        if self.current_page > 0:
+                            self.current_page = self.current_page - 1
+                            self.current_page = 0 if self.current_page < 0 else self.current_page
+                            if self.remove_reactions:
+                                await msg.remove_reaction(str(reaction.emoji), user)
+                            if self.auto_footer:
+                                self.embeds[self.current_page].set_footer(
+                                    text=f'({self.current_page + 1}/{len(self.embeds)})')
+                            await msg.edit(embed=self.embeds[self.current_page])
                     elif cmd.lower() == "delete":
                         self.current_page = 0
                         await msg.delete()
                         return msg
-                        break
                     elif cmd.lower() == "clear" or cmd.lower() == "lock":
                         self.current_page = 0
                         for reaction in msg.reactions:
-                            if reaction.message.author.id == self.bot.user.id:
-                                await msg.remove_reaction(str(reaction.emoji), reaction.message.author)
+                            if reaction.me:
+                                await reaction.remove(self.ctx.me)
                         return msg
-                        break
                     elif cmd.startswith("page"):
                         shit = cmd.split()
                         pg = int(shit[1])
-                        self.current_page = pg
-                        if pg > len(embeds) - 1:
-                            pg = len(embeds) - 1
-                        if pg < 0:
-                            pg = 0
-                        if self.remove_reactions:
-                            await msg.remove_reaction(str(reaction.emoji), user)
-                        if self.auto_footer:
-                            self.embeds[self.current_page].set_footer(text=f'({pg + 1}/{len(self.embeds)})')
-                        await msg.edit(embed=self.embeds[pg])
+                        if self.current_page != pg:
+                            self.current_page = pg
+                            if pg > len(embeds) - 1:
+                                pg = len(embeds) - 1
+                            if pg < 0:
+                                pg = 0
+                            if self.remove_reactions:
+                                await msg.remove_reaction(str(reaction.emoji), user)
+                            if self.auto_footer:
+                                self.embeds[self.current_page].set_footer(text=f'({pg + 1}/{len(self.embeds)})')
+                            await msg.edit(embed=self.embeds[pg])
                     elif cmd.startswith("remove"):
                         things = cmd.split()
                         things.pop(0)
