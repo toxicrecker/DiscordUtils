@@ -68,7 +68,7 @@ async def get_video_data(url, search, bettersearch, loop):
             data = await loop.run_in_executor(None, lambda: ytdl.extract_info(url, download=False))
             try:
                 data = data["entries"][0]
-            except KeyError:
+            except KeyError or TypeError:
                 pass
             del ytdl
             source = data["url"]
