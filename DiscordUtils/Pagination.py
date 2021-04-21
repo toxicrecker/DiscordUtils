@@ -152,7 +152,7 @@ class CustomEmbedPaginator(object):
         
         while True:
             try:
-                reaction, user = await self.bot.wait_for("reaction_add", check=check, timeout= reaction, user = await self.bot.wait_for("reaction_add", check=check, timeout=self.timeout if self.timeout > 0 else None))
+                reaction, user = await self.bot.wait_for("reaction_add", check=check, timeout=self.timeout if self.timeout > 0 else None)
             except asyncio.TimeoutError:
                 for reaction in msg.reactions:
                     if reaction.message.author.id == self.bot.user.id and self.remove_reactions:
