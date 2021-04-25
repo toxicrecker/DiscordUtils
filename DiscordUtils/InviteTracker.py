@@ -12,7 +12,7 @@ class InviteTracker(object):
             try:
                 invs = await guild.invites()
                 for invite in invs:
-                    if invite.inviter not in self._cache[guild.id].keys():
+                    if invite.inviter not in self._cache[guild.id]:
                         self._cache[guild.id][invite.inviter] = []
                     self._cache[guild.id][invite.inviter].append(invite)
             except discord.errors.Forbidden:
@@ -20,9 +20,9 @@ class InviteTracker(object):
         
     async def update_invite_cache(self, invite):
         try:
-            if not invite.guild.id in self._cache.keys():
+            if not invite.guild.id in self._cache:
                 self._cache[invite.guild.id] = {}
-            if not invite.inviter in self._cache[invite.guild.id].keys():
+            if not invite.inviter in self._cache[invite.guild.id]:
                 self._cache[invite.guild.id][invite.inviter] = []
             self._cache[invite.guild.id][invite.inviter].append(invite)
         except discord.errors.Forbidden:
@@ -37,7 +37,7 @@ class InviteTracker(object):
                     break
                     
     async def remove_guild_cache(self, guild):
-        if guild.id in self._cache.keys():
+        if guild.id in self._cache:
             del self._cache[guild.id]
                 
     async def update_guild_cache(self, guild):
@@ -45,7 +45,7 @@ class InviteTracker(object):
             invs = await guild.invites()
             self._cache[guild.id] = {}
             for invite in invs:
-                if not invite.inviter in self._cache[guild.id].keys():
+                if not invite.inviter in self._cache[guild.id]:
                     self._cache[guild.id][invite.inviter] = []
                 self._cache[guild.id][invite.inviter].append(invite)
         except discord.errors.Forbidden:
@@ -59,7 +59,7 @@ class InviteTracker(object):
         except discord.errors.Forbidden:
             return
         for invite in new_invites:
-            if not invite.inviter in invs.keys():
+            if not invite.inviter in invs:
                 invs[invite.inviter] = []
             invs[invite.inviter].append(invite)
         for new_invite_key in invs:
@@ -74,5 +74,3 @@ class InviteTracker(object):
                                 cached_invite_list.append(new_invite)
                                 return new_invite_key
                                 break
-        else:
-            return None
