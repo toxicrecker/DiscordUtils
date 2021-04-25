@@ -167,4 +167,4 @@ async def remove(ctx, index):
 **[PyPi](https://pypi.discordutils.gq)**
 
 # Support
-DM/PM `toxic_recker#6764` on Discord
+DM/PM `toxic_recker#2795` on Discord
