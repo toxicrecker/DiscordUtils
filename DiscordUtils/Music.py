@@ -6,7 +6,7 @@ try:
     import discord
     has_voice = True
 except ImportError:
-    has_voice - False
+    has_voice = False
 
 if has_voice:
     youtube_dl.utils.bug_reports_message = lambda: ''
