@@ -119,18 +119,20 @@ def check_queue(ctx, opts, music, after, on_play, loop):
             loop.create_task(on_play(ctx, song))
 
 class Music(object):
-    if not has_voice:
-        raise RuntimeError("DiscordUtils[voice] install needed in order to use voice")
-
     def __init__(self):
+        if not has_voice:
+            raise RuntimeError("DiscordUtils[voice] install needed in order to use voice")
+
         self.queue = {}
         self.players = []
+
     def create_player(self, ctx, **kwargs):
         if not ctx.voice_client:
             raise NotConnectedToVoice("Cannot create the player because bot is not connected to voice")
         player = MusicPlayer(ctx, self, **kwargs)
         self.players.append(player)
         return player
+        
     def get_player(self, **kwargs):
         guild = kwargs.get("guild_id")
         channel = kwargs.get("channel_id")
