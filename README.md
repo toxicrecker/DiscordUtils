@@ -2,7 +2,16 @@
 DiscordUtils is a very useful library made to be used with [discord.py](https://pypi.org/project/discord.py/)
 
 # Installation
-`pip install DiscordUtils`
+For access to Pagination and InviteTracker use:
+```
+pip install DiscordUtils
+```
+
+or, instead use the following for access to Music functions aswell
+```
+pip install DiscordUtils[voice]
+```
+Requires discord.py[voice] so make sure you have all dependencies of it installed.
 
 # Example code
 

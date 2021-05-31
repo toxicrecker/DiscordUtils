@@ -1,11 +1,16 @@
-import youtube_dl
 import asyncio
-import discord
 import aiohttp
 import re
+try:
+    import youtube_dl
+    import discord
+    has_voice = True
+except ImportError:
+    has_voice = False
 
-youtube_dl.utils.bug_reports_message = lambda: ''
-ydl = youtube_dl.YoutubeDL({"format": "bestaudio/best", "restrictfilenames": True, "noplaylist": True, "nocheckcertificate": True, "ignoreerrors": True, "logtostderr": False, "quiet": True, "no_warnings": True, "source_address": "0.0.0.0"})
+if has_voice:
+    youtube_dl.utils.bug_reports_message = lambda: ''
+    ydl = youtube_dl.YoutubeDL({"format": "bestaudio/best", "restrictfilenames": True, "noplaylist": True, "nocheckcertificate": True, "ignoreerrors": True, "logtostderr": False, "quiet": True, "no_warnings": True, "source_address": "0.0.0.0"})
 
 class EmptyQueue(Exception):
     """Cannot skip because queue is empty"""
@@ -33,6 +38,9 @@ async def ytbettersearch(query):
     return url
 
 async def get_video_data(url, search, bettersearch, loop):
+    if not has_voice:
+        raise RuntimeError("DiscordUtils[voice] install needed in order to use voice")
+
     if not search and not bettersearch:
         data = await loop.run_in_executor(None, lambda: ydl.extract_info(url, download=False))
         source = data["url"]
@@ -85,6 +93,9 @@ async def get_video_data(url, search, bettersearch, loop):
             return Song(source, url, title, description, views, duration, thumbnail, channel, channel_url, False)
         
 def check_queue(ctx, opts, music, after, on_play, loop):
+    if not has_voice:
+        raise RuntimeError("DiscordUtils[voice] install needed in order to use voice")
+
     try:
         song = music.queue[ctx.guild.id][0]
     except IndexError:
@@ -109,14 +120,19 @@ def check_queue(ctx, opts, music, after, on_play, loop):
 
 class Music(object):
     def __init__(self):
+        if not has_voice:
+            raise RuntimeError("DiscordUtils[voice] install needed in order to use voice")
+
         self.queue = {}
         self.players = []
+
     def create_player(self, ctx, **kwargs):
         if not ctx.voice_client:
             raise NotConnectedToVoice("Cannot create the player because bot is not connected to voice")
         player = MusicPlayer(ctx, self, **kwargs)
         self.players.append(player)
         return player
+        
     def get_player(self, **kwargs):
         guild = kwargs.get("guild_id")
         channel = kwargs.get("channel_id")
@@ -132,6 +148,9 @@ class Music(object):
 
 class MusicPlayer(object):
     def __init__(self, ctx, music, **kwargs):
+        if not has_voice:
+            raise RuntimeError("DiscordUtils[voice] install needed in order to use voice")
+
         self.ctx = ctx
         self.voice = ctx.voice_client
         self.loop = ctx.bot.loop
