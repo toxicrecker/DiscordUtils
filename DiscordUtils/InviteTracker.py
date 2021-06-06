@@ -46,7 +46,6 @@ class InviteTracker():
                 self._cache[invite.guild.id][ref_invite.code].revoked = True
                 return
         else:
-            print("popped xd")
             self._cache[invite.guild.id].pop(invite.code)
     
     async def add_guild_cache(self, guild):
