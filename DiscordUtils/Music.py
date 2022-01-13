@@ -43,33 +43,33 @@ async def get_video_data(url, search, bettersearch, loop):
 
     if not search and not bettersearch:
         data = await loop.run_in_executor(None, lambda: ydl.extract_info(url, download=False))
-        source = data["url"]
-        url = "https://www.youtube.com/watch?v="+data["id"]
-        title = data["title"]
-        description = data["description"]
-        likes = data["like_count"]
-        dislikes = data["dislike_count"]
-        views = data["view_count"]
-        duration = data["duration"]
-        thumbnail = data["thumbnail"]
-        channel = data["uploader"]
-        channel_url = data["uploader_url"]
+        source = data.get("url")
+        url = "https://www.youtube.com/watch?v="+data.get("id")
+        title = data.get("title")
+        description = data.get("description")
+        likes = data.get("like_count")
+        dislikes = data.get("dislike_count")
+        views = data.get("view_count")
+        duration = data.get("duration")
+        thumbnail = data.get("thumbnail")
+        channel = data.get("uploader")
+        channel_url = data.get("uploader_url")
         return Song(source, url, title, description, views, duration, thumbnail, channel, channel_url, False)
     else:
         if bettersearch:
             url = await ytbettersearch(url)
             data = await loop.run_in_executor(None, lambda: ydl.extract_info(url, download=False))
-            source = data["url"]
-            url = "https://www.youtube.com/watch?v="+data["id"]
-            title = data["title"]
-            description = data["description"]
-            likes = data["like_count"]
-            dislikes = data["dislike_count"]
-            views = data["view_count"]
-            duration = data["duration"]
-            thumbnail = data["thumbnail"]
-            channel = data["uploader"]
-            channel_url = data["uploader_url"]
+            source = data.get("url")
+            url = "https://www.youtube.com/watch?v="+data.get("id")
+            title = data.get("title")
+            description = data.get("description")
+            likes = data.get("like_count")
+            dislikes = data.get("dislike_count")
+            views = data.get("view_count")
+            duration = data.get("duration")
+            thumbnail = data.get("thumbnail")
+            channel = data.get("uploader")
+            channel_url = data.get("uploader_url")
             return Song(source, url, title, description, views, duration, thumbnail, channel, channel_url, False)
         elif search:
             ytdl = youtube_dl.YoutubeDL({"format": "bestaudio/best", "restrictfilenames": True, "noplaylist": True, "nocheckcertificate": True, "ignoreerrors": True, "logtostderr": False, "quiet": True, "no_warnings": True, "default_search": "auto", "source_address": "0.0.0.0"})
@@ -79,17 +79,17 @@ async def get_video_data(url, search, bettersearch, loop):
             except KeyError or TypeError:
                 pass
             del ytdl
-            source = data["url"]
-            url = "https://www.youtube.com/watch?v="+data["id"]
-            title = data["title"]
-            description = data["description"]
-            likes = data["like_count"]
-            dislikes = data["dislike_count"]
-            views = data["view_count"]
-            duration = data["duration"]
-            thumbnail = data["thumbnail"]
-            channel = data["uploader"]
-            channel_url = data["uploader_url"]
+            source = data.get("url")
+            url = "https://www.youtube.com/watch?v="+data.get("id")
+            title = data.get("title")
+            description = data.get("description")
+            likes = data.get("like_count")
+            dislikes = data.get("dislike_count")
+            views = data.get("view_count")
+            duration = data.get("duration")
+            thumbnail = data.get("thumbnail")
+            channel = data.get("uploader")
+            channel_url = data.get("uploader_url")
             return Song(source, url, title, description, views, duration, thumbnail, channel, channel_url, False)
         
 def check_queue(ctx, opts, music, after, on_play, loop):
