@@ -95,8 +95,8 @@ class AutoEmbedPaginator(object):
                     except:
                         pass
                 if self.auto_footer:
-                    self.embeds[len(self.embeds)-1].set_footer(text=f'({self.current_page+1}/{len(self.embeds)})')
-                await msg.edit(embed=self.embeds[len(self.embeds)-1])
+                    self.embeds[-1].set_footer(text=f'({self.current_page+1}/{len(self.embeds)})')
+                await msg.edit(embed=self.embeds[-1])
                 
 class CustomEmbedPaginator(object):
     def __init__(self, ctx, **kwargs):
@@ -187,8 +187,8 @@ class CustomEmbedPaginator(object):
                             except:
                                 pass
                         if self.auto_footer:
-                            self.embeds[len(self.embeds)-1].set_footer(text=f'({self.current_page+1}/{len(self.embeds)})')
-                        await msg.edit(embed=self.embeds[len(self.embeds)-1])
+                            self.embeds[-1].set_footer(text=f'({self.current_page+1}/{len(self.embeds)})')
+                        await msg.edit(embed=self.embeds[-1])
                     elif cmd.lower() == "next":
                         self.current_page += 1
                         self.current_page = len(self.embeds)-1 if self.current_page > len(self.embeds)-1 else self.current_page
