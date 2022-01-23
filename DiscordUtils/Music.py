@@ -48,13 +48,12 @@ async def get_video_data(url, search, bettersearch, loop):
         title = data["title"]
         description = data["description"]
         likes = data["like_count"]
-        dislikes = data["dislike_count"]
         views = data["view_count"]
         duration = data["duration"]
         thumbnail = data["thumbnail"]
         channel = data["uploader"]
         channel_url = data["uploader_url"]
-        return Song(source, url, title, description, views, duration, thumbnail, channel, channel_url, False)
+        return Song(source, url, title, description, likes, views, duration, thumbnail, channel, channel_url, False)
     else:
         if bettersearch:
             url = await ytbettersearch(url)
@@ -64,13 +63,12 @@ async def get_video_data(url, search, bettersearch, loop):
             title = data["title"]
             description = data["description"]
             likes = data["like_count"]
-            dislikes = data["dislike_count"]
             views = data["view_count"]
             duration = data["duration"]
             thumbnail = data["thumbnail"]
             channel = data["uploader"]
             channel_url = data["uploader_url"]
-            return Song(source, url, title, description, views, duration, thumbnail, channel, channel_url, False)
+            return Song(source, url, title, description, likes, views, duration, thumbnail, channel, channel_url, False)
         elif search:
             ytdl = youtube_dl.YoutubeDL({"format": "bestaudio/best", "restrictfilenames": True, "noplaylist": True, "nocheckcertificate": True, "ignoreerrors": True, "logtostderr": False, "quiet": True, "no_warnings": True, "default_search": "auto", "source_address": "0.0.0.0"})
             data = await loop.run_in_executor(None, lambda: ytdl.extract_info(url, download=False))
@@ -84,13 +82,12 @@ async def get_video_data(url, search, bettersearch, loop):
             title = data["title"]
             description = data["description"]
             likes = data["like_count"]
-            dislikes = data["dislike_count"]
             views = data["view_count"]
             duration = data["duration"]
             thumbnail = data["thumbnail"]
             channel = data["uploader"]
             channel_url = data["uploader_url"]
-            return Song(source, url, title, description, views, duration, thumbnail, channel, channel_url, False)
+            return Song(source, url, title, description, likes, views, duration, thumbnail, channel, channel_url, False)
         
 def check_queue(ctx, opts, music, after, on_play, loop):
     if not has_voice:
@@ -292,11 +289,12 @@ class MusicPlayer(object):
         self.music.players.remove(self)
         
 class Song(object):
-    def __init__(self, source, url, title, description, views, duration, thumbnail, channel, channel_url, loop):
+    def __init__(self, source, url, title, description, likes, views, duration, thumbnail, channel, channel_url, loop):
         self.source = source
         self.url = url
         self.title = title
         self.description = description
+        self.likes = likes
         self.views = views
         self.name = title
         self.duration = duration
