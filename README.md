@@ -1,3 +1,6 @@
+# THIS LIBRARY IS NOT MAINTAINED ANYMORE
+I am not maintaining this library anymore, nor I plan to anytime soon. Please stop DMing me about help related to it. This library is very badly written as well and due to the downfall of discord.py, it makes sense to maintain it anymore either. The current forks of discord.py are completely trash but have managed to gain popularity. I won't be naming them of course. Since they have decided to completely mess up and ignore the basic design ethics to discord.py I am not interested in supporting them either. Along with all those reasons I am just busy in life, this library is not the only thing in my life, it's just a small part of it. I hope you all understand, have a great day.
+
 # DiscordUtils
 A very useful library made to be used in with [discord.py](https://pypi.org/project/discord.py/)
 
