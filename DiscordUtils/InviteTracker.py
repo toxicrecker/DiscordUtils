@@ -77,6 +77,5 @@ class InviteTracker:
                     elif new_invite.inviter == cached_invite.inviter:
                         self._cache[member.guild.id][cached_invite.code] = new_invite
                     else:
-                        self._cache[member.guild.id][
-                            cached_invite.code].uses += 1
+                        self._cache[member.guild.id][cached_invite.code].uses += 1
                     return cached_invite

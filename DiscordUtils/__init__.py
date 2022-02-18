@@ -1,6 +1,5 @@
-from DiscordUtils import Pagination
-from DiscordUtils.InviteTracker import InviteTracker
-from DiscordUtils.Music import Music
+from DiscordUtils.invitetracker import InviteTracker
+from DiscordUtils.music import Music
 
 __title__ = "DiscordUtils"
 __version__ = "1.3.4"

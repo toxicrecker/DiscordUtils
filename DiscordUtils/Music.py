@@ -1,4 +1,5 @@
 import aiohttp
+from typing import Union, Optional
 
 try:
     import discord
@@ -35,7 +36,7 @@ class NotPlaying(Exception):
     """Cannot <do something> because nothing is being played"""
 
 
-async def ytbettersearch(query):
+async def ytbettersearch(query) -> str:
     url = f"https://www.youtube.com/results?search_query={query}"
     async with aiohttp.ClientSession() as session:
         async with session.get(url) as resp:
