@@ -160,7 +160,7 @@ class MusicPlayer(object):
         self.after_func = check_queue
         self.on_play_func = self.on_queue_func = self.on_skip_func = self.on_stop_func = self.on_pause_func = self.on_resume_func = self.on_loop_toggle_func = self.on_volume_change_func = self.on_remove_from_queue_func = None
         ffmpeg_error = kwargs.get("ffmpeg_error_betterfix", kwargs.get("ffmpeg_error_fix"))
-        if ffmpeg_error and "ffmpeg_error_betterfix" in kwargs.keys():
+        if ffmpeg_error and "ffmpeg_error_betterfix" in kwargs:
             self.ffmpeg_opts = {"options": "-vn -loglevel quiet -hide_banner -nostats", "before_options": "-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 0 -nostdin"}
         elif ffmpeg_error:
             self.ffmpeg_opts = {"options": "-vn", "before_options": "-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 0 -nostdin"}

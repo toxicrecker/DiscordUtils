@@ -26,12 +26,12 @@ class InviteTracker():
                 continue
     
     async def update_invite_cache(self, invite):
-        if invite.guild.id not in self._cache.keys():
+        if invite.guild.id not in self._cache:
             self._cache[invite.guild.id] = {}
         self._cache[invite.guild.id][invite.code] = invite
     
     async def remove_invite_cache(self, invite):
-        if invite.guild.id not in self._cache.keys():
+        if invite.guild.id not in self._cache:
             return
         ref_invite = self._cache[invite.guild.id][invite.code]
         if (ref_invite.created_at.timestamp()+ref_invite.max_age > datetime.utcnow().timestamp() or ref_invite.max_age == 0) and ref_invite.max_uses > 0 and ref_invite.uses == ref_invite.max_uses-1:
