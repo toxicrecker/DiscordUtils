@@ -198,6 +198,7 @@ def check_queue(ctx, opts, music, after, on_play, loop):
 
 
 class Music:
+
     def __init__(self):
         if not has_voice:
             raise RuntimeError(
@@ -229,7 +230,9 @@ class Music:
         else:
             return None
 
+
 class MusicPlayer:
+
     def __init__(self, ctx, music, **kwargs):
         if not has_voice:
             raise RuntimeError(
@@ -427,6 +430,7 @@ class MusicPlayer:
 
 
 class Song:
+
     def __init__(
         self,
         source,
