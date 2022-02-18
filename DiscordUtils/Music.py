@@ -226,8 +226,8 @@ class Music:
                 return player
             elif not channel and guild and player.ctx.guild.id == guild:
                 return player
-        else:
-            return None
+            
+        return None
 
 
 class MusicPlayer:
