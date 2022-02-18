@@ -1,8 +1,9 @@
 from asyncio import sleep
+from typing import Optional
+
 import discord
 from discord import AuditLogAction
 from discord.errors import Forbidden
-from typing import Optional
 
 
 class InviteTracker:
@@ -19,6 +20,7 @@ class InviteTracker:
         self.bot.add_listener(self.remove_guild_cache, "on_guild_remove")
 
     async def cache_invites(self) -> None:
+        '''It cache invites whenever a bot joins guild.'''
         for guild in self.bot.guilds:
             try:
                 self._cache[guild.id] = {}
