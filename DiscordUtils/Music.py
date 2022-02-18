@@ -131,7 +131,7 @@ async def get_video_data(url, search, bettersearch, loop):
                 None, lambda: ytdl.extract_info(url, download=False))
             try:
                 data = data["entries"][0]
-            except KeyError or TypeError:
+            except (KeyError, TypeError):
                 pass
             source = data.get("url")
             url = "https://www.youtube.com/watch?v=" + data.get("id")
