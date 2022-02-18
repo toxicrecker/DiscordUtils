@@ -1,3 +1,6 @@
+import asyncio
+import re
+
 import aiohttp
 
 try:
@@ -194,7 +197,7 @@ def check_queue(ctx, opts, music, after, on_play, loop):
             loop.create_task(on_play(ctx, song))
 
 
-class Music(object):
+class Music:
 
     def __init__(self):
         if not has_voice:
@@ -228,7 +231,7 @@ class Music(object):
             return None
 
 
-class MusicPlayer(object):
+class MusicPlayer:
 
     def __init__(self, ctx, music, **kwargs):
         if not has_voice:
@@ -426,7 +429,7 @@ class MusicPlayer(object):
         self.music.players.remove(self)
 
 
-class Song(object):
+class Song:
 
     def __init__(
         self,
