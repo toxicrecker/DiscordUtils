@@ -196,9 +196,7 @@ def check_queue(ctx, opts, music, after, on_play, loop):
         if on_play:
             loop.create_task(on_play(ctx, song))
 
-
-class Music(object):
-
+class Music:
     def __init__(self):
         if not has_voice:
             raise RuntimeError(
@@ -231,8 +229,8 @@ class Music(object):
             return None
 
 
-class MusicPlayer(object):
 
+class MusicPlayer:
     def __init__(self, ctx, music, **kwargs):
         if not has_voice:
             raise RuntimeError(
@@ -252,6 +250,7 @@ class MusicPlayer(object):
         ) = self.on_volume_change_func = self.on_remove_from_queue_func = None
         ffmpeg_error = kwargs.get("ffmpeg_error_betterfix",
                                   kwargs.get("ffmpeg_error_fix"))
+
         if ffmpeg_error and "ffmpeg_error_betterfix" in kwargs:
             self.ffmpeg_opts = {
                 "options":
@@ -429,8 +428,8 @@ class MusicPlayer(object):
         self.music.players.remove(self)
 
 
-class Song(object):
 
+class Song:
     def __init__(
         self,
         source,
