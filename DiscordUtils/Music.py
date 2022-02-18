@@ -118,7 +118,7 @@ def check_queue(ctx, opts, music, after, on_play, loop):
         if on_play:
             loop.create_task(on_play(ctx, song))
 
-class Music(object):
+class Music:
     def __init__(self):
         if not has_voice:
             raise RuntimeError("DiscordUtils[voice] install needed in order to use voice")
@@ -146,7 +146,7 @@ class Music(object):
         else:
             return None
 
-class MusicPlayer(object):
+class MusicPlayer:
     def __init__(self, ctx, music, **kwargs):
         if not has_voice:
             raise RuntimeError("DiscordUtils[voice] install needed in order to use voice")
@@ -291,7 +291,7 @@ class MusicPlayer(object):
     def delete(self):
         self.music.players.remove(self)
         
-class Song(object):
+class Song:
     def __init__(self, source, url, title, description, views, duration, thumbnail, channel, channel_url, loop):
         self.source = source
         self.url = url
