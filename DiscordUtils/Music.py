@@ -1,6 +1,3 @@
-import asyncio
-import re
-
 import aiohttp
 
 try:
