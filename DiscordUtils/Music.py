@@ -78,7 +78,6 @@ async def get_video_data(url, search, bettersearch, loop):
                 data = data["entries"][0]
             except KeyError or TypeError:
                 pass
-            del ytdl
             source = data.get("url")
             url = "https://www.youtube.com/watch?v="+data.get("id")
             title = data.get("title")
