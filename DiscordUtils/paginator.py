@@ -269,7 +269,8 @@ class TextPageSource(menus.ListPageSource):
             return f"{content}\nPage {menu.current_page + 1}/{maximum}"
         return content
 
-    def is_paginating(self) -> bool:
+    @staticmethod
+    def is_paginating() -> bool:
         '''This forces the buttons to appear even in the front page'''
         return True
 
@@ -305,7 +306,8 @@ class SimplePages(RoboPages):
 
 
 class EmbedPageSource(menus.ListPageSource):
-    async def format_page(self, menu, entries):
+    @staticmethod
+    async def format_page(menu, entries):
         return entries
 
 
