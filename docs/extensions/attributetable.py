@@ -6,7 +6,6 @@ from sphinx import addnodes
 from collections import OrderedDict, namedtuple
 import importlib
 import inspect
-import os
 import re
 
 class attributetable(nodes.General, nodes.Element):
