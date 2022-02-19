@@ -377,43 +377,147 @@ The <cite>green</cite> color are generated using <code class="xref py py-func do
 <dl class="py function">
 <dt class="sig sig-object py" id="DiscordUtils.music.ytbettersearch">
 <em class="property"><span class="pre">await</span> </em><span class="sig-prename descclassname"><span class="pre">DiscordUtils.music.</span></span><span class="sig-name descname"><span class="pre">ytbettersearch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#ytbettersearch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.ytbettersearch" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
+<dd><p>Formats the search string for the YouTube music search</p>
+<dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
 
+<dl class="py class">
+<dt class="sig sig-object py" id="DiscordUtils.music.Song">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DiscordUtils.music.</span></span><span class="sig-name descname"><span class="pre">Song</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">views</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thumbnail</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel_url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loop</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#Song"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.Song" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>The requested song data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – </p></li>
+<li><p><strong>url</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – </p></li>
+<li><p><strong>title</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – </p></li>
+<li><p><strong>description</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – </p></li>
+<li><p><strong>views</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – </p></li>
+<li><p><strong>duration</strong> (<em>Union</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a><em>]</em>) – </p></li>
+<li><p><strong>thumbnail</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – </p></li>
+<li><p><strong>channel</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – </p></li>
+<li><p><strong>channel_url</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – </p></li>
+<li><p><strong>loop</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.music.Song.source">
+<span class="sig-name descname"><span class="pre">source</span></span><a class="headerlink" href="#DiscordUtils.music.Song.source" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.music.Song.url">
+<span class="sig-name descname"><span class="pre">url</span></span><a class="headerlink" href="#DiscordUtils.music.Song.url" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.music.Song.title">
+<span class="sig-name descname"><span class="pre">title</span></span><a class="headerlink" href="#DiscordUtils.music.Song.title" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.music.Song.description">
+<span class="sig-name descname"><span class="pre">description</span></span><a class="headerlink" href="#DiscordUtils.music.Song.description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.music.Song.views">
+<span class="sig-name descname"><span class="pre">views</span></span><a class="headerlink" href="#DiscordUtils.music.Song.views" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.music.Song.duration">
+<span class="sig-name descname"><span class="pre">duration</span></span><a class="headerlink" href="#DiscordUtils.music.Song.duration" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.music.Song.thumbnail">
+<span class="sig-name descname"><span class="pre">thumbnail</span></span><a class="headerlink" href="#DiscordUtils.music.Song.thumbnail" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.music.Song.channel">
+<span class="sig-name descname"><span class="pre">channel</span></span><a class="headerlink" href="#DiscordUtils.music.Song.channel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.music.Song.channel_url">
+<span class="sig-name descname"><span class="pre">channel_url</span></span><a class="headerlink" href="#DiscordUtils.music.Song.channel_url" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.music.Song.loop">
+<span class="sig-name descname"><span class="pre">loop</span></span><a class="headerlink" href="#DiscordUtils.music.Song.loop" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="DiscordUtils.music.get_video_data">
 <em class="property"><span class="pre">await</span> </em><span class="sig-prename descclassname"><span class="pre">DiscordUtils.music.</span></span><span class="sig-name descname"><span class="pre">get_video_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">search</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bettersearch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loop</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#get_video_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.get_video_data" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>It returns required video data after searching <cite>YouTube</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.10)"><strong>RuntimeError</strong></a> – Is raised when the package is install without the .[voice] parameters</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The song data in a formatted way</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#DiscordUtils.music.Song" title="DiscordUtils.music.Song"><code class="xref py py-class docutils literal notranslate"><span class="pre">Song</span></code></a></p>
+</dd>
+<dt class="field-even">Parameters</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>search</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – </p></li>
+<li><p><strong>bettersearch</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – </p></li>
+<li><p><strong>loop</strong> (<em>Optional</em><em>[</em><em>asyncio.events.AbstractEventLoop</em><em>]</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="DiscordUtils.music.check_queue">
 <span class="sig-prename descclassname"><span class="pre">DiscordUtils.music.</span></span><span class="sig-name descname"><span class="pre">check_queue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">music</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">after</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_play</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loop</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#check_queue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.check_queue" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="DiscordUtils.music.Music">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DiscordUtils.music.</span></span><span class="sig-name descname"><span class="pre">Music</span></span><a class="reference internal" href="_modules/DiscordUtils/music.html#Music"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.Music" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="DiscordUtils.music.Music.create_player">
-<span class="sig-name descname"><span class="pre">create_player</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#Music.create_player"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.Music.create_player" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="DiscordUtils.music.Music.get_player">
-<span class="sig-name descname"><span class="pre">get_player</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#Music.get_player"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.Music.get_player" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<dd><p>It checks the music queue</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctx</strong> (<em>commands.Context</em>) – The commands <cite>context</cite></p></li>
+<li><p><strong>opts</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – A set options for <cite>ffmpeg</cite></p></li>
+<li><p><strong>music</strong> (<a class="reference internal" href="#DiscordUtils.music.Music" title="DiscordUtils.music.Music"><em>Music</em></a>) – The master class where the all the players data is stored</p></li>
+<li><p><strong>after</strong> (<em>Callable</em>) – The <a class="reference internal" href="#DiscordUtils.music.check_queue" title="DiscordUtils.music.check_queue"><code class="xref py py-func docutils literal notranslate"><span class="pre">check_queue()</span></code></a> which would be called afterwards</p></li>
+<li><p><strong>on_play</strong> (<em>MusicPlayer.on_play</em>) – <a class="reference internal" href="#DiscordUtils.music.MusicPlayer.on_play" title="DiscordUtils.music.MusicPlayer.on_play"><code class="xref py py-func docutils literal notranslate"><span class="pre">MusicPlayer.on_play()</span></code></a> function</p></li>
+<li><p><strong>loop</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/asyncio-eventloop.html#asyncio.AbstractEventLoop" title="(in Python v3.10)"><em>asyncio.AbstractEventLoop</em></a><em>]</em>) – The event loop in which the <a class="reference external" href="https://discordpy.readthedocs.io/en/master/ext/commands/api.html#discord.ext.commands.Bot" title="(in discord.py v2.0.0a)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Bot</span></code></a> is running</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.10)"><strong>RuntimeError</strong></a> – Is raised when the package is install without the .[voice] parameters</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)">None</a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DiscordUtils.music.</span></span><span class="sig-name descname"><span class="pre">MusicPlayer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">music</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.MusicPlayer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctx</strong> (<a class="reference external" href="https://discordpy.readthedocs.io/en/master/ext/commands/api.html#discord.ext.commands.Context" title="(in discord.py v2.0.0a)"><em>discord.ext.commands.context.Context</em></a>) – </p></li>
+<li><p><strong>music</strong> (<a class="reference internal" href="#DiscordUtils.music.Music" title="DiscordUtils.music.Music"><em>Music</em></a>) – </p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.disable">
 <span class="sig-name descname"><span class="pre">disable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.disable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.disable" title="Permalink to this definition">¶</a></dt>
@@ -527,9 +631,62 @@ The <cite>green</cite> color are generated using <code class="xref py py-func do
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="DiscordUtils.music.Song">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DiscordUtils.music.</span></span><span class="sig-name descname"><span class="pre">Song</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">views</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thumbnail</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel_url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loop</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#Song"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.Song" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="DiscordUtils.music.Music">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DiscordUtils.music.</span></span><span class="sig-name descname"><span class="pre">Music</span></span><a class="reference internal" href="_modules/DiscordUtils/music.html#Music"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.Music" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>The manager class to initiate and music and manage its player</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.10)"><strong>RuntimeError</strong></a> – Is raised when the package is install without the .[voice] parameters</p></li>
+<li><p><a class="reference internal" href="#DiscordUtils.music.NotConnectedToVoice" title="DiscordUtils.music.NotConnectedToVoice"><strong>NotConnectedToVoice</strong></a> – See <a class="reference internal" href="#DiscordUtils.music.Music.create_player" title="DiscordUtils.music.Music.create_player"><code class="xref py py-func docutils literal notranslate"><span class="pre">create_player()</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.music.Music.queue">
+<span class="sig-name descname"><span class="pre">queue</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><span class="pre">dict</span></a></em><a class="headerlink" href="#DiscordUtils.music.Music.queue" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.music.Music.players">
+<span class="sig-name descname"><span class="pre">players</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><span class="pre">list</span></a></em><a class="headerlink" href="#DiscordUtils.music.Music.players" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.music.Music.create_player">
+<span class="sig-name descname"><span class="pre">create_player</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#Music.create_player"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.Music.create_player" title="Permalink to this definition">¶</a></dt>
+<dd><p>It create a music player, using which the music will be played in the <cite>voice channels</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>ctx</strong> (<em>commands.Context</em>) – The commands <cite>context</cite></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="#DiscordUtils.music.NotConnectedToVoice" title="DiscordUtils.music.NotConnectedToVoice"><strong>NotConnectedToVoice</strong></a> – When the client is not connect to any of the voice channel</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The music player using the user will have the control over its requested songs</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#DiscordUtils.music.MusicPlayer" title="DiscordUtils.music.MusicPlayer">MusicPlayer</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.music.Music.get_player">
+<span class="sig-name descname"><span class="pre">get_player</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#Music.get_player"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.Music.get_player" title="Permalink to this definition">¶</a></dt>
+<dd><p>Its gets the <cite>MusicPlayer</cite> of the specified <cite>guild</cite> or <cite>voice channel</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>See above</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Optional[<a class="reference internal" href="#DiscordUtils.music.MusicPlayer" title="DiscordUtils.music.MusicPlayer">MusicPlayer</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 </section>
@@ -1122,15 +1279,58 @@ This forces the buttons to appear even in the front page</p>
 <dt class="sig sig-object py" id="DiscordUtils.Music">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DiscordUtils.</span></span><span class="sig-name descname"><span class="pre">Music</span></span><a class="reference internal" href="_modules/DiscordUtils/music.html#Music"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.Music" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>The manager class to initiate and music and manage its player</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.10)"><strong>RuntimeError</strong></a> – Is raised when the package is install without the .[voice] parameters</p></li>
+<li><p><a class="reference internal" href="#DiscordUtils.music.NotConnectedToVoice" title="DiscordUtils.music.NotConnectedToVoice"><strong>NotConnectedToVoice</strong></a> – See <a class="reference internal" href="#DiscordUtils.Music.create_player" title="DiscordUtils.Music.create_player"><code class="xref py py-func docutils literal notranslate"><span class="pre">create_player()</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.Music.queue">
+<span class="sig-name descname"><span class="pre">queue</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><span class="pre">dict</span></a></em><a class="headerlink" href="#DiscordUtils.Music.queue" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.Music.players">
+<span class="sig-name descname"><span class="pre">players</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><span class="pre">list</span></a></em><a class="headerlink" href="#DiscordUtils.Music.players" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="DiscordUtils.Music.create_player">
 <span class="sig-name descname"><span class="pre">create_player</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#Music.create_player"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.Music.create_player" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>It create a music player, using which the music will be played in the <cite>voice channels</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>ctx</strong> (<em>commands.Context</em>) – The commands <cite>context</cite></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="#DiscordUtils.music.NotConnectedToVoice" title="DiscordUtils.music.NotConnectedToVoice"><strong>NotConnectedToVoice</strong></a> – When the client is not connect to any of the voice channel</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The music player using the user will have the control over its requested songs</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#DiscordUtils.music.MusicPlayer" title="DiscordUtils.music.MusicPlayer">MusicPlayer</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="DiscordUtils.Music.get_player">
 <span class="sig-name descname"><span class="pre">get_player</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#Music.get_player"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.Music.get_player" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Its gets the <cite>MusicPlayer</cite> of the specified <cite>guild</cite> or <cite>voice channel</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>See above</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Optional[<a class="reference internal" href="#DiscordUtils.music.MusicPlayer" title="DiscordUtils.music.MusicPlayer">MusicPlayer</a>]</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
