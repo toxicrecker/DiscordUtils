@@ -20,6 +20,7 @@
   <script src="_static/settings.js"></script>
   <script src="_static/copy.js"></script>
   <script src="_static/sidebar.js"></script>
+  <link rel="shortcut icon" href="_static/discord_py_logo.ico"/>
   <link rel="index" title="Index" href="genindex.html" />
   <link rel="search" title="Search" href="search.html" />
 </head>
@@ -510,123 +511,433 @@ The <cite>green</cite> color are generated using <code class="xref py py-func do
 <dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DiscordUtils.music.</span></span><span class="sig-name descname"><span class="pre">MusicPlayer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">music</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.MusicPlayer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>The class which acts a music controller/player</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Raises</dt>
 <dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.10)"><strong>RuntimeError</strong></a> – Is raised when the package is install without the .[voice] parameters</p></li>
+<li><p><a class="reference internal" href="#DiscordUtils.music.NotPlaying" title="DiscordUtils.music.NotPlaying"><strong>NotPlaying</strong></a> – See <a class="reference internal" href="#DiscordUtils.music.MusicPlayer.skip" title="DiscordUtils.music.MusicPlayer.skip"><code class="xref py py-func docutils literal notranslate"><span class="pre">skip()</span></code></a>, <a class="reference internal" href="#DiscordUtils.music.MusicPlayer.stop" title="DiscordUtils.music.MusicPlayer.stop"><code class="xref py py-func docutils literal notranslate"><span class="pre">stop()</span></code></a>, <a class="reference internal" href="#DiscordUtils.music.MusicPlayer.resume" title="DiscordUtils.music.MusicPlayer.resume"><code class="xref py py-func docutils literal notranslate"><span class="pre">resume()</span></code></a>, <a class="reference internal" href="#DiscordUtils.music.MusicPlayer.pause" title="DiscordUtils.music.MusicPlayer.pause"><code class="xref py py-func docutils literal notranslate"><span class="pre">pause()</span></code></a>, <a class="reference internal" href="#DiscordUtils.music.MusicPlayer.toggle_song_loop" title="DiscordUtils.music.MusicPlayer.toggle_song_loop"><code class="xref py py-func docutils literal notranslate"><span class="pre">toggle_song_loop()</span></code></a>, <a class="reference internal" href="#DiscordUtils.music.MusicPlayer.change_volume" title="DiscordUtils.music.MusicPlayer.change_volume"><code class="xref py py-func docutils literal notranslate"><span class="pre">change_volume()</span></code></a>, <a class="reference internal" href="#DiscordUtils.music.MusicPlayer.remove_from_queue" title="DiscordUtils.music.MusicPlayer.remove_from_queue"><code class="xref py py-func docutils literal notranslate"><span class="pre">remove_from_queue()</span></code></a></p></li>
+<li><p><a class="reference internal" href="#DiscordUtils.music.EmptyQueue" title="DiscordUtils.music.EmptyQueue"><strong>EmptyQueue</strong></a> – See <a class="reference internal" href="#DiscordUtils.music.MusicPlayer.skip" title="DiscordUtils.music.MusicPlayer.skip"><code class="xref py py-func docutils literal notranslate"><span class="pre">skip()</span></code></a>, <a class="reference internal" href="#DiscordUtils.music.MusicPlayer.current_queue" title="DiscordUtils.music.MusicPlayer.current_queue"><code class="xref py py-func docutils literal notranslate"><span class="pre">current_queue()</span></code></a></p></li>
+</ul>
+</dd>
+<dt class="field-even">Parameters</dt>
+<dd class="field-even"><ul class="simple">
 <li><p><strong>ctx</strong> (<a class="reference external" href="https://discordpy.readthedocs.io/en/master/ext/commands/api.html#discord.ext.commands.Context" title="(in discord.py v2.0.0a)"><em>discord.ext.commands.context.Context</em></a>) – </p></li>
 <li><p><strong>music</strong> (<a class="reference internal" href="#DiscordUtils.music.Music" title="DiscordUtils.music.Music"><em>Music</em></a>) – </p></li>
 </ul>
 </dd>
 </dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.ctx">
+<span class="sig-name descname"><span class="pre">ctx</span></span><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.ctx" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.voice">
+<span class="sig-name descname"><span class="pre">voice</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.VoiceProtocol" title="(in discord.py v2.0.0a)"><span class="pre">discord.voice_client.VoiceProtocol</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.voice" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.loop">
+<span class="sig-name descname"><span class="pre">loop</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">asyncio.events.AbstractEventLoop</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.loop" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.music">
+<span class="sig-name descname"><span class="pre">music</span></span><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.music" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.after_func">
+<span class="sig-name descname"><span class="pre">after_func</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Callable</span></em><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.after_func" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.on_play_func">
+<span class="sig-name descname"><span class="pre">on_play_func</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.on_play_func" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.on_queue_func">
+<span class="sig-name descname"><span class="pre">on_queue_func</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.on_queue_func" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.on_skip_func">
+<span class="sig-name descname"><span class="pre">on_skip_func</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.on_skip_func" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.on_stop_func">
+<span class="sig-name descname"><span class="pre">on_stop_func</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.on_stop_func" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.on_pause_func">
+<span class="sig-name descname"><span class="pre">on_pause_func</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.on_pause_func" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.on_resume_func">
+<span class="sig-name descname"><span class="pre">on_resume_func</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.on_resume_func" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.on_loop_toggle_func">
+<span class="sig-name descname"><span class="pre">on_loop_toggle_func</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.on_loop_toggle_func" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.on_volume_change_func">
+<span class="sig-name descname"><span class="pre">on_volume_change_func</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.on_volume_change_func" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.on_remove_from_queue_func">
+<span class="sig-name descname"><span class="pre">on_remove_from_queue_func</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.on_remove_from_queue_func" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.ffmpeg_opts">
+<span class="sig-name descname"><span class="pre">ffmpeg_opts</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><span class="pre">dict</span></a></em><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.ffmpeg_opts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.disable">
 <span class="sig-name descname"><span class="pre">disable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.disable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.disable" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>It disables the <cite>Music Player</cite></p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.on_queue">
 <span class="sig-name descname"><span class="pre">on_queue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.on_queue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.on_queue" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>The event when the song is <cite>queued</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>func</strong> (<em>Callable</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.on_play">
 <span class="sig-name descname"><span class="pre">on_play</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.on_play"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.on_play" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>The event when the song is <cite>played</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>func</strong> (<em>Callable</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.on_skip">
 <span class="sig-name descname"><span class="pre">on_skip</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.on_skip"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.on_skip" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>The event when the song is <cite>skipped</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>func</strong> (<em>Callable</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.on_stop">
 <span class="sig-name descname"><span class="pre">on_stop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.on_stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.on_stop" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>The event when the player is <cite>stopped</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>func</strong> (<em>Callable</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.on_pause">
 <span class="sig-name descname"><span class="pre">on_pause</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.on_pause"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.on_pause" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>The event when the song is <cite>paused</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>func</strong> (<em>Callable</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.on_resume">
 <span class="sig-name descname"><span class="pre">on_resume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.on_resume"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.on_resume" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>The event when the song is <cite>resumed</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>func</strong> (<em>Callable</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.on_loop_toggle">
 <span class="sig-name descname"><span class="pre">on_loop_toggle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.on_loop_toggle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.on_loop_toggle" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>The event when the <cite>looping</cite> is <cite>enabled</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>func</strong> (<em>Callable</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.on_volume_change">
 <span class="sig-name descname"><span class="pre">on_volume_change</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.on_volume_change"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.on_volume_change" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>The event when the <cite>volume</cite> is <cite>changed</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>func</strong> (<em>Callable</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.on_remove_from_queue">
 <span class="sig-name descname"><span class="pre">on_remove_from_queue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.on_remove_from_queue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.on_remove_from_queue" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>The event when the song is <cite>removed from the queue</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>func</strong> (<em>Callable</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.queue">
 <em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">queue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">search</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bettersearch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.queue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.queue" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>The song to queue</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>url</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – The <cite>url</cite> of the song provider</p></li>
+<li><p><strong>search</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a><em>, </em><em>optional</em>) – Song Name, defaults to False</p></li>
+<li><p><strong>bettersearch</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a><em>, </em><em>optional</em>) – Search betterly or not, defaults to False</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The song with the minimum required data</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#DiscordUtils.music.Song" title="DiscordUtils.music.Song">Song</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.play">
 <em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">play</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.play"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.play" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Determines which song to play from the queue</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>See above</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#DiscordUtils.music.Song" title="DiscordUtils.music.Song">Song</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.skip">
 <em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">skip</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.skip"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.skip" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Skips the current song which is being played</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>force</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a><em>, </em><em>optional</em>) – Force skip or not, defaults to False</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="#DiscordUtils.music.NotPlaying" title="DiscordUtils.music.NotPlaying"><strong>NotPlaying</strong></a> – When there is no song played then this error is raised</p></li>
+<li><p><a class="reference internal" href="#DiscordUtils.music.EmptyQueue" title="DiscordUtils.music.EmptyQueue"><strong>EmptyQueue</strong></a> – When the queue is empty</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>It returns (old song, new song) or just (song) depending on the situtation</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Union[Tuple[<a class="reference internal" href="#DiscordUtils.music.Song" title="DiscordUtils.music.Song">Song</a>, <a class="reference internal" href="#DiscordUtils.music.Song" title="DiscordUtils.music.Song">Song</a>], <a class="reference internal" href="#DiscordUtils.music.Song" title="DiscordUtils.music.Song">Song</a>]</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.stop">
 <em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.stop" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Stops the player</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#DiscordUtils.music.NotPlaying" title="DiscordUtils.music.NotPlaying"><strong>NotPlaying</strong></a> – When nothing is played</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.pause">
 <em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">pause</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.pause"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.pause" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Pauses the player</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#DiscordUtils.music.NotPlaying" title="DiscordUtils.music.NotPlaying"><strong>NotPlaying</strong></a> – When nothing is played</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The song on which the pause was initiated</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#DiscordUtils.music.Song" title="DiscordUtils.music.Song">Song</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.resume">
 <em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">resume</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.resume"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.resume" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Resumes the player</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#DiscordUtils.music.NotPlaying" title="DiscordUtils.music.NotPlaying"><strong>NotPlaying</strong></a> – When nothing was played by the player previously</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The song which will be played</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#DiscordUtils.music.Song" title="DiscordUtils.music.Song">Song</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.current_queue">
 <span class="sig-name descname"><span class="pre">current_queue</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.current_queue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.current_queue" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Gives the current queue of songs which is there in the player</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#DiscordUtils.music.EmptyQueue" title="DiscordUtils.music.EmptyQueue"><strong>EmptyQueue</strong></a> – When the song queue is empty</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>_description_</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Union[Iterable, <a class="reference internal" href="#DiscordUtils.music.Song" title="DiscordUtils.music.Song">Song</a>]</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.now_playing">
 <span class="sig-name descname"><span class="pre">now_playing</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.now_playing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.now_playing" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Returns the <a class="reference internal" href="#DiscordUtils.music.Song" title="DiscordUtils.music.Song"><code class="xref py py-class docutils literal notranslate"><span class="pre">Song</span></code></a> which is currently being played</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>See above</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Optional[Union[Iterable, <a class="reference internal" href="#DiscordUtils.music.Song" title="DiscordUtils.music.Song">Song</a>]]</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.toggle_song_loop">
 <em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">toggle_song_loop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.toggle_song_loop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.toggle_song_loop" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>It toggles on/off the looping</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#DiscordUtils.music.NotPlaying" title="DiscordUtils.music.NotPlaying"><strong>NotPlaying</strong></a> – When no song is being played</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The currently playing song or the looped queue</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Optional[Union[Iterable, <a class="reference internal" href="#DiscordUtils.music.Song" title="DiscordUtils.music.Song">Song</a>]]</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.change_volume">
 <em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">change_volume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vol</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.change_volume"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.change_volume" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Change the song volume of the currently played song</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>vol</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – The amount by the volume needs to increased or decreased</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="#DiscordUtils.music.NotPlaying" title="DiscordUtils.music.NotPlaying"><strong>NotPlaying</strong></a> – When no song is played</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>(The song which is being played, volume no by which the song’s volume was increased or decreased)</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Tuple[<a class="reference internal" href="#DiscordUtils.music.Song" title="DiscordUtils.music.Song">Song</a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)">int</a>]</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.remove_from_queue">
 <em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">remove_from_queue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.remove_from_queue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.remove_from_queue" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>The utility function to remove <a class="reference internal" href="#DiscordUtils.music.Song" title="DiscordUtils.music.Song"><code class="xref py py-class docutils literal notranslate"><span class="pre">Song</span></code></a> from the queue</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>index</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – The index at which the <a class="reference internal" href="#DiscordUtils.music.Song" title="DiscordUtils.music.Song"><code class="xref py py-class docutils literal notranslate"><span class="pre">Song</span></code></a> is located</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="#DiscordUtils.music.NotPlaying" title="DiscordUtils.music.NotPlaying"><strong>NotPlaying</strong></a> – When nothing is player by the player</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The song to be removed from the player</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#DiscordUtils.music.Song" title="DiscordUtils.music.Song">Song</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.delete">
 <span class="sig-name descname"><span class="pre">delete</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.delete"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.delete" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Removes the song from the queue</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -1284,7 +1595,7 @@ This forces the buttons to appear even in the front page</p>
 <dt class="field-odd">Raises</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.10)"><strong>RuntimeError</strong></a> – Is raised when the package is install without the .[voice] parameters</p></li>
-<li><p><a class="reference internal" href="#DiscordUtils.music.NotConnectedToVoice" title="DiscordUtils.music.NotConnectedToVoice"><strong>NotConnectedToVoice</strong></a> – See <a class="reference internal" href="#DiscordUtils.Music.create_player" title="DiscordUtils.Music.create_player"><code class="xref py py-func docutils literal notranslate"><span class="pre">create_player()</span></code></a></p></li>
+<li><p><a class="reference internal" href="#DiscordUtils.NotConnectedToVoice" title="DiscordUtils.NotConnectedToVoice"><strong>NotConnectedToVoice</strong></a> – See <a class="reference internal" href="#DiscordUtils.Music.create_player" title="DiscordUtils.Music.create_player"><code class="xref py py-func docutils literal notranslate"><span class="pre">create_player()</span></code></a></p></li>
 </ul>
 </dd>
 </dl>
@@ -1307,13 +1618,13 @@ This forces the buttons to appear even in the front page</p>
 <dd class="field-odd"><p><strong>ctx</strong> (<em>commands.Context</em>) – The commands <cite>context</cite></p>
 </dd>
 <dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference internal" href="#DiscordUtils.music.NotConnectedToVoice" title="DiscordUtils.music.NotConnectedToVoice"><strong>NotConnectedToVoice</strong></a> – When the client is not connect to any of the voice channel</p>
+<dd class="field-even"><p><a class="reference internal" href="#DiscordUtils.NotConnectedToVoice" title="DiscordUtils.NotConnectedToVoice"><strong>NotConnectedToVoice</strong></a> – When the client is not connect to any of the voice channel</p>
 </dd>
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>The music player using the user will have the control over its requested songs</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference internal" href="#DiscordUtils.music.MusicPlayer" title="DiscordUtils.music.MusicPlayer">MusicPlayer</a></p>
+<dd class="field-even"><p><a class="reference internal" href="#DiscordUtils.MusicPlayer" title="DiscordUtils.MusicPlayer">MusicPlayer</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1327,10 +1638,556 @@ This forces the buttons to appear even in the front page</p>
 <dd class="field-odd"><p>See above</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p>Optional[<a class="reference internal" href="#DiscordUtils.music.MusicPlayer" title="DiscordUtils.music.MusicPlayer">MusicPlayer</a>]</p>
+<dd class="field-even"><p>Optional[<a class="reference internal" href="#DiscordUtils.MusicPlayer" title="DiscordUtils.MusicPlayer">MusicPlayer</a>]</p>
 </dd>
 </dl>
 </dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="DiscordUtils.MusicPlayer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DiscordUtils.</span></span><span class="sig-name descname"><span class="pre">MusicPlayer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">music</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.MusicPlayer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>The class which acts a music controller/player</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.10)"><strong>RuntimeError</strong></a> – Is raised when the package is install without the .[voice] parameters</p></li>
+<li><p><a class="reference internal" href="#DiscordUtils.NotPlaying" title="DiscordUtils.NotPlaying"><strong>NotPlaying</strong></a> – See <a class="reference internal" href="#DiscordUtils.MusicPlayer.skip" title="DiscordUtils.MusicPlayer.skip"><code class="xref py py-func docutils literal notranslate"><span class="pre">skip()</span></code></a>, <a class="reference internal" href="#DiscordUtils.MusicPlayer.stop" title="DiscordUtils.MusicPlayer.stop"><code class="xref py py-func docutils literal notranslate"><span class="pre">stop()</span></code></a>, <a class="reference internal" href="#DiscordUtils.MusicPlayer.resume" title="DiscordUtils.MusicPlayer.resume"><code class="xref py py-func docutils literal notranslate"><span class="pre">resume()</span></code></a>, <a class="reference internal" href="#DiscordUtils.MusicPlayer.pause" title="DiscordUtils.MusicPlayer.pause"><code class="xref py py-func docutils literal notranslate"><span class="pre">pause()</span></code></a>, <a class="reference internal" href="#DiscordUtils.MusicPlayer.toggle_song_loop" title="DiscordUtils.MusicPlayer.toggle_song_loop"><code class="xref py py-func docutils literal notranslate"><span class="pre">toggle_song_loop()</span></code></a>, <a class="reference internal" href="#DiscordUtils.MusicPlayer.change_volume" title="DiscordUtils.MusicPlayer.change_volume"><code class="xref py py-func docutils literal notranslate"><span class="pre">change_volume()</span></code></a>, <a class="reference internal" href="#DiscordUtils.MusicPlayer.remove_from_queue" title="DiscordUtils.MusicPlayer.remove_from_queue"><code class="xref py py-func docutils literal notranslate"><span class="pre">remove_from_queue()</span></code></a></p></li>
+<li><p><a class="reference internal" href="#DiscordUtils.EmptyQueue" title="DiscordUtils.EmptyQueue"><strong>EmptyQueue</strong></a> – See <a class="reference internal" href="#DiscordUtils.MusicPlayer.skip" title="DiscordUtils.MusicPlayer.skip"><code class="xref py py-func docutils literal notranslate"><span class="pre">skip()</span></code></a>, <a class="reference internal" href="#DiscordUtils.MusicPlayer.current_queue" title="DiscordUtils.MusicPlayer.current_queue"><code class="xref py py-func docutils literal notranslate"><span class="pre">current_queue()</span></code></a></p></li>
+</ul>
+</dd>
+<dt class="field-even">Parameters</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>ctx</strong> (<a class="reference external" href="https://discordpy.readthedocs.io/en/master/ext/commands/api.html#discord.ext.commands.Context" title="(in discord.py v2.0.0a)"><em>discord.ext.commands.context.Context</em></a>) – </p></li>
+<li><p><strong>music</strong> (<a class="reference internal" href="#DiscordUtils.Music" title="DiscordUtils.Music"><em>Music</em></a>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.MusicPlayer.ctx">
+<span class="sig-name descname"><span class="pre">ctx</span></span><a class="headerlink" href="#DiscordUtils.MusicPlayer.ctx" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.MusicPlayer.voice">
+<span class="sig-name descname"><span class="pre">voice</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.VoiceProtocol" title="(in discord.py v2.0.0a)"><span class="pre">discord.voice_client.VoiceProtocol</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#DiscordUtils.MusicPlayer.voice" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.MusicPlayer.loop">
+<span class="sig-name descname"><span class="pre">loop</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">asyncio.events.AbstractEventLoop</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#DiscordUtils.MusicPlayer.loop" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.MusicPlayer.music">
+<span class="sig-name descname"><span class="pre">music</span></span><a class="headerlink" href="#DiscordUtils.MusicPlayer.music" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.MusicPlayer.after_func">
+<span class="sig-name descname"><span class="pre">after_func</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Callable</span></em><a class="headerlink" href="#DiscordUtils.MusicPlayer.after_func" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.MusicPlayer.on_play_func">
+<span class="sig-name descname"><span class="pre">on_play_func</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#DiscordUtils.MusicPlayer.on_play_func" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.MusicPlayer.on_queue_func">
+<span class="sig-name descname"><span class="pre">on_queue_func</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#DiscordUtils.MusicPlayer.on_queue_func" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.MusicPlayer.on_skip_func">
+<span class="sig-name descname"><span class="pre">on_skip_func</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#DiscordUtils.MusicPlayer.on_skip_func" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.MusicPlayer.on_stop_func">
+<span class="sig-name descname"><span class="pre">on_stop_func</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#DiscordUtils.MusicPlayer.on_stop_func" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.MusicPlayer.on_pause_func">
+<span class="sig-name descname"><span class="pre">on_pause_func</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#DiscordUtils.MusicPlayer.on_pause_func" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.MusicPlayer.on_resume_func">
+<span class="sig-name descname"><span class="pre">on_resume_func</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#DiscordUtils.MusicPlayer.on_resume_func" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.MusicPlayer.on_loop_toggle_func">
+<span class="sig-name descname"><span class="pre">on_loop_toggle_func</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#DiscordUtils.MusicPlayer.on_loop_toggle_func" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.MusicPlayer.on_volume_change_func">
+<span class="sig-name descname"><span class="pre">on_volume_change_func</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#DiscordUtils.MusicPlayer.on_volume_change_func" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.MusicPlayer.on_remove_from_queue_func">
+<span class="sig-name descname"><span class="pre">on_remove_from_queue_func</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#DiscordUtils.MusicPlayer.on_remove_from_queue_func" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.MusicPlayer.ffmpeg_opts">
+<span class="sig-name descname"><span class="pre">ffmpeg_opts</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><span class="pre">dict</span></a></em><a class="headerlink" href="#DiscordUtils.MusicPlayer.ffmpeg_opts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.MusicPlayer.disable">
+<span class="sig-name descname"><span class="pre">disable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.disable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.MusicPlayer.disable" title="Permalink to this definition">¶</a></dt>
+<dd><p>It disables the <cite>Music Player</cite></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.MusicPlayer.on_queue">
+<span class="sig-name descname"><span class="pre">on_queue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.on_queue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.MusicPlayer.on_queue" title="Permalink to this definition">¶</a></dt>
+<dd><p>The event when the song is <cite>queued</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>func</strong> (<em>Callable</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.MusicPlayer.on_play">
+<span class="sig-name descname"><span class="pre">on_play</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.on_play"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.MusicPlayer.on_play" title="Permalink to this definition">¶</a></dt>
+<dd><p>The event when the song is <cite>played</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>func</strong> (<em>Callable</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.MusicPlayer.on_skip">
+<span class="sig-name descname"><span class="pre">on_skip</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.on_skip"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.MusicPlayer.on_skip" title="Permalink to this definition">¶</a></dt>
+<dd><p>The event when the song is <cite>skipped</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>func</strong> (<em>Callable</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.MusicPlayer.on_stop">
+<span class="sig-name descname"><span class="pre">on_stop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.on_stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.MusicPlayer.on_stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>The event when the player is <cite>stopped</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>func</strong> (<em>Callable</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.MusicPlayer.on_pause">
+<span class="sig-name descname"><span class="pre">on_pause</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.on_pause"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.MusicPlayer.on_pause" title="Permalink to this definition">¶</a></dt>
+<dd><p>The event when the song is <cite>paused</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>func</strong> (<em>Callable</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.MusicPlayer.on_resume">
+<span class="sig-name descname"><span class="pre">on_resume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.on_resume"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.MusicPlayer.on_resume" title="Permalink to this definition">¶</a></dt>
+<dd><p>The event when the song is <cite>resumed</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>func</strong> (<em>Callable</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.MusicPlayer.on_loop_toggle">
+<span class="sig-name descname"><span class="pre">on_loop_toggle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.on_loop_toggle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.MusicPlayer.on_loop_toggle" title="Permalink to this definition">¶</a></dt>
+<dd><p>The event when the <cite>looping</cite> is <cite>enabled</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>func</strong> (<em>Callable</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.MusicPlayer.on_volume_change">
+<span class="sig-name descname"><span class="pre">on_volume_change</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.on_volume_change"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.MusicPlayer.on_volume_change" title="Permalink to this definition">¶</a></dt>
+<dd><p>The event when the <cite>volume</cite> is <cite>changed</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>func</strong> (<em>Callable</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.MusicPlayer.on_remove_from_queue">
+<span class="sig-name descname"><span class="pre">on_remove_from_queue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.on_remove_from_queue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.MusicPlayer.on_remove_from_queue" title="Permalink to this definition">¶</a></dt>
+<dd><p>The event when the song is <cite>removed from the queue</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>func</strong> (<em>Callable</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.MusicPlayer.queue">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">queue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">search</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bettersearch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.queue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.MusicPlayer.queue" title="Permalink to this definition">¶</a></dt>
+<dd><p>The song to queue</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>url</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – The <cite>url</cite> of the song provider</p></li>
+<li><p><strong>search</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a><em>, </em><em>optional</em>) – Song Name, defaults to False</p></li>
+<li><p><strong>bettersearch</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a><em>, </em><em>optional</em>) – Search betterly or not, defaults to False</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The song with the minimum required data</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#DiscordUtils.music.Song" title="DiscordUtils.music.Song">Song</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.MusicPlayer.play">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">play</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.play"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.MusicPlayer.play" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determines which song to play from the queue</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>See above</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#DiscordUtils.music.Song" title="DiscordUtils.music.Song">Song</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.MusicPlayer.skip">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">skip</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.skip"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.MusicPlayer.skip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Skips the current song which is being played</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>force</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a><em>, </em><em>optional</em>) – Force skip or not, defaults to False</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="#DiscordUtils.NotPlaying" title="DiscordUtils.NotPlaying"><strong>NotPlaying</strong></a> – When there is no song played then this error is raised</p></li>
+<li><p><a class="reference internal" href="#DiscordUtils.EmptyQueue" title="DiscordUtils.EmptyQueue"><strong>EmptyQueue</strong></a> – When the queue is empty</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>It returns (old song, new song) or just (song) depending on the situtation</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Union[Tuple[<a class="reference internal" href="#DiscordUtils.music.Song" title="DiscordUtils.music.Song">Song</a>, <a class="reference internal" href="#DiscordUtils.music.Song" title="DiscordUtils.music.Song">Song</a>], <a class="reference internal" href="#DiscordUtils.music.Song" title="DiscordUtils.music.Song">Song</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.MusicPlayer.stop">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.MusicPlayer.stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stops the player</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#DiscordUtils.NotPlaying" title="DiscordUtils.NotPlaying"><strong>NotPlaying</strong></a> – When nothing is played</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.MusicPlayer.pause">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">pause</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.pause"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.MusicPlayer.pause" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pauses the player</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#DiscordUtils.NotPlaying" title="DiscordUtils.NotPlaying"><strong>NotPlaying</strong></a> – When nothing is played</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The song on which the pause was initiated</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#DiscordUtils.music.Song" title="DiscordUtils.music.Song">Song</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.MusicPlayer.resume">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">resume</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.resume"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.MusicPlayer.resume" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resumes the player</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#DiscordUtils.NotPlaying" title="DiscordUtils.NotPlaying"><strong>NotPlaying</strong></a> – When nothing was played by the player previously</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The song which will be played</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#DiscordUtils.music.Song" title="DiscordUtils.music.Song">Song</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.MusicPlayer.current_queue">
+<span class="sig-name descname"><span class="pre">current_queue</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.current_queue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.MusicPlayer.current_queue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gives the current queue of songs which is there in the player</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#DiscordUtils.EmptyQueue" title="DiscordUtils.EmptyQueue"><strong>EmptyQueue</strong></a> – When the song queue is empty</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>_description_</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Union[Iterable, <a class="reference internal" href="#DiscordUtils.music.Song" title="DiscordUtils.music.Song">Song</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.MusicPlayer.now_playing">
+<span class="sig-name descname"><span class="pre">now_playing</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.now_playing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.MusicPlayer.now_playing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the <code class="xref py py-class docutils literal notranslate"><span class="pre">Song</span></code> which is currently being played</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>See above</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Optional[Union[Iterable, <a class="reference internal" href="#DiscordUtils.music.Song" title="DiscordUtils.music.Song">Song</a>]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.MusicPlayer.toggle_song_loop">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">toggle_song_loop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.toggle_song_loop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.MusicPlayer.toggle_song_loop" title="Permalink to this definition">¶</a></dt>
+<dd><p>It toggles on/off the looping</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#DiscordUtils.NotPlaying" title="DiscordUtils.NotPlaying"><strong>NotPlaying</strong></a> – When no song is being played</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The currently playing song or the looped queue</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Optional[Union[Iterable, <a class="reference internal" href="#DiscordUtils.music.Song" title="DiscordUtils.music.Song">Song</a>]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.MusicPlayer.change_volume">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">change_volume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vol</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.change_volume"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.MusicPlayer.change_volume" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change the song volume of the currently played song</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>vol</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – The amount by the volume needs to increased or decreased</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="#DiscordUtils.NotPlaying" title="DiscordUtils.NotPlaying"><strong>NotPlaying</strong></a> – When no song is played</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>(The song which is being played, volume no by which the song’s volume was increased or decreased)</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Tuple[<a class="reference internal" href="#DiscordUtils.music.Song" title="DiscordUtils.music.Song">Song</a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)">int</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.MusicPlayer.remove_from_queue">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">remove_from_queue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.remove_from_queue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.MusicPlayer.remove_from_queue" title="Permalink to this definition">¶</a></dt>
+<dd><p>The utility function to remove <code class="xref py py-class docutils literal notranslate"><span class="pre">Song</span></code> from the queue</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>index</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – The index at which the <code class="xref py py-class docutils literal notranslate"><span class="pre">Song</span></code> is located</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="#DiscordUtils.NotPlaying" title="DiscordUtils.NotPlaying"><strong>NotPlaying</strong></a> – When nothing is player by the player</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The song to be removed from the player</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#DiscordUtils.music.Song" title="DiscordUtils.music.Song">Song</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.MusicPlayer.delete">
+<span class="sig-name descname"><span class="pre">delete</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.delete"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.MusicPlayer.delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes the song from the queue</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="DiscordUtils.Embed">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DiscordUtils.</span></span><span class="sig-name descname"><span class="pre">Embed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/embeds.html#Embed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.Embed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Embed" title="(in discord.py v2.0.0a)"><code class="xref py py-class docutils literal notranslate"><span class="pre">discord.embeds.Embed</span></code></a></p>
+<p>Embed which has whoose colors are randomly generated
+The <cite>random</cite> color are generated using <code class="xref py py-func docutils literal notranslate"><span class="pre">discord.Color.random()</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.Embed.title">
+<span class="sig-name descname"><span class="pre">title</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">MaybeEmpty</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#DiscordUtils.Embed.title" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.Embed.url">
+<span class="sig-name descname"><span class="pre">url</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">MaybeEmpty</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#DiscordUtils.Embed.url" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.Embed.type">
+<span class="sig-name descname"><span class="pre">type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">EmbedType</span></em><a class="headerlink" href="#DiscordUtils.Embed.type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.Embed.description">
+<span class="sig-name descname"><span class="pre">description</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">MaybeEmpty</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#DiscordUtils.Embed.description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="DiscordUtils.ErrorEmbed">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DiscordUtils.</span></span><span class="sig-name descname"><span class="pre">ErrorEmbed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/embeds.html#ErrorEmbed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.ErrorEmbed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Embed" title="(in discord.py v2.0.0a)"><code class="xref py py-class docutils literal notranslate"><span class="pre">discord.embeds.Embed</span></code></a></p>
+<p>The Embed used to depict an <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a>
+The <cite>red</cite> color are generated using <code class="xref py py-func docutils literal notranslate"><span class="pre">discord.Color.red()</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.ErrorEmbed.title">
+<span class="sig-name descname"><span class="pre">title</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">MaybeEmpty</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#DiscordUtils.ErrorEmbed.title" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.ErrorEmbed.url">
+<span class="sig-name descname"><span class="pre">url</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">MaybeEmpty</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#DiscordUtils.ErrorEmbed.url" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.ErrorEmbed.type">
+<span class="sig-name descname"><span class="pre">type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">EmbedType</span></em><a class="headerlink" href="#DiscordUtils.ErrorEmbed.type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.ErrorEmbed.description">
+<span class="sig-name descname"><span class="pre">description</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">MaybeEmpty</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#DiscordUtils.ErrorEmbed.description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="DiscordUtils.SuccessEmbed">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DiscordUtils.</span></span><span class="sig-name descname"><span class="pre">SuccessEmbed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/embeds.html#SuccessEmbed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.SuccessEmbed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Embed" title="(in discord.py v2.0.0a)"><code class="xref py py-class docutils literal notranslate"><span class="pre">discord.embeds.Embed</span></code></a></p>
+<p>The Embed used to depict any kind of <cite>success</cite>
+The <cite>green</cite> color are generated using <code class="xref py py-func docutils literal notranslate"><span class="pre">discord.Color.green()</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.SuccessEmbed.title">
+<span class="sig-name descname"><span class="pre">title</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">MaybeEmpty</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#DiscordUtils.SuccessEmbed.title" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.SuccessEmbed.url">
+<span class="sig-name descname"><span class="pre">url</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">MaybeEmpty</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#DiscordUtils.SuccessEmbed.url" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.SuccessEmbed.type">
+<span class="sig-name descname"><span class="pre">type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">EmbedType</span></em><a class="headerlink" href="#DiscordUtils.SuccessEmbed.type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.SuccessEmbed.description">
+<span class="sig-name descname"><span class="pre">description</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">MaybeEmpty</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#DiscordUtils.SuccessEmbed.description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="DiscordUtils.StarboardEmbed">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DiscordUtils.</span></span><span class="sig-name descname"><span class="pre">StarboardEmbed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/embeds.html#StarboardEmbed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.StarboardEmbed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Embed" title="(in discord.py v2.0.0a)"><code class="xref py py-class docutils literal notranslate"><span class="pre">discord.embeds.Embed</span></code></a></p>
+<p>The Embed used to depict any kind of <cite>warning</cite> or <cite>starboard</cite> kind of <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Embed" title="(in discord.py v2.0.0a)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Embed</span></code></a>
+The <cite>green</cite> color are generated using <code class="xref py py-func docutils literal notranslate"><span class="pre">discord.Color.green()</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.StarboardEmbed.title">
+<span class="sig-name descname"><span class="pre">title</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">MaybeEmpty</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#DiscordUtils.StarboardEmbed.title" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.StarboardEmbed.url">
+<span class="sig-name descname"><span class="pre">url</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">MaybeEmpty</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#DiscordUtils.StarboardEmbed.url" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.StarboardEmbed.type">
+<span class="sig-name descname"><span class="pre">type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">EmbedType</span></em><a class="headerlink" href="#DiscordUtils.StarboardEmbed.type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.StarboardEmbed.description">
+<span class="sig-name descname"><span class="pre">description</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">MaybeEmpty</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#DiscordUtils.StarboardEmbed.description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -1765,6 +2622,27 @@ This forces the buttons to appear even in the front page</p>
 </dl>
 </dd></dl>
 
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="DiscordUtils.NotPlaying">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DiscordUtils.</span></span><span class="sig-name descname"><span class="pre">NotPlaying</span></span><a class="reference internal" href="_modules/DiscordUtils/music.html#NotPlaying"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.NotPlaying" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
+<p>Cannot &lt;do something&gt; because nothing is being played</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="DiscordUtils.NotConnectedToVoice">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DiscordUtils.</span></span><span class="sig-name descname"><span class="pre">NotConnectedToVoice</span></span><a class="reference internal" href="_modules/DiscordUtils/music.html#NotConnectedToVoice"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.NotConnectedToVoice" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
+<p>Cannot create the player because bot is not connected to voice</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="DiscordUtils.EmptyQueue">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DiscordUtils.</span></span><span class="sig-name descname"><span class="pre">EmptyQueue</span></span><a class="reference internal" href="_modules/DiscordUtils/music.html#EmptyQueue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.EmptyQueue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
+<p>Cannot skip because queue is empty</p>
 </dd></dl>
 
 </section>

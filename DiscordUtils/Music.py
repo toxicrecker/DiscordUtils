@@ -1,5 +1,5 @@
 import asyncio
-from typing import Callable, Optional, Union
+from typing import Callable, Iterable, Optional, Tuple, Union
 
 import aiohttp
 from discord.ext import commands
@@ -249,7 +249,29 @@ def check_queue(ctx: commands.Context, opts: dict, music: 'Music', after: Callab
 
 
 class MusicPlayer:
+    """The class which acts a music controller/player
 
+    :raises RuntimeError: Is raised when the package is install without the .[voice] parameters
+    :raises NotPlaying: See :func:`skip`, :func:`stop`, :func:`resume`, :func:`pause`, :func:`toggle_song_loop`, :func:`change_volume`, :func:`remove_from_queue`
+    :raises EmptyQueue: See :func:`skip`, :func:`current_queue`
+    """    
+    __slots__ = [
+        'ctx', 
+        'voice', 
+        'loop',
+        'music',
+        'after_func',
+        'on_play_func',
+        'on_queue_func',
+        'on_skip_func',
+        'on_stop_func',
+        'on_pause_func',
+        'on_resume_func',
+        'on_loop_toggle_func',
+        'on_volume_change_func',
+        'on_remove_from_queue_func',
+        'ffmpeg_opts'
+    ]
     def __init__(self, ctx:commands.Context , music: 'Music', **kwargs):
         if not has_voice:
             raise RuntimeError("DiscordUtils[voice] install needed in order to use voice")
@@ -292,45 +314,108 @@ class MusicPlayer:
             self.ffmpeg_opts: dict = {"options": "-vn", "before_options": "-nostdin"}
 
     def disable(self):
+        '''It disables the `Music Player`'''
         self.music.players.remove(self)
 
-    def on_queue(self, func):
+    def on_queue(self, func: Callable) -> None:
+        """The event when the song is `queued`
+
+        :param func:
+        :type func: Callable
+        """
         self.on_queue_func = func
 
-    def on_play(self, func):
+    def on_play(self, func: Callable) -> None:
+        """The event when the song is `played`
+
+        :param func:
+        :type func: Callable
+        """
         self.on_play_func = func
 
-    def on_skip(self, func):
+    def on_skip(self, func: Callable) -> None:
+        """The event when the song is `skipped`
+
+        :param func:
+        :type func: Callable
+        """
         self.on_skip_func = func
 
-    def on_stop(self, func):
+    def on_stop(self, func: Callable) -> None:
+        """The event when the player is `stopped`
+
+        :param func:
+        :type func: Callable
+        """
         self.on_stop_func = func
 
-    def on_pause(self, func):
+    def on_pause(self, func: Callable) -> None:
+        """The event when the song is `paused`
+
+        :param func:
+        :type func: Callable
+        """
         self.on_pause_func = func
 
-    def on_resume(self, func):
+    def on_resume(self, func: Callable) -> None:
+        """The event when the song is `resumed`
+
+        :param func:
+        :type func: Callable
+        """
         self.on_resume_func = func
 
-    def on_loop_toggle(self, func):
+    def on_loop_toggle(self, func: Callable) -> None:
+        """The event when the `looping` is `enabled`
+
+        :param func:
+        :type func: Callable
+        """
         self.on_loop_toggle_func = func
 
-    def on_volume_change(self, func):
+    def on_volume_change(self, func: Callable) -> None:
+        """The event when the `volume` is `changed`
+
+        :param func:
+        :type func: Callable
+        """
         self.on_volume_change_func = func
 
-    def on_remove_from_queue(self, func):
+    def on_remove_from_queue(self, func: Callable) -> None:
+        """The event when the song is `removed from the queue`
+
+        :param func:
+        :type func: Callable
+        """
         self.on_remove_from_queue_func = func
 
-    async def queue(self, url, search=False, bettersearch=False):
+    async def queue(self, url: str, search: bool = False, bettersearch: bool = False) -> Song:
+        """The song to queue
+
+        :param url: The `url` of the song provider
+        :type url: str
+        :param search: Song Name, defaults to False
+        :type search: bool, optional
+        :param bettersearch: Search betterly or not, defaults to False
+        :type bettersearch: bool, optional
+        :return: The song with the minimum required data
+        :rtype: Song
+        """        
         song = await get_video_data(url, search, bettersearch, self.loop)
         self.music.queue[self.ctx.guild.id].append(song)
         if self.on_queue_func:
             await self.on_queue_func(self.ctx, song)
         return song
 
-    async def play(self):
+    async def play(self) -> Song:
+        """Determines which song to play from the queue
+
+        :return: See above
+        :rtype: Song
+        """        
         source = discord.PCMVolumeTransformer(
-            discord.FFmpegPCMAudio(self.music.queue[self.ctx.guild.id][0].source,**self.ffmpeg_opts))
+            discord.FFmpegPCMAudio(self.music.queue[self.ctx.guild.id][0].source,**self.ffmpeg_opts)
+        )
         self.voice.play(
             source,
             after=lambda error: self.after_func(
@@ -347,26 +432,38 @@ class MusicPlayer:
             await self.on_play_func(self.ctx, song)
         return song
 
-    async def skip(self, force=False):
+    async def skip(self, force: bool = False) -> Union[Tuple[Song, Song], Song]:
+        """Skips the current song which is being played
+
+        :param force: Force skip or not, defaults to False
+        :type force: bool, optional
+        :raises NotPlaying: When there is no song played then this error is raised
+        :raises EmptyQueue: When the queue is empty
+        :return: It returns (old song, new song) or just (song) depending on the situtation
+        :rtype: Union[Tuple[Song, Song], Song]
+        """        
         if len(self.music.queue[self.ctx.guild.id]) == 0:
             raise NotPlaying("Cannot loop because nothing is being played")
         elif not len(self.music.queue[self.ctx.guild.id]) > 1 and not force:
             raise EmptyQueue("Cannot skip because queue is empty")
-        else:
-            old = self.music.queue[self.ctx.guild.id][0]
-            old.is_looping = False if old.is_looping else False
-            self.voice.stop()
-            try:
-                new = self.music.queue[self.ctx.guild.id][0]
-                if self.on_skip_func:
-                    await self.on_skip_func(self.ctx, old, new)
-                return (old, new)
-            except IndexError:
-                if self.on_skip_func:
-                    await self.on_skip_func(self.ctx, old)
-                return old
+        old = self.music.queue[self.ctx.guild.id][0]
+        old.is_looping = False if old.is_looping else False
+        self.voice.stop()
+        try:
+            new = self.music.queue[self.ctx.guild.id][0]
+            if self.on_skip_func:
+                await self.on_skip_func(self.ctx, old, new)
+            return (old, new)
+        except IndexError:
+            if self.on_skip_func:
+                await self.on_skip_func(self.ctx, old)
+            return old
 
-    async def stop(self):
+    async def stop(self) -> None:
+        """Stops the player
+
+        :raises NotPlaying: When nothing is played
+        """        
         try:
             self.music.queue[self.ctx.guild.id] = []
             self.voice.stop()
@@ -376,7 +473,13 @@ class MusicPlayer:
         if self.on_stop_func:
             await self.on_stop_func(self.ctx)
 
-    async def pause(self):
+    async def pause(self) -> Song:
+        """Pauses the player
+
+        :raises NotPlaying: When nothing is played
+        :return: The song on which the pause was initiated
+        :rtype: Song
+        """        
         try:
             self.voice.pause()
             song = self.music.queue[self.ctx.guild.id][0]
@@ -386,7 +489,13 @@ class MusicPlayer:
             await self.on_pause_func(self.ctx, song)
         return song
 
-    async def resume(self):
+    async def resume(self) -> Song:
+        """Resumes the player
+
+        :raises NotPlaying: When nothing was played by the player previously
+        :return: The song which will be played
+        :rtype: Song
+        """        
         try:
             self.voice.resume()
             song = self.music.queue[self.ctx.guild.id][0]
@@ -396,19 +505,36 @@ class MusicPlayer:
             await self.on_resume_func(self.ctx, song)
         return song
 
-    def current_queue(self):
+    def current_queue(self) -> Union[Iterable, Song]:
+        """Gives the current queue of songs which is there in the player
+
+        :raises EmptyQueue: When the song queue is empty
+        :return: _description_
+        :rtype: Union[Iterable, Song]
+        """        
         try:
             return self.music.queue[self.ctx.guild.id]
         except KeyError:
             raise EmptyQueue("Queue is empty")
 
-    def now_playing(self):
+    def now_playing(self) -> Optional[Union[Iterable, Song]]:
+        """Returns the :class:`Song` which is currently being played
+
+        :return: See above
+        :rtype: Optional[Union[Iterable, Song]]
+        """        
         try:
             return self.music.queue[self.ctx.guild.id][0]
         except:
             return None
 
-    async def toggle_song_loop(self):
+    async def toggle_song_loop(self) -> Optional[Union[Iterable, Song]]:
+        """It toggles on/off the looping
+
+        :raises NotPlaying: When no song is being played
+        :return: The currently playing song or the looped queue
+        :rtype: Optional[Union[Iterable, Song]]
+        """        
         try:
             song = self.music.queue[self.ctx.guild.id][0]
         except:
@@ -421,7 +547,15 @@ class MusicPlayer:
             await self.on_loop_toggle_func(self.ctx, song)
         return song
 
-    async def change_volume(self, vol):
+    async def change_volume(self, vol: int) -> Tuple[Song, int]:
+        """Change the song volume of the currently played song
+
+        :param vol: The amount by the volume needs to increased or decreased
+        :type vol: int
+        :raises NotPlaying: When no song is played
+        :return: (The song which is being played, volume no by which the song's volume was increased or decreased)
+        :rtype: Tuple[Song, int]
+        """        
         self.voice.source.volume = vol
         try:
             song = self.music.queue[self.ctx.guild.id][0]
@@ -431,7 +565,15 @@ class MusicPlayer:
             await self.on_volume_change_func(self.ctx, song, vol)
         return (song, vol)
 
-    async def remove_from_queue(self, index):
+    async def remove_from_queue(self, index: int) -> Song:
+        """The utility function to remove :class:`Song` from the queue
+
+        :param index: The index at which the :class:`Song` is located
+        :type index: int
+        :raises NotPlaying: When nothing is player by the player
+        :return: The song to be removed from the player
+        :rtype: Song
+        """        
         if index == 0:
             try:
                 song = self.music.queue[self.ctx.guild.id][0]
@@ -445,7 +587,9 @@ class MusicPlayer:
             await self.on_remove_from_queue_func(self.ctx, song)
         return song
 
-    def delete(self):
+    def delete(self) -> None:
+        """Removes the song from the queue
+        """        
         self.music.players.remove(self)
 
 

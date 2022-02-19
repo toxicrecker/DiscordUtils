@@ -67,7 +67,7 @@
       
   <h1>Source code for DiscordUtils.music</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">asyncio</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
 
 <span class="kn">import</span> <span class="nn">aiohttp</span>
 <span class="kn">from</span> <span class="nn">discord.ext</span> <span class="kn">import</span> <span class="n">commands</span>
@@ -317,7 +317,29 @@
 
 
 <div class="viewcode-block" id="MusicPlayer"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer">[docs]</a><span class="k">class</span> <span class="nc">MusicPlayer</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;The class which acts a music controller/player</span>
 
+<span class="sd">    :raises RuntimeError: Is raised when the package is install without the .[voice] parameters</span>
+<span class="sd">    :raises NotPlaying: See :func:`skip`, :func:`stop`, :func:`resume`, :func:`pause`, :func:`toggle_song_loop`, :func:`change_volume`, :func:`remove_from_queue`</span>
+<span class="sd">    :raises EmptyQueue: See :func:`skip`, :func:`current_queue`</span>
+<span class="sd">    &quot;&quot;&quot;</span>    
+    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;ctx&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;voice&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;loop&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;music&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;after_func&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;on_play_func&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;on_queue_func&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;on_skip_func&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;on_stop_func&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;on_pause_func&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;on_resume_func&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;on_loop_toggle_func&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;on_volume_change_func&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;on_remove_from_queue_func&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;ffmpeg_opts&#39;</span>
+    <span class="p">]</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctx</span><span class="p">:</span><span class="n">commands</span><span class="o">.</span><span class="n">Context</span> <span class="p">,</span> <span class="n">music</span><span class="p">:</span> <span class="s1">&#39;Music&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">has_voice</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;DiscordUtils[voice] install needed in order to use voice&quot;</span><span class="p">)</span>
@@ -360,45 +382,108 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">ffmpeg_opts</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;options&quot;</span><span class="p">:</span> <span class="s2">&quot;-vn&quot;</span><span class="p">,</span> <span class="s2">&quot;before_options&quot;</span><span class="p">:</span> <span class="s2">&quot;-nostdin&quot;</span><span class="p">}</span>
 
 <div class="viewcode-block" id="MusicPlayer.disable"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.disable">[docs]</a>    <span class="k">def</span> <span class="nf">disable</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;It disables the `Music Player`&#39;&#39;&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">music</span><span class="o">.</span><span class="n">players</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="MusicPlayer.on_queue"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.on_queue">[docs]</a>    <span class="k">def</span> <span class="nf">on_queue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
+<div class="viewcode-block" id="MusicPlayer.on_queue"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.on_queue">[docs]</a>    <span class="k">def</span> <span class="nf">on_queue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;The event when the song is `queued`</span>
+
+<span class="sd">        :param func:</span>
+<span class="sd">        :type func: Callable</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">on_queue_func</span> <span class="o">=</span> <span class="n">func</span></div>
 
-<div class="viewcode-block" id="MusicPlayer.on_play"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.on_play">[docs]</a>    <span class="k">def</span> <span class="nf">on_play</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
+<div class="viewcode-block" id="MusicPlayer.on_play"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.on_play">[docs]</a>    <span class="k">def</span> <span class="nf">on_play</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;The event when the song is `played`</span>
+
+<span class="sd">        :param func:</span>
+<span class="sd">        :type func: Callable</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">on_play_func</span> <span class="o">=</span> <span class="n">func</span></div>
 
-<div class="viewcode-block" id="MusicPlayer.on_skip"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.on_skip">[docs]</a>    <span class="k">def</span> <span class="nf">on_skip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
+<div class="viewcode-block" id="MusicPlayer.on_skip"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.on_skip">[docs]</a>    <span class="k">def</span> <span class="nf">on_skip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;The event when the song is `skipped`</span>
+
+<span class="sd">        :param func:</span>
+<span class="sd">        :type func: Callable</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">on_skip_func</span> <span class="o">=</span> <span class="n">func</span></div>
 
-<div class="viewcode-block" id="MusicPlayer.on_stop"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.on_stop">[docs]</a>    <span class="k">def</span> <span class="nf">on_stop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
+<div class="viewcode-block" id="MusicPlayer.on_stop"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.on_stop">[docs]</a>    <span class="k">def</span> <span class="nf">on_stop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;The event when the player is `stopped`</span>
+
+<span class="sd">        :param func:</span>
+<span class="sd">        :type func: Callable</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">on_stop_func</span> <span class="o">=</span> <span class="n">func</span></div>
 
-<div class="viewcode-block" id="MusicPlayer.on_pause"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.on_pause">[docs]</a>    <span class="k">def</span> <span class="nf">on_pause</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
+<div class="viewcode-block" id="MusicPlayer.on_pause"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.on_pause">[docs]</a>    <span class="k">def</span> <span class="nf">on_pause</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;The event when the song is `paused`</span>
+
+<span class="sd">        :param func:</span>
+<span class="sd">        :type func: Callable</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">on_pause_func</span> <span class="o">=</span> <span class="n">func</span></div>
 
-<div class="viewcode-block" id="MusicPlayer.on_resume"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.on_resume">[docs]</a>    <span class="k">def</span> <span class="nf">on_resume</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
+<div class="viewcode-block" id="MusicPlayer.on_resume"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.on_resume">[docs]</a>    <span class="k">def</span> <span class="nf">on_resume</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;The event when the song is `resumed`</span>
+
+<span class="sd">        :param func:</span>
+<span class="sd">        :type func: Callable</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">on_resume_func</span> <span class="o">=</span> <span class="n">func</span></div>
 
-<div class="viewcode-block" id="MusicPlayer.on_loop_toggle"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.on_loop_toggle">[docs]</a>    <span class="k">def</span> <span class="nf">on_loop_toggle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
+<div class="viewcode-block" id="MusicPlayer.on_loop_toggle"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.on_loop_toggle">[docs]</a>    <span class="k">def</span> <span class="nf">on_loop_toggle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;The event when the `looping` is `enabled`</span>
+
+<span class="sd">        :param func:</span>
+<span class="sd">        :type func: Callable</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">on_loop_toggle_func</span> <span class="o">=</span> <span class="n">func</span></div>
 
-<div class="viewcode-block" id="MusicPlayer.on_volume_change"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.on_volume_change">[docs]</a>    <span class="k">def</span> <span class="nf">on_volume_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
+<div class="viewcode-block" id="MusicPlayer.on_volume_change"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.on_volume_change">[docs]</a>    <span class="k">def</span> <span class="nf">on_volume_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;The event when the `volume` is `changed`</span>
+
+<span class="sd">        :param func:</span>
+<span class="sd">        :type func: Callable</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">on_volume_change_func</span> <span class="o">=</span> <span class="n">func</span></div>
 
-<div class="viewcode-block" id="MusicPlayer.on_remove_from_queue"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.on_remove_from_queue">[docs]</a>    <span class="k">def</span> <span class="nf">on_remove_from_queue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
+<div class="viewcode-block" id="MusicPlayer.on_remove_from_queue"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.on_remove_from_queue">[docs]</a>    <span class="k">def</span> <span class="nf">on_remove_from_queue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;The event when the song is `removed from the queue`</span>
+
+<span class="sd">        :param func:</span>
+<span class="sd">        :type func: Callable</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">on_remove_from_queue_func</span> <span class="o">=</span> <span class="n">func</span></div>
 
-<div class="viewcode-block" id="MusicPlayer.queue"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.queue">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">queue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">search</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">bettersearch</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="MusicPlayer.queue"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.queue">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">queue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">search</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">bettersearch</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Song</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;The song to queue</span>
+
+<span class="sd">        :param url: The `url` of the song provider</span>
+<span class="sd">        :type url: str</span>
+<span class="sd">        :param search: Song Name, defaults to False</span>
+<span class="sd">        :type search: bool, optional</span>
+<span class="sd">        :param bettersearch: Search betterly or not, defaults to False</span>
+<span class="sd">        :type bettersearch: bool, optional</span>
+<span class="sd">        :return: The song with the minimum required data</span>
+<span class="sd">        :rtype: Song</span>
+<span class="sd">        &quot;&quot;&quot;</span>        
         <span class="n">song</span> <span class="o">=</span> <span class="k">await</span> <span class="n">get_video_data</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">search</span><span class="p">,</span> <span class="n">bettersearch</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">loop</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">music</span><span class="o">.</span><span class="n">queue</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">song</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_queue_func</span><span class="p">:</span>
             <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_queue_func</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="p">,</span> <span class="n">song</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">song</span></div>
 
-<div class="viewcode-block" id="MusicPlayer.play"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.play">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">play</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="MusicPlayer.play"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.play">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">play</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Song</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Determines which song to play from the queue</span>
+
+<span class="sd">        :return: See above</span>
+<span class="sd">        :rtype: Song</span>
+<span class="sd">        &quot;&quot;&quot;</span>        
         <span class="n">source</span> <span class="o">=</span> <span class="n">discord</span><span class="o">.</span><span class="n">PCMVolumeTransformer</span><span class="p">(</span>
-            <span class="n">discord</span><span class="o">.</span><span class="n">FFmpegPCMAudio</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">music</span><span class="o">.</span><span class="n">queue</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">source</span><span class="p">,</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">ffmpeg_opts</span><span class="p">))</span>
+            <span class="n">discord</span><span class="o">.</span><span class="n">FFmpegPCMAudio</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">music</span><span class="o">.</span><span class="n">queue</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">source</span><span class="p">,</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">ffmpeg_opts</span><span class="p">)</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">voice</span><span class="o">.</span><span class="n">play</span><span class="p">(</span>
             <span class="n">source</span><span class="p">,</span>
             <span class="n">after</span><span class="o">=</span><span class="k">lambda</span> <span class="n">error</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">after_func</span><span class="p">(</span>
@@ -415,26 +500,38 @@
             <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_play_func</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="p">,</span> <span class="n">song</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">song</span></div>
 
-<div class="viewcode-block" id="MusicPlayer.skip"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.skip">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">skip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="MusicPlayer.skip"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.skip">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">skip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">force</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Song</span><span class="p">,</span> <span class="n">Song</span><span class="p">],</span> <span class="n">Song</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Skips the current song which is being played</span>
+
+<span class="sd">        :param force: Force skip or not, defaults to False</span>
+<span class="sd">        :type force: bool, optional</span>
+<span class="sd">        :raises NotPlaying: When there is no song played then this error is raised</span>
+<span class="sd">        :raises EmptyQueue: When the queue is empty</span>
+<span class="sd">        :return: It returns (old song, new song) or just (song) depending on the situtation</span>
+<span class="sd">        :rtype: Union[Tuple[Song, Song], Song]</span>
+<span class="sd">        &quot;&quot;&quot;</span>        
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">music</span><span class="o">.</span><span class="n">queue</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">NotPlaying</span><span class="p">(</span><span class="s2">&quot;Cannot loop because nothing is being played&quot;</span><span class="p">)</span>
         <span class="k">elif</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">music</span><span class="o">.</span><span class="n">queue</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">force</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">EmptyQueue</span><span class="p">(</span><span class="s2">&quot;Cannot skip because queue is empty&quot;</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">old</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">music</span><span class="o">.</span><span class="n">queue</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-            <span class="n">old</span><span class="o">.</span><span class="n">is_looping</span> <span class="o">=</span> <span class="kc">False</span> <span class="k">if</span> <span class="n">old</span><span class="o">.</span><span class="n">is_looping</span> <span class="k">else</span> <span class="kc">False</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">voice</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="n">new</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">music</span><span class="o">.</span><span class="n">queue</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_skip_func</span><span class="p">:</span>
-                    <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_skip_func</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="p">,</span> <span class="n">old</span><span class="p">,</span> <span class="n">new</span><span class="p">)</span>
-                <span class="k">return</span> <span class="p">(</span><span class="n">old</span><span class="p">,</span> <span class="n">new</span><span class="p">)</span>
-            <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_skip_func</span><span class="p">:</span>
-                    <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_skip_func</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="p">,</span> <span class="n">old</span><span class="p">)</span>
-                <span class="k">return</span> <span class="n">old</span></div>
+        <span class="n">old</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">music</span><span class="o">.</span><span class="n">queue</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">old</span><span class="o">.</span><span class="n">is_looping</span> <span class="o">=</span> <span class="kc">False</span> <span class="k">if</span> <span class="n">old</span><span class="o">.</span><span class="n">is_looping</span> <span class="k">else</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">voice</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">new</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">music</span><span class="o">.</span><span class="n">queue</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_skip_func</span><span class="p">:</span>
+                <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_skip_func</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="p">,</span> <span class="n">old</span><span class="p">,</span> <span class="n">new</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">old</span><span class="p">,</span> <span class="n">new</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_skip_func</span><span class="p">:</span>
+                <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_skip_func</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="p">,</span> <span class="n">old</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">old</span></div>
 
-<div class="viewcode-block" id="MusicPlayer.stop"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.stop">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="MusicPlayer.stop"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.stop">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Stops the player</span>
+
+<span class="sd">        :raises NotPlaying: When nothing is played</span>
+<span class="sd">        &quot;&quot;&quot;</span>        
         <span class="k">try</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">music</span><span class="o">.</span><span class="n">queue</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">voice</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
@@ -444,7 +541,13 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_stop_func</span><span class="p">:</span>
             <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_stop_func</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="MusicPlayer.pause"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.pause">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">pause</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="MusicPlayer.pause"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.pause">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">pause</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Song</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Pauses the player</span>
+
+<span class="sd">        :raises NotPlaying: When nothing is played</span>
+<span class="sd">        :return: The song on which the pause was initiated</span>
+<span class="sd">        :rtype: Song</span>
+<span class="sd">        &quot;&quot;&quot;</span>        
         <span class="k">try</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">voice</span><span class="o">.</span><span class="n">pause</span><span class="p">()</span>
             <span class="n">song</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">music</span><span class="o">.</span><span class="n">queue</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
@@ -454,7 +557,13 @@
             <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_pause_func</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="p">,</span> <span class="n">song</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">song</span></div>
 
-<div class="viewcode-block" id="MusicPlayer.resume"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.resume">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">resume</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="MusicPlayer.resume"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.resume">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">resume</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Song</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Resumes the player</span>
+
+<span class="sd">        :raises NotPlaying: When nothing was played by the player previously</span>
+<span class="sd">        :return: The song which will be played</span>
+<span class="sd">        :rtype: Song</span>
+<span class="sd">        &quot;&quot;&quot;</span>        
         <span class="k">try</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">voice</span><span class="o">.</span><span class="n">resume</span><span class="p">()</span>
             <span class="n">song</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">music</span><span class="o">.</span><span class="n">queue</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
@@ -464,19 +573,36 @@
             <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_resume_func</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="p">,</span> <span class="n">song</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">song</span></div>
 
-<div class="viewcode-block" id="MusicPlayer.current_queue"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.current_queue">[docs]</a>    <span class="k">def</span> <span class="nf">current_queue</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="MusicPlayer.current_queue"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.current_queue">[docs]</a>    <span class="k">def</span> <span class="nf">current_queue</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">Iterable</span><span class="p">,</span> <span class="n">Song</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Gives the current queue of songs which is there in the player</span>
+
+<span class="sd">        :raises EmptyQueue: When the song queue is empty</span>
+<span class="sd">        :return: _description_</span>
+<span class="sd">        :rtype: Union[Iterable, Song]</span>
+<span class="sd">        &quot;&quot;&quot;</span>        
         <span class="k">try</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">music</span><span class="o">.</span><span class="n">queue</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span><span class="p">]</span>
         <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">EmptyQueue</span><span class="p">(</span><span class="s2">&quot;Queue is empty&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="MusicPlayer.now_playing"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.now_playing">[docs]</a>    <span class="k">def</span> <span class="nf">now_playing</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="MusicPlayer.now_playing"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.now_playing">[docs]</a>    <span class="k">def</span> <span class="nf">now_playing</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">Iterable</span><span class="p">,</span> <span class="n">Song</span><span class="p">]]:</span>
+        <span class="sd">&quot;&quot;&quot;Returns the :class:`Song` which is currently being played</span>
+
+<span class="sd">        :return: See above</span>
+<span class="sd">        :rtype: Optional[Union[Iterable, Song]]</span>
+<span class="sd">        &quot;&quot;&quot;</span>        
         <span class="k">try</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">music</span><span class="o">.</span><span class="n">queue</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
         <span class="k">except</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">None</span></div>
 
-<div class="viewcode-block" id="MusicPlayer.toggle_song_loop"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.toggle_song_loop">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">toggle_song_loop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="MusicPlayer.toggle_song_loop"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.toggle_song_loop">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">toggle_song_loop</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">Iterable</span><span class="p">,</span> <span class="n">Song</span><span class="p">]]:</span>
+        <span class="sd">&quot;&quot;&quot;It toggles on/off the looping</span>
+
+<span class="sd">        :raises NotPlaying: When no song is being played</span>
+<span class="sd">        :return: The currently playing song or the looped queue</span>
+<span class="sd">        :rtype: Optional[Union[Iterable, Song]]</span>
+<span class="sd">        &quot;&quot;&quot;</span>        
         <span class="k">try</span><span class="p">:</span>
             <span class="n">song</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">music</span><span class="o">.</span><span class="n">queue</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
         <span class="k">except</span><span class="p">:</span>
@@ -489,7 +615,15 @@
             <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_loop_toggle_func</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="p">,</span> <span class="n">song</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">song</span></div>
 
-<div class="viewcode-block" id="MusicPlayer.change_volume"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.change_volume">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">change_volume</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vol</span><span class="p">):</span>
+<div class="viewcode-block" id="MusicPlayer.change_volume"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.change_volume">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">change_volume</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vol</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Song</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Change the song volume of the currently played song</span>
+
+<span class="sd">        :param vol: The amount by the volume needs to increased or decreased</span>
+<span class="sd">        :type vol: int</span>
+<span class="sd">        :raises NotPlaying: When no song is played</span>
+<span class="sd">        :return: (The song which is being played, volume no by which the song&#39;s volume was increased or decreased)</span>
+<span class="sd">        :rtype: Tuple[Song, int]</span>
+<span class="sd">        &quot;&quot;&quot;</span>        
         <span class="bp">self</span><span class="o">.</span><span class="n">voice</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">volume</span> <span class="o">=</span> <span class="n">vol</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">song</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">music</span><span class="o">.</span><span class="n">queue</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
@@ -499,7 +633,15 @@
             <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_volume_change_func</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="p">,</span> <span class="n">song</span><span class="p">,</span> <span class="n">vol</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">song</span><span class="p">,</span> <span class="n">vol</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="MusicPlayer.remove_from_queue"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.remove_from_queue">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">remove_from_queue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+<div class="viewcode-block" id="MusicPlayer.remove_from_queue"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.remove_from_queue">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">remove_from_queue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Song</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;The utility function to remove :class:`Song` from the queue</span>
+
+<span class="sd">        :param index: The index at which the :class:`Song` is located</span>
+<span class="sd">        :type index: int</span>
+<span class="sd">        :raises NotPlaying: When nothing is player by the player</span>
+<span class="sd">        :return: The song to be removed from the player</span>
+<span class="sd">        :rtype: Song</span>
+<span class="sd">        &quot;&quot;&quot;</span>        
         <span class="k">if</span> <span class="n">index</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">song</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">music</span><span class="o">.</span><span class="n">queue</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
@@ -513,7 +655,9 @@
             <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_remove_from_queue_func</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="p">,</span> <span class="n">song</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">song</span></div>
 
-<div class="viewcode-block" id="MusicPlayer.delete"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="MusicPlayer.delete"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Removes the song from the queue</span>
+<span class="sd">        &quot;&quot;&quot;</span>        
         <span class="bp">self</span><span class="o">.</span><span class="n">music</span><span class="o">.</span><span class="n">players</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div></div>
 
 

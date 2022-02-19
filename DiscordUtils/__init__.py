@@ -1,12 +1,14 @@
 from __future__ import annotations
 
 from .invitetracker import InviteTracker
-from .music import Music
+from .music import Music, MusicPlayer, NotPlaying, NotConnectedToVoice, EmptyQueue
+from .embeds import *
 from .paginator import *
 
 __all__ = [
     'InviteTracker', 
     'Music',
+    'MusicPlayer',
     'Embed',
     'ErrorEmbed',
     'SuccessEmbed',
@@ -17,7 +19,10 @@ __all__ = [
     'SimplePageSource',
     'SimplePages',
     'EmbedPageSource',
-    'EmbedPaginator'
+    'EmbedPaginator',
+    'NotPlaying',
+    'NotConnectedToVoice',
+    'EmptyQueue'
 ]
 
 __title__ = "DiscordUtils"
