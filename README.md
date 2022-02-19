@@ -1,15 +1,27 @@
 # DiscordUtils
 A very useful library made to be used in with [discord.py](https://pypi.org/project/discord.py/)
 
-# Installation
-For access to Pagination and InviteTracker use:
+# Note
+This is my version of DiscordUtils, as the original is no longer maintained [See Here](https://github.com/toxicrecker/DiscordUtils#readme)
+I have started to maintain this lib for my own bot which is [Minato Namikaze](https://minato-namikaze.readthedocs.io/).
+I don't if this works with pycord or not since I don't use pycord personally for my any of the projects. So please do not dm me about this, if this lib supports `pycord` or not.
+I use [StockerMC discord.py](https://github.com/StockerMC/discord.py) and it works very well with that lib.
+But if you want to use my fork of `DiscordUtils` then you can use it as I have removed the `discord.py` as a `required` dependency.
+
+```note
+This lib would work with any discord.py fork, as long as that fork provides the function, classes and namespace that the original discord.py used to provide
 ```
-pip install DiscordUtils
+
+# Installation
+For access to many utily classes:
+```
+pip install git+https://github.com/The-4th-Hokage/DiscordUtils.git@master
 ```
 
 or, instead use the following for access to Music functions aswell
 ```
-pip install DiscordUtils[voice]
+pip install git+https://github.com/The-4th-Hokage/DiscordUtils.git@master
+pip install .[voice]
 ```
 Requires discord.py[voice] so make sure you have all dependencies of it installed.
 
@@ -131,4 +143,4 @@ For further information please read the docs
 # Support
 **__Please make sure that you are on the latest version of [DiscordUtils](https://pypi.org/project/DiscordUtils) and [youtube_dl](https://pypi.org/project/youtube_dl) before contacting for support__**
 
-DM/PM `toxic_recker#2795` on Discord for support
+DM/PM `HATSUNE MIKU#9955` on Discord for support
