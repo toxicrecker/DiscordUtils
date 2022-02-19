@@ -7,24 +7,25 @@ A very useful library made to be used in with
 Note
 ====
 
-This is my version of DiscordUtils, as the original is no longer
-maintained. [`See
-Here <https://github.com/toxicrecker/DiscordUtils#readme>`__]
+.. note::
+    This is my version of DiscordUtils, as the original is no longer
+    maintained. [`See
+    Here <https://github.com/toxicrecker/DiscordUtils#readme>`__]
 
-I have started to maintain this lib for my own bot which is `Minato
-Namikaze <https://minato-namikaze.readthedocs.io/>`__. I don’t know if
-this works with ``pycord`` or not since I don’t use pycord personally
-for my any of the projects. So please do not dm me about this, if this
-lib supports ``pycord`` or not.
+    I have started to maintain this lib for my own bot which is `Minato
+    Namikaze <https://minato-namikaze.readthedocs.io/>`__. I don’t know if
+    this works with ``pycord`` or not since I don’t use pycord personally
+    for my any of the projects. So please do not dm me about this, if this
+    lib supports ``pycord`` or not.
 
-I use `StockerMC discord.py <https://github.com/StockerMC/discord.py>`__
-and it works very well with that lib. But if you want to use my fork of
-``DiscordUtils`` then you can use it as I have removed the
-``discord.py`` as a ``required`` dependency.
+    I use `StockerMC discord.py <https://github.com/StockerMC/discord.py>`__
+    and it works very well with that lib. But if you want to use my fork of
+    ``DiscordUtils`` then you can use it as I have removed the
+    ``discord.py`` as a ``required`` dependency.
 
-.. code::
+    .. code::
 
-   This lib would work with any discord.py fork, as long as that fork provides the functions, classes and namespace that the original discord.py used to provide
+        This lib would work with any discord.py fork, as long as that fork provides the functions, classes and namespace that the original discord.py used to provide
 
 Installation
 ============

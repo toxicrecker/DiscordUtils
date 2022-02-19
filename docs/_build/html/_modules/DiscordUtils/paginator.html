@@ -337,7 +337,8 @@
             <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">content</span><span class="si">}</span><span class="se">\n</span><span class="s2">Page </span><span class="si">{</span><span class="n">menu</span><span class="o">.</span><span class="n">current_page</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">maximum</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="k">return</span> <span class="n">content</span></div>
 
-<div class="viewcode-block" id="TextPageSource.is_paginating"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.paginator.TextPageSource.is_paginating">[docs]</a>    <span class="k">def</span> <span class="nf">is_paginating</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<div class="viewcode-block" id="TextPageSource.is_paginating"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.paginator.TextPageSource.is_paginating">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">is_paginating</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="sd">&#39;&#39;&#39;This forces the buttons to appear even in the front page&#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="kc">True</span></div></div>
 
@@ -373,7 +374,8 @@
 
 
 <div class="viewcode-block" id="EmbedPageSource"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.paginator.EmbedPageSource">[docs]</a><span class="k">class</span> <span class="nc">EmbedPageSource</span><span class="p">(</span><span class="n">menus</span><span class="o">.</span><span class="n">ListPageSource</span><span class="p">):</span>
-<div class="viewcode-block" id="EmbedPageSource.format_page"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.paginator.EmbedPageSource.format_page">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">format_page</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">menu</span><span class="p">,</span> <span class="n">entries</span><span class="p">):</span>
+<div class="viewcode-block" id="EmbedPageSource.format_page"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.paginator.EmbedPageSource.format_page">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">format_page</span><span class="p">(</span><span class="n">menu</span><span class="p">,</span> <span class="n">entries</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">entries</span></div></div>
 
 
