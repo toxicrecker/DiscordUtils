@@ -135,14 +135,39 @@ async def remove(ctx, index):
     await ctx.send(f"Removed {song.name} from queue")
 ```
 
+### DiscordUtils.embeds
+```python
+import discord
+from discord.ext import commands
+import DiscordUtils import Embed, ErrorEmbed, SuccessEmbed, StarboardEmbed
+
+bot = commands.AutoShardedBot(command_prefix=">")
+
+@bot.command()
+async def embed(ctx):
+    await ctx.send(embed=Embed(title="Embed",description="A embed with random colors"))
+
+@bot.command()
+async def error_emebed(ctx):
+    await ctx.send(embed=ErrorEmbed(title="Embed",description="Oh no an error happened"))
+
+@bot.command()
+async def success(ctx):
+    await ctx.send(embed=SuccessEmbed(title="Embed",description="Yaay! task executed successfully"))
+
+@bot.command()
+async def starboard(ctx):
+    await ctx.send(embed=StarboardEmbed(title="Embed",description="Warning given/ starboard embed"))
+```
+
 For further information please read the docs
 
 # Links
 **[Documentation](https://docs.discordutils.gq)**
 
-**[Github](https://github.discordutils.gq)**
+**[Github](https://github.com/The-4th-Hokage/DiscordUtils)**
 
 # Support
-**__Please make sure that you are on the latest version of [DiscordUtils](https://pypi.org/project/DiscordUtils) and [youtube_dl](https://pypi.org/project/youtube_dl) before contacting for support__**
+**__Please make sure that you are on the latest version of [DiscordUtils](https://github.com/The-4th-Hokage/DiscordUtils) and [youtube_dl](https://pypi.org/project/youtube_dl) before contacting for support__**
 
 DM/PM `HATSUNE MIKU#9955` on Discord for support
