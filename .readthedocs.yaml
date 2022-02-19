@@ -11,10 +11,7 @@ sphinx:
   fail_on_warning: true
 
 python:
-   install:
-   - requirements: requirements.txt
-   - method: pip
-      extra_requirements:
-        - docs
+  install:
+    - requirements: requirements.txt
     - method: setuptools
       path: DiscordUtils
