@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DiscordUtils package</title> 
+  <!-- end extra head -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+  <link rel="stylesheet" type="text/css" href="_static/basic.css" />
+  <link rel="stylesheet" href="_static/style.css" type="text/css" />
+  <link rel="stylesheet" href="_static/codeblocks.css" type="text/css" />
+  <link rel="stylesheet" href="_static/icons.css" type="text/css" />
+  <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+  <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+  <script src="_static/jquery.js"></script>
+  <script src="_static/underscore.js"></script>
+  <script src="_static/doctools.js"></script>
+  <script src="_static/custom.js"></script>
+  <script src="_static/settings.js"></script>
+  <script src="_static/copy.js"></script>
+  <script src="_static/sidebar.js"></script>
+  <link rel="index" title="Index" href="genindex.html" />
+  <link rel="search" title="Search" href="search.html" />
+</head>
+<body>
+  <div class="main-grid">
+    <header class="grid-item">
+      <nav>
+        <a href="index.html" class="main-heading">DiscordUtils</a>
+        <a href="https://github.com/The-4th-Hokage/DiscordUtils" title="GitHub"><span class="material-icons custom-icons">github</span></a>
+        <a href="https://discord.gg/vfXHwS3nmQ" title="Discord"><span class="material-icons custom-icons">discord</span></a>
+        <a onclick="mobileSearch.open();" title="Search" id="open-search" class="mobile-only"><span class="material-icons">search</span></a>
+        <a onclick="mobileSearch.close();" title="Close" id="close-search" class="mobile-only" hidden><span class="material-icons">close</span></a>
+      </nav>
+      <nav class="mobile-only">
+        <form role="search" class="search" action="search.html" method="get">
+          <div class="search-wrapper">
+            <input type="search" name="q" placeholder="Search documentation" />
+            <button type="submit">
+              <span class="material-icons">search</span>
+            </button>
+          </div>
+        </form>
+      </nav>
+    </header>
+    <div class="sub-header grid-item">
+      <label for="documentation_select">View Documentation For</label>
+      <form role="search" class="search" action="search.html" method="get">
+        <div class="search-wrapper">
+          <input type="search" name="q" placeholder="Search documentation" />
+          <button type="submit">
+            <span class="material-icons">search</span>
+          </button>
+        </div>
+      </form>
+      <a accesskey="S" class="settings" onclick="settingsModal.open();"><span class="material-icons">settings</span></a>
+    </div>
+    <aside class="grid-item">
+      <span id="hamburger-toggle">
+        <span class="material-icons">menu</span>
+      </span>
+      <span id="settings-toggle" class="settings" onclick="settingsModal.open();">
+        <span class="material-icons">settings</span>
+      </span>
+      <div id="sidebar">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">DiscordUtils package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-DiscordUtils.embeds">DiscordUtils.embeds module</a></li>
+<li><a class="reference internal" href="#module-DiscordUtils.invitetracker">DiscordUtils.invitetracker module</a></li>
+<li><a class="reference internal" href="#module-DiscordUtils.music">DiscordUtils.music module</a></li>
+<li><a class="reference internal" href="#module-DiscordUtils.paginator">DiscordUtils.paginator module</a></li>
+<li><a class="reference internal" href="#module-DiscordUtils">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    </aside>
+    <main class="grid-item" role="main">
+      
+  <section id="discordutils-package">
+<h1>DiscordUtils package<a class="headerlink" href="#discordutils-package" title="Permalink to this headline">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="module-DiscordUtils.embeds">
+<span id="discordutils-embeds-module"></span><h2>DiscordUtils.embeds module<a class="headerlink" href="#module-DiscordUtils.embeds" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="DiscordUtils.embeds.Embed">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DiscordUtils.embeds.</span></span><span class="sig-name descname"><span class="pre">Embed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/embeds.html#Embed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.embeds.Embed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Embed" title="(in discord.py v2.0.0a)"><code class="xref py py-class docutils literal notranslate"><span class="pre">discord.embeds.Embed</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.embeds.Embed.title">
+<span class="sig-name descname"><span class="pre">title</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">MaybeEmpty</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#DiscordUtils.embeds.Embed.title" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.embeds.Embed.url">
+<span class="sig-name descname"><span class="pre">url</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">MaybeEmpty</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#DiscordUtils.embeds.Embed.url" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.embeds.Embed.type">
+<span class="sig-name descname"><span class="pre">type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">EmbedType</span></em><a class="headerlink" href="#DiscordUtils.embeds.Embed.type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.embeds.Embed.description">
+<span class="sig-name descname"><span class="pre">description</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">MaybeEmpty</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#DiscordUtils.embeds.Embed.description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="DiscordUtils.embeds.ErrorEmbed">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DiscordUtils.embeds.</span></span><span class="sig-name descname"><span class="pre">ErrorEmbed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/embeds.html#ErrorEmbed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.embeds.ErrorEmbed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Embed" title="(in discord.py v2.0.0a)"><code class="xref py py-class docutils literal notranslate"><span class="pre">discord.embeds.Embed</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.embeds.ErrorEmbed.title">
+<span class="sig-name descname"><span class="pre">title</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">MaybeEmpty</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#DiscordUtils.embeds.ErrorEmbed.title" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.embeds.ErrorEmbed.url">
+<span class="sig-name descname"><span class="pre">url</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">MaybeEmpty</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#DiscordUtils.embeds.ErrorEmbed.url" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.embeds.ErrorEmbed.type">
+<span class="sig-name descname"><span class="pre">type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">EmbedType</span></em><a class="headerlink" href="#DiscordUtils.embeds.ErrorEmbed.type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.embeds.ErrorEmbed.description">
+<span class="sig-name descname"><span class="pre">description</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">MaybeEmpty</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#DiscordUtils.embeds.ErrorEmbed.description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="DiscordUtils.embeds.SuccessEmbed">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DiscordUtils.embeds.</span></span><span class="sig-name descname"><span class="pre">SuccessEmbed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/embeds.html#SuccessEmbed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.embeds.SuccessEmbed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Embed" title="(in discord.py v2.0.0a)"><code class="xref py py-class docutils literal notranslate"><span class="pre">discord.embeds.Embed</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.embeds.SuccessEmbed.title">
+<span class="sig-name descname"><span class="pre">title</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">MaybeEmpty</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#DiscordUtils.embeds.SuccessEmbed.title" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.embeds.SuccessEmbed.url">
+<span class="sig-name descname"><span class="pre">url</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">MaybeEmpty</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#DiscordUtils.embeds.SuccessEmbed.url" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.embeds.SuccessEmbed.type">
+<span class="sig-name descname"><span class="pre">type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">EmbedType</span></em><a class="headerlink" href="#DiscordUtils.embeds.SuccessEmbed.type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.embeds.SuccessEmbed.description">
+<span class="sig-name descname"><span class="pre">description</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">MaybeEmpty</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#DiscordUtils.embeds.SuccessEmbed.description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="DiscordUtils.embeds.StarboardEmbed">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DiscordUtils.embeds.</span></span><span class="sig-name descname"><span class="pre">StarboardEmbed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/embeds.html#StarboardEmbed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.embeds.StarboardEmbed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Embed" title="(in discord.py v2.0.0a)"><code class="xref py py-class docutils literal notranslate"><span class="pre">discord.embeds.Embed</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.embeds.StarboardEmbed.title">
+<span class="sig-name descname"><span class="pre">title</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">MaybeEmpty</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#DiscordUtils.embeds.StarboardEmbed.title" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.embeds.StarboardEmbed.url">
+<span class="sig-name descname"><span class="pre">url</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">MaybeEmpty</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#DiscordUtils.embeds.StarboardEmbed.url" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.embeds.StarboardEmbed.type">
+<span class="sig-name descname"><span class="pre">type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">EmbedType</span></em><a class="headerlink" href="#DiscordUtils.embeds.StarboardEmbed.type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.embeds.StarboardEmbed.description">
+<span class="sig-name descname"><span class="pre">description</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">MaybeEmpty</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#DiscordUtils.embeds.StarboardEmbed.description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-DiscordUtils.invitetracker">
+<span id="discordutils-invitetracker-module"></span><h2>DiscordUtils.invitetracker module<a class="headerlink" href="#module-DiscordUtils.invitetracker" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="DiscordUtils.invitetracker.InviteTracker">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DiscordUtils.invitetracker.</span></span><span class="sig-name descname"><span class="pre">InviteTracker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bot</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/invitetracker.html#InviteTracker"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.invitetracker.InviteTracker" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>A usefull class to track invites of member whenever a user is invited to a guild.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>bot</strong> (<em>Union</em><em>[</em><a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Client" title="(in discord.py v2.0.0a)"><em>Client</em></a><em>, </em><a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.AutoShardedClient" title="(in discord.py v2.0.0a)"><em>AutoShardedClient</em></a><em>, </em><a class="reference external" href="https://discordpy.readthedocs.io/en/master/ext/commands/api.html#discord.ext.commands.Bot" title="(in discord.py v2.0.0a)"><em>Bot</em></a><em>, </em><em>AutoSharededBot</em><em>]</em>) – </p>
+</dd>
+<dt class="field-even">Attributes</dt>
+<dd class="field-even"><ul class="simple">
+<li><p>bot: The default bot class.</p></li>
+<li><dl class="simple">
+<dt>_cache: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a></dt><dd><p>A <cite>dict</cite> to cache <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Guild" title="(in discord.py v2.0.0a)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Guild</span></code></a> instances <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Invite" title="(in discord.py v2.0.0a)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Invite</span></code></a></p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.invitetracker.InviteTracker.bot">
+<span class="sig-name descname"><span class="pre">bot</span></span><a class="headerlink" href="#DiscordUtils.invitetracker.InviteTracker.bot" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.invitetracker.InviteTracker.add_listeners">
+<span class="sig-name descname"><span class="pre">add_listeners</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/invitetracker.html#InviteTracker.add_listeners"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.invitetracker.InviteTracker.add_listeners" title="Permalink to this definition">¶</a></dt>
+<dd><p>It adds the following listeners to the <a class="reference external" href="https://discordpy.readthedocs.io/en/master/ext/commands/api.html#discord.ext.commands.Bot" title="(in discord.py v2.0.0a)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Bot</span></code></a> instance.</p>
+<dl class="field-list">
+<dt class="field-odd">Mapping</dt>
+<dd class="field-odd"><div class="table-wrapper"><table class="docutils align-default">
+<colgroup>
+<col style="width: 45%" />
+<col style="width: 55%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Function</p></td>
+<td><p>Discord Function</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#DiscordUtils.invitetracker.InviteTracker.cache_invites" title="DiscordUtils.invitetracker.InviteTracker.cache_invites"><code class="xref py py-func docutils literal notranslate"><span class="pre">cache_invites()</span></code></a></p></td>
+<td><p><a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.on_ready" title="(in discord.py v2.0.0a)"><code class="xref py py-func docutils literal notranslate"><span class="pre">on_ready()</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#DiscordUtils.invitetracker.InviteTracker.update_invite_cache" title="DiscordUtils.invitetracker.InviteTracker.update_invite_cache"><code class="xref py py-func docutils literal notranslate"><span class="pre">update_invite_cache()</span></code></a></p></td>
+<td><p><a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.on_invite_create" title="(in discord.py v2.0.0a)"><code class="xref py py-func docutils literal notranslate"><span class="pre">on_invite_create()</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#DiscordUtils.invitetracker.InviteTracker.remove_invite_cache" title="DiscordUtils.invitetracker.InviteTracker.remove_invite_cache"><code class="xref py py-func docutils literal notranslate"><span class="pre">remove_invite_cache()</span></code></a></p></td>
+<td><p><a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.on_invite_delete" title="(in discord.py v2.0.0a)"><code class="xref py py-func docutils literal notranslate"><span class="pre">on_invite_delete()</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#DiscordUtils.invitetracker.InviteTracker.add_guild_cache" title="DiscordUtils.invitetracker.InviteTracker.add_guild_cache"><code class="xref py py-func docutils literal notranslate"><span class="pre">add_guild_cache()</span></code></a></p></td>
+<td><p><a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.on_guild_join" title="(in discord.py v2.0.0a)"><code class="xref py py-func docutils literal notranslate"><span class="pre">on_guild_join()</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#DiscordUtils.invitetracker.InviteTracker.remove_guild_cache" title="DiscordUtils.invitetracker.InviteTracker.remove_guild_cache"><code class="xref py py-func docutils literal notranslate"><span class="pre">remove_guild_cache()</span></code></a></p></td>
+<td><p><a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.on_guild_remove" title="(in discord.py v2.0.0a)"><code class="xref py py-func docutils literal notranslate"><span class="pre">on_guild_remove()</span></code></a></p></td>
+</tr>
+</tbody>
+</table>
+</div></dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.invitetracker.InviteTracker.cache_invites">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">cache_invites</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/invitetracker.html#InviteTracker.cache_invites"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.invitetracker.InviteTracker.cache_invites" title="Permalink to this definition">¶</a></dt>
+<dd><p>It cache the guild invites <cite>automatically</cite> whenever the <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.on_ready" title="(in discord.py v2.0.0a)"><code class="xref py py-func docutils literal notranslate"><span class="pre">on_ready()</span></code></a> event is fired</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.invitetracker.InviteTracker.update_invite_cache">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">update_invite_cache</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">invite</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/invitetracker.html#InviteTracker.update_invite_cache"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.invitetracker.InviteTracker.update_invite_cache" title="Permalink to this definition">¶</a></dt>
+<dd><p>It updates the invite cache <cite>automatically</cite> whenever the <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.on_invite_create" title="(in discord.py v2.0.0a)"><code class="xref py py-func docutils literal notranslate"><span class="pre">on_invite_create()</span></code></a> event is fired</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>invite</strong> (<a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Invite" title="(in discord.py v2.0.0a)"><em>discord.invite.Invite</em></a>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.invitetracker.InviteTracker.remove_invite_cache">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">remove_invite_cache</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">invite</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/invitetracker.html#InviteTracker.remove_invite_cache"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.invitetracker.InviteTracker.remove_invite_cache" title="Permalink to this definition">¶</a></dt>
+<dd><p>It removes the invite cache of the deleted invite <cite>automatically</cite> whenever the <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.on_invite_delete" title="(in discord.py v2.0.0a)"><code class="xref py py-func docutils literal notranslate"><span class="pre">on_invite_delete()</span></code></a> event is fired</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>invite</strong> (<a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Invite" title="(in discord.py v2.0.0a)"><em>discord.invite.Invite</em></a>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.invitetracker.InviteTracker.add_guild_cache">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">add_guild_cache</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">guild</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/invitetracker.html#InviteTracker.add_guild_cache"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.invitetracker.InviteTracker.add_guild_cache" title="Permalink to this definition">¶</a></dt>
+<dd><p>It adds the guild to cache <cite>automatically</cite> whenever the <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.on_guild_join" title="(in discord.py v2.0.0a)"><code class="xref py py-func docutils literal notranslate"><span class="pre">on_guild_join()</span></code></a> event is fired</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>guild</strong> (<a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Guild" title="(in discord.py v2.0.0a)"><em>discord.guild.Guild</em></a>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.invitetracker.InviteTracker.remove_guild_cache">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">remove_guild_cache</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">guild</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/invitetracker.html#InviteTracker.remove_guild_cache"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.invitetracker.InviteTracker.remove_guild_cache" title="Permalink to this definition">¶</a></dt>
+<dd><p>It removes the guild from cache <cite>automatically</cite> whenever the <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.on_guild_remove" title="(in discord.py v2.0.0a)"><code class="xref py py-func docutils literal notranslate"><span class="pre">on_guild_remove()</span></code></a> event is fired</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>guild</strong> (<a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Guild" title="(in discord.py v2.0.0a)"><em>discord.guild.Guild</em></a>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.invitetracker.InviteTracker.fetch_inviter">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">fetch_inviter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">member</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/invitetracker.html#InviteTracker.fetch_inviter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.invitetracker.InviteTracker.fetch_inviter" title="Permalink to this definition">¶</a></dt>
+<dd><p>This utility function returns the <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Invite" title="(in discord.py v2.0.0a)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Invite</span></code></a> class which was used when the member joined the guild.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>member</strong> (<a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Member" title="(in discord.py v2.0.0a)"><em>discord.Member</em></a>) – The member which joined the guild. (The <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Member" title="(in discord.py v2.0.0a)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Member</span></code></a> recieved during <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.on_member_join" title="(in discord.py v2.0.0a)"><code class="xref py py-func docutils literal notranslate"><span class="pre">on_member_join()</span></code></a> event)</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>If the member was bot i.e. invited via integration then it would return <code class="xref py py-class docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Optional[<a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Invite" title="(in discord.py v2.0.0a)">discord.Invite</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-DiscordUtils.music">
+<span id="discordutils-music-module"></span><h2>DiscordUtils.music module<a class="headerlink" href="#module-DiscordUtils.music" title="Permalink to this headline">¶</a></h2>
+<dl class="py exception">
+<dt class="sig sig-object py" id="DiscordUtils.music.EmptyQueue">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DiscordUtils.music.</span></span><span class="sig-name descname"><span class="pre">EmptyQueue</span></span><a class="reference internal" href="_modules/DiscordUtils/music.html#EmptyQueue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.EmptyQueue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
+<p>Cannot skip because queue is empty</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="DiscordUtils.music.NotConnectedToVoice">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DiscordUtils.music.</span></span><span class="sig-name descname"><span class="pre">NotConnectedToVoice</span></span><a class="reference internal" href="_modules/DiscordUtils/music.html#NotConnectedToVoice"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.NotConnectedToVoice" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
+<p>Cannot create the player because bot is not connected to voice</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="DiscordUtils.music.NotPlaying">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DiscordUtils.music.</span></span><span class="sig-name descname"><span class="pre">NotPlaying</span></span><a class="reference internal" href="_modules/DiscordUtils/music.html#NotPlaying"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.NotPlaying" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
+<p>Cannot &lt;do something&gt; because nothing is being played</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DiscordUtils.music.ytbettersearch">
+<em class="property"><span class="pre">await</span> </em><span class="sig-prename descclassname"><span class="pre">DiscordUtils.music.</span></span><span class="sig-name descname"><span class="pre">ytbettersearch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#ytbettersearch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.ytbettersearch" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DiscordUtils.music.get_video_data">
+<em class="property"><span class="pre">await</span> </em><span class="sig-prename descclassname"><span class="pre">DiscordUtils.music.</span></span><span class="sig-name descname"><span class="pre">get_video_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">search</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bettersearch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loop</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#get_video_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.get_video_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DiscordUtils.music.check_queue">
+<span class="sig-prename descclassname"><span class="pre">DiscordUtils.music.</span></span><span class="sig-name descname"><span class="pre">check_queue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">music</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">after</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_play</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loop</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#check_queue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.check_queue" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="DiscordUtils.music.Music">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DiscordUtils.music.</span></span><span class="sig-name descname"><span class="pre">Music</span></span><a class="reference internal" href="_modules/DiscordUtils/music.html#Music"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.Music" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.music.Music.create_player">
+<span class="sig-name descname"><span class="pre">create_player</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#Music.create_player"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.Music.create_player" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.music.Music.get_player">
+<span class="sig-name descname"><span class="pre">get_player</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#Music.get_player"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.Music.get_player" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DiscordUtils.music.</span></span><span class="sig-name descname"><span class="pre">MusicPlayer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">music</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.MusicPlayer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.disable">
+<span class="sig-name descname"><span class="pre">disable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.disable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.disable" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.on_queue">
+<span class="sig-name descname"><span class="pre">on_queue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.on_queue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.on_queue" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.on_play">
+<span class="sig-name descname"><span class="pre">on_play</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.on_play"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.on_play" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.on_skip">
+<span class="sig-name descname"><span class="pre">on_skip</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.on_skip"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.on_skip" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.on_stop">
+<span class="sig-name descname"><span class="pre">on_stop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.on_stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.on_stop" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.on_pause">
+<span class="sig-name descname"><span class="pre">on_pause</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.on_pause"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.on_pause" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.on_resume">
+<span class="sig-name descname"><span class="pre">on_resume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.on_resume"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.on_resume" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.on_loop_toggle">
+<span class="sig-name descname"><span class="pre">on_loop_toggle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.on_loop_toggle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.on_loop_toggle" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.on_volume_change">
+<span class="sig-name descname"><span class="pre">on_volume_change</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.on_volume_change"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.on_volume_change" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.on_remove_from_queue">
+<span class="sig-name descname"><span class="pre">on_remove_from_queue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.on_remove_from_queue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.on_remove_from_queue" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.queue">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">queue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">search</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bettersearch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.queue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.queue" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.play">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">play</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.play"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.play" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.skip">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">skip</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.skip"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.skip" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.stop">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.stop" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.pause">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">pause</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.pause"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.pause" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.resume">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">resume</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.resume"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.resume" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.current_queue">
+<span class="sig-name descname"><span class="pre">current_queue</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.current_queue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.current_queue" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.now_playing">
+<span class="sig-name descname"><span class="pre">now_playing</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.now_playing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.now_playing" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.toggle_song_loop">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">toggle_song_loop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.toggle_song_loop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.toggle_song_loop" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.change_volume">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">change_volume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vol</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.change_volume"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.change_volume" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.remove_from_queue">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">remove_from_queue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.remove_from_queue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.remove_from_queue" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.music.MusicPlayer.delete">
+<span class="sig-name descname"><span class="pre">delete</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#MusicPlayer.delete"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.MusicPlayer.delete" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="DiscordUtils.music.Song">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DiscordUtils.music.</span></span><span class="sig-name descname"><span class="pre">Song</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">views</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thumbnail</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel_url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loop</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#Song"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.music.Song" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+</dd></dl>
+
+</section>
+<section id="module-DiscordUtils.paginator">
+<span id="discordutils-paginator-module"></span><h2>DiscordUtils.paginator module<a class="headerlink" href="#module-DiscordUtils.paginator" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="DiscordUtils.paginator.RoboPages">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DiscordUtils.paginator.</span></span><span class="sig-name descname"><span class="pre">RoboPages</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_embeds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compact</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#RoboPages"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.paginator.RoboPages" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.ui.View" title="(in discord.py v2.0.0a)"><code class="xref py py-class docutils literal notranslate"><span class="pre">discord.ui.view.View</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source</strong> (<em>menus.PageSource</em>) – </p></li>
+<li><p><strong>ctx</strong> (<em>commands.Context</em>) – </p></li>
+<li><p><strong>check_embeds</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – </p></li>
+<li><p><strong>compact</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.paginator.RoboPages.fill_items">
+<span class="sig-name descname"><span class="pre">fill_items</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#RoboPages.fill_items"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.paginator.RoboPages.fill_items" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.paginator.RoboPages.show_page">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">show_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interaction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page_number</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#RoboPages.show_page"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.paginator.RoboPages.show_page" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>interaction</strong> (<a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Interaction" title="(in discord.py v2.0.0a)"><em>discord.interactions.Interaction</em></a>) – </p></li>
+<li><p><strong>page_number</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.paginator.RoboPages.show_checked_page">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">show_checked_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interaction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page_number</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#RoboPages.show_checked_page"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.paginator.RoboPages.show_checked_page" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>interaction</strong> (<a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Interaction" title="(in discord.py v2.0.0a)"><em>discord.interactions.Interaction</em></a>) – </p></li>
+<li><p><strong>page_number</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.paginator.RoboPages.interaction_check">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">interaction_check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interaction</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#RoboPages.interaction_check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.paginator.RoboPages.interaction_check" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function is a <a class="reference external" href="https://docs.python.org/3/library/asyncio-task.html#coroutine"><em>coroutine</em></a>.</p>
+<p>A callback that is called when an interaction happens within the view
+that checks whether the view should process item callbacks for the interaction.</p>
+<p>This is useful to override if, for example, you want to ensure that the
+interaction author is a given user.</p>
+<p>The default implementation of this returns <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If an exception occurs within the body then the check
+is considered a failure and <a class="reference internal" href="#DiscordUtils.paginator.RoboPages.on_error" title="DiscordUtils.paginator.RoboPages.on_error"><code class="xref py py-meth docutils literal notranslate"><span class="pre">on_error()</span></code></a> is called.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>interaction</strong> (<a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Interaction" title="(in discord.py v2.0.0a)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Interaction</span></code></a>) – The interaction that occurred.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Whether the view children’s callbacks should be called.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.paginator.RoboPages.on_timeout">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">on_timeout</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#RoboPages.on_timeout"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.paginator.RoboPages.on_timeout" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function is a <a class="reference external" href="https://docs.python.org/3/library/asyncio-task.html#coroutine"><em>coroutine</em></a>.</p>
+<p>A callback that is called when a view’s timeout elapses without being explicitly stopped.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.paginator.RoboPages.on_error">
+<em class="property"><span class="pre">staticmethod</span> <span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">on_error</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">error</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">item</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interaction</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#RoboPages.on_error"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.paginator.RoboPages.on_error" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function is a <a class="reference external" href="https://docs.python.org/3/library/asyncio-task.html#coroutine"><em>coroutine</em></a>.</p>
+<p>A callback that is called when an item’s callback or <a class="reference internal" href="#DiscordUtils.paginator.RoboPages.interaction_check" title="DiscordUtils.paginator.RoboPages.interaction_check"><code class="xref py py-meth docutils literal notranslate"><span class="pre">interaction_check()</span></code></a>
+fails with an error.</p>
+<p>The default implementation prints the traceback to stderr.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>error</strong> (<a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a>) – The exception that was raised.</p></li>
+<li><p><strong>item</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Item</span></code>) – The item that failed the dispatch.</p></li>
+<li><p><strong>interaction</strong> (<a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Interaction" title="(in discord.py v2.0.0a)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Interaction</span></code></a>) – The interaction that led to the failure.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.paginator.RoboPages.start">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#RoboPages.start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.paginator.RoboPages.start" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.paginator.RoboPages.go_to_first_page">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">go_to_first_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">button</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interaction</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#RoboPages.go_to_first_page"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.paginator.RoboPages.go_to_first_page" title="Permalink to this definition">¶</a></dt>
+<dd><p>Go to the first page</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>button</strong> (<a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.ui.Button" title="(in discord.py v2.0.0a)"><em>discord.ui.button.Button</em></a>) – </p></li>
+<li><p><strong>interaction</strong> (<a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Interaction" title="(in discord.py v2.0.0a)"><em>discord.interactions.Interaction</em></a>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.paginator.RoboPages.go_to_previous_page">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">go_to_previous_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">button</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interaction</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#RoboPages.go_to_previous_page"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.paginator.RoboPages.go_to_previous_page" title="Permalink to this definition">¶</a></dt>
+<dd><p>Go to the previous page</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>button</strong> (<a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.ui.Button" title="(in discord.py v2.0.0a)"><em>discord.ui.button.Button</em></a>) – </p></li>
+<li><p><strong>interaction</strong> (<a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Interaction" title="(in discord.py v2.0.0a)"><em>discord.interactions.Interaction</em></a>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.paginator.RoboPages.go_to_current_page">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">go_to_current_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">button</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interaction</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#RoboPages.go_to_current_page"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.paginator.RoboPages.go_to_current_page" title="Permalink to this definition">¶</a></dt>
+<dd><p>As the name suggests, goes to the current page</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>button</strong> (<a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.ui.Button" title="(in discord.py v2.0.0a)"><em>discord.ui.button.Button</em></a>) – </p></li>
+<li><p><strong>interaction</strong> (<a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Interaction" title="(in discord.py v2.0.0a)"><em>discord.interactions.Interaction</em></a>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.paginator.RoboPages.go_to_next_page">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">go_to_next_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">button</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interaction</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#RoboPages.go_to_next_page"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.paginator.RoboPages.go_to_next_page" title="Permalink to this definition">¶</a></dt>
+<dd><p>Go to the next page</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>button</strong> (<a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.ui.Button" title="(in discord.py v2.0.0a)"><em>discord.ui.button.Button</em></a>) – </p></li>
+<li><p><strong>interaction</strong> (<a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Interaction" title="(in discord.py v2.0.0a)"><em>discord.interactions.Interaction</em></a>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.paginator.RoboPages.go_to_last_page">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">go_to_last_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">button</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interaction</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#RoboPages.go_to_last_page"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.paginator.RoboPages.go_to_last_page" title="Permalink to this definition">¶</a></dt>
+<dd><p>Go to the last page</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>button</strong> (<a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.ui.Button" title="(in discord.py v2.0.0a)"><em>discord.ui.button.Button</em></a>) – </p></li>
+<li><p><strong>interaction</strong> (<a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Interaction" title="(in discord.py v2.0.0a)"><em>discord.interactions.Interaction</em></a>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.paginator.RoboPages.numbered_page">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">numbered_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">button</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interaction</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#RoboPages.numbered_page"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.paginator.RoboPages.numbered_page" title="Permalink to this definition">¶</a></dt>
+<dd><p>lets you type a page number to go to</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>button</strong> (<a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.ui.Button" title="(in discord.py v2.0.0a)"><em>discord.ui.button.Button</em></a>) – </p></li>
+<li><p><strong>interaction</strong> (<a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Interaction" title="(in discord.py v2.0.0a)"><em>discord.interactions.Interaction</em></a>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.paginator.RoboPages.stop_pages">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">stop_pages</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">button</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interaction</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#RoboPages.stop_pages"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.paginator.RoboPages.stop_pages" title="Permalink to this definition">¶</a></dt>
+<dd><p>stops the pagination session.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>button</strong> (<a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.ui.Button" title="(in discord.py v2.0.0a)"><em>discord.ui.button.Button</em></a>) – </p></li>
+<li><p><strong>interaction</strong> (<a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Interaction" title="(in discord.py v2.0.0a)"><em>discord.interactions.Interaction</em></a>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="DiscordUtils.paginator.FieldPageSource">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DiscordUtils.paginator.</span></span><span class="sig-name descname"><span class="pre">FieldPageSource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entries</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">per_page</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">12</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#FieldPageSource"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.paginator.FieldPageSource" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">discord.ext.menus.ListPageSource</span></code></p>
+<p>A page source that requires (field_name, field_value) tuple items.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.paginator.FieldPageSource.format_page">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">format_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">menu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">entries</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#FieldPageSource.format_page"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.paginator.FieldPageSource.format_page" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function <em>could be a</em> <a class="reference external" href="https://docs.python.org/3/library/asyncio-task.html#coroutine"><em>coroutine</em></a>.</p>
+<p>An abstract method to format the page.</p>
+<p>This method must return one of the following types.</p>
+<p>If this method returns a <code class="docutils literal notranslate"><span class="pre">str</span></code> then it is interpreted as returning
+the <code class="docutils literal notranslate"><span class="pre">content</span></code> keyword argument in <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Message.edit" title="(in discord.py v2.0.0a)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">discord.Message.edit()</span></code></a>
+and <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.abc.Messageable.send" title="(in discord.py v2.0.0a)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">discord.abc.Messageable.send()</span></code></a>.</p>
+<p>If this method returns a <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Embed" title="(in discord.py v2.0.0a)"><code class="xref py py-class docutils literal notranslate"><span class="pre">discord.Embed</span></code></a> then it is interpreted
+as returning the <code class="docutils literal notranslate"><span class="pre">embed</span></code> keyword argument in <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Message.edit" title="(in discord.py v2.0.0a)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">discord.Message.edit()</span></code></a>
+and <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.abc.Messageable.send" title="(in discord.py v2.0.0a)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">discord.abc.Messageable.send()</span></code></a>.</p>
+<p>If this method returns a <code class="docutils literal notranslate"><span class="pre">dict</span></code> then it is interpreted as the
+keyword-arguments that are used in both <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Message.edit" title="(in discord.py v2.0.0a)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">discord.Message.edit()</span></code></a>
+and <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.abc.Messageable.send" title="(in discord.py v2.0.0a)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">discord.abc.Messageable.send()</span></code></a>. The two of interest are
+<code class="docutils literal notranslate"><span class="pre">embed</span></code> and <code class="docutils literal notranslate"><span class="pre">content</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>menu</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Menu</span></code>) – The menu that wants to format this page.</p></li>
+<li><p><strong>page</strong> (<em>Any</em>) – The page returned by <code class="xref py py-meth docutils literal notranslate"><span class="pre">PageSource.get_page()</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>See above.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Union[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Embed" title="(in discord.py v2.0.0a)"><code class="xref py py-class docutils literal notranslate"><span class="pre">discord.Embed</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="DiscordUtils.paginator.TextPageSource">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DiscordUtils.paginator.</span></span><span class="sig-name descname"><span class="pre">TextPageSource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'```'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">suffix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'```'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2000</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#TextPageSource"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.paginator.TextPageSource" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">discord.ext.menus.ListPageSource</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.paginator.TextPageSource.format_page">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">format_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">menu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#TextPageSource.format_page"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.paginator.TextPageSource.format_page" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function <em>could be a</em> <a class="reference external" href="https://docs.python.org/3/library/asyncio-task.html#coroutine"><em>coroutine</em></a>.</p>
+<p>An abstract method to format the page.</p>
+<p>This method must return one of the following types.</p>
+<p>If this method returns a <code class="docutils literal notranslate"><span class="pre">str</span></code> then it is interpreted as returning
+the <code class="docutils literal notranslate"><span class="pre">content</span></code> keyword argument in <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Message.edit" title="(in discord.py v2.0.0a)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">discord.Message.edit()</span></code></a>
+and <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.abc.Messageable.send" title="(in discord.py v2.0.0a)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">discord.abc.Messageable.send()</span></code></a>.</p>
+<p>If this method returns a <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Embed" title="(in discord.py v2.0.0a)"><code class="xref py py-class docutils literal notranslate"><span class="pre">discord.Embed</span></code></a> then it is interpreted
+as returning the <code class="docutils literal notranslate"><span class="pre">embed</span></code> keyword argument in <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Message.edit" title="(in discord.py v2.0.0a)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">discord.Message.edit()</span></code></a>
+and <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.abc.Messageable.send" title="(in discord.py v2.0.0a)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">discord.abc.Messageable.send()</span></code></a>.</p>
+<p>If this method returns a <code class="docutils literal notranslate"><span class="pre">dict</span></code> then it is interpreted as the
+keyword-arguments that are used in both <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Message.edit" title="(in discord.py v2.0.0a)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">discord.Message.edit()</span></code></a>
+and <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.abc.Messageable.send" title="(in discord.py v2.0.0a)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">discord.abc.Messageable.send()</span></code></a>. The two of interest are
+<code class="docutils literal notranslate"><span class="pre">embed</span></code> and <code class="docutils literal notranslate"><span class="pre">content</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>menu</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Menu</span></code>) – The menu that wants to format this page.</p></li>
+<li><p><strong>page</strong> (<em>Any</em>) – The page returned by <code class="xref py py-meth docutils literal notranslate"><span class="pre">PageSource.get_page()</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>See above.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Union[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Embed" title="(in discord.py v2.0.0a)"><code class="xref py py-class docutils literal notranslate"><span class="pre">discord.Embed</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.paginator.TextPageSource.is_paginating">
+<span class="sig-name descname"><span class="pre">is_paginating</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#TextPageSource.is_paginating"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.paginator.TextPageSource.is_paginating" title="Permalink to this definition">¶</a></dt>
+<dd><p>This forces the buttons to appear even in the front page</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="DiscordUtils.paginator.SimplePageSource">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DiscordUtils.paginator.</span></span><span class="sig-name descname"><span class="pre">SimplePageSource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entries</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">per_page</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#SimplePageSource"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.paginator.SimplePageSource" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">discord.ext.menus.ListPageSource</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.paginator.SimplePageSource.format_page">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">format_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">menu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">entries</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#SimplePageSource.format_page"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.paginator.SimplePageSource.format_page" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function <em>could be a</em> <a class="reference external" href="https://docs.python.org/3/library/asyncio-task.html#coroutine"><em>coroutine</em></a>.</p>
+<p>An abstract method to format the page.</p>
+<p>This method must return one of the following types.</p>
+<p>If this method returns a <code class="docutils literal notranslate"><span class="pre">str</span></code> then it is interpreted as returning
+the <code class="docutils literal notranslate"><span class="pre">content</span></code> keyword argument in <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Message.edit" title="(in discord.py v2.0.0a)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">discord.Message.edit()</span></code></a>
+and <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.abc.Messageable.send" title="(in discord.py v2.0.0a)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">discord.abc.Messageable.send()</span></code></a>.</p>
+<p>If this method returns a <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Embed" title="(in discord.py v2.0.0a)"><code class="xref py py-class docutils literal notranslate"><span class="pre">discord.Embed</span></code></a> then it is interpreted
+as returning the <code class="docutils literal notranslate"><span class="pre">embed</span></code> keyword argument in <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Message.edit" title="(in discord.py v2.0.0a)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">discord.Message.edit()</span></code></a>
+and <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.abc.Messageable.send" title="(in discord.py v2.0.0a)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">discord.abc.Messageable.send()</span></code></a>.</p>
+<p>If this method returns a <code class="docutils literal notranslate"><span class="pre">dict</span></code> then it is interpreted as the
+keyword-arguments that are used in both <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Message.edit" title="(in discord.py v2.0.0a)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">discord.Message.edit()</span></code></a>
+and <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.abc.Messageable.send" title="(in discord.py v2.0.0a)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">discord.abc.Messageable.send()</span></code></a>. The two of interest are
+<code class="docutils literal notranslate"><span class="pre">embed</span></code> and <code class="docutils literal notranslate"><span class="pre">content</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>menu</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Menu</span></code>) – The menu that wants to format this page.</p></li>
+<li><p><strong>page</strong> (<em>Any</em>) – The page returned by <code class="xref py py-meth docutils literal notranslate"><span class="pre">PageSource.get_page()</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>See above.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Union[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Embed" title="(in discord.py v2.0.0a)"><code class="xref py py-class docutils literal notranslate"><span class="pre">discord.Embed</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="DiscordUtils.paginator.SimplePages">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DiscordUtils.paginator.</span></span><span class="sig-name descname"><span class="pre">SimplePages</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entries</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">per_page</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">12</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#SimplePages"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.paginator.SimplePages" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#DiscordUtils.paginator.RoboPages" title="DiscordUtils.paginator.RoboPages"><code class="xref py py-class docutils literal notranslate"><span class="pre">DiscordUtils.paginator.RoboPages</span></code></a></p>
+<p>A simple pagination session reminiscent of the old Pages interface.
+Basically an embed with some normal formatting.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctx</strong> (<em>commands.Context</em>) – </p></li>
+<li><p><strong>per_page</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="DiscordUtils.paginator.EmbedPageSource">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DiscordUtils.paginator.</span></span><span class="sig-name descname"><span class="pre">EmbedPageSource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entries</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">per_page</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#EmbedPageSource"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.paginator.EmbedPageSource" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">discord.ext.menus.ListPageSource</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.paginator.EmbedPageSource.format_page">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">format_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">menu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">entries</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#EmbedPageSource.format_page"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.paginator.EmbedPageSource.format_page" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function <em>could be a</em> <a class="reference external" href="https://docs.python.org/3/library/asyncio-task.html#coroutine"><em>coroutine</em></a>.</p>
+<p>An abstract method to format the page.</p>
+<p>This method must return one of the following types.</p>
+<p>If this method returns a <code class="docutils literal notranslate"><span class="pre">str</span></code> then it is interpreted as returning
+the <code class="docutils literal notranslate"><span class="pre">content</span></code> keyword argument in <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Message.edit" title="(in discord.py v2.0.0a)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">discord.Message.edit()</span></code></a>
+and <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.abc.Messageable.send" title="(in discord.py v2.0.0a)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">discord.abc.Messageable.send()</span></code></a>.</p>
+<p>If this method returns a <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Embed" title="(in discord.py v2.0.0a)"><code class="xref py py-class docutils literal notranslate"><span class="pre">discord.Embed</span></code></a> then it is interpreted
+as returning the <code class="docutils literal notranslate"><span class="pre">embed</span></code> keyword argument in <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Message.edit" title="(in discord.py v2.0.0a)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">discord.Message.edit()</span></code></a>
+and <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.abc.Messageable.send" title="(in discord.py v2.0.0a)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">discord.abc.Messageable.send()</span></code></a>.</p>
+<p>If this method returns a <code class="docutils literal notranslate"><span class="pre">dict</span></code> then it is interpreted as the
+keyword-arguments that are used in both <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Message.edit" title="(in discord.py v2.0.0a)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">discord.Message.edit()</span></code></a>
+and <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.abc.Messageable.send" title="(in discord.py v2.0.0a)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">discord.abc.Messageable.send()</span></code></a>. The two of interest are
+<code class="docutils literal notranslate"><span class="pre">embed</span></code> and <code class="docutils literal notranslate"><span class="pre">content</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>menu</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Menu</span></code>) – The menu that wants to format this page.</p></li>
+<li><p><strong>page</strong> (<em>Any</em>) – The page returned by <code class="xref py py-meth docutils literal notranslate"><span class="pre">PageSource.get_page()</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>See above.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Union[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Embed" title="(in discord.py v2.0.0a)"><code class="xref py py-class docutils literal notranslate"><span class="pre">discord.Embed</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="DiscordUtils.paginator.EmbedPaginator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DiscordUtils.paginator.</span></span><span class="sig-name descname"><span class="pre">EmbedPaginator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entries</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#EmbedPaginator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.paginator.EmbedPaginator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#DiscordUtils.paginator.RoboPages" title="DiscordUtils.paginator.RoboPages"><code class="xref py py-class docutils literal notranslate"><span class="pre">DiscordUtils.paginator.RoboPages</span></code></a></p>
+<p>A simple paginator for the embeds. In entries you provides a list of embeds</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>ctx</strong> (<em>commands.Context</em>) – </p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.paginator.EmbedPaginator.is_paginating">
+<em class="property"><span class="pre">staticmethod</span> </em><span class="sig-name descname"><span class="pre">is_paginating</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#EmbedPaginator.is_paginating"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.paginator.EmbedPaginator.is_paginating" title="Permalink to this definition">¶</a></dt>
+<dd><p>The pagination is in the paginating state or not.
+:note: This forces the buttons to appear even in the front page</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-DiscordUtils">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-DiscordUtils" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="DiscordUtils.InviteTracker">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DiscordUtils.</span></span><span class="sig-name descname"><span class="pre">InviteTracker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bot</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/invitetracker.html#InviteTracker"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.InviteTracker" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>A usefull class to track invites of member whenever a user is invited to a guild.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>bot</strong> (<em>Union</em><em>[</em><a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Client" title="(in discord.py v2.0.0a)"><em>Client</em></a><em>, </em><a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.AutoShardedClient" title="(in discord.py v2.0.0a)"><em>AutoShardedClient</em></a><em>, </em><a class="reference external" href="https://discordpy.readthedocs.io/en/master/ext/commands/api.html#discord.ext.commands.Bot" title="(in discord.py v2.0.0a)"><em>Bot</em></a><em>, </em><em>AutoSharededBot</em><em>]</em>) – </p>
+</dd>
+<dt class="field-even">Attributes</dt>
+<dd class="field-even"><ul class="simple">
+<li><p>bot: The default bot class.</p></li>
+<li><dl class="simple">
+<dt>_cache: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a></dt><dd><p>A <cite>dict</cite> to cache <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Guild" title="(in discord.py v2.0.0a)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Guild</span></code></a> instances <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Invite" title="(in discord.py v2.0.0a)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Invite</span></code></a></p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiscordUtils.InviteTracker.bot">
+<span class="sig-name descname"><span class="pre">bot</span></span><a class="headerlink" href="#DiscordUtils.InviteTracker.bot" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.InviteTracker.add_listeners">
+<span class="sig-name descname"><span class="pre">add_listeners</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/invitetracker.html#InviteTracker.add_listeners"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.InviteTracker.add_listeners" title="Permalink to this definition">¶</a></dt>
+<dd><p>It adds the following listeners to the <a class="reference external" href="https://discordpy.readthedocs.io/en/master/ext/commands/api.html#discord.ext.commands.Bot" title="(in discord.py v2.0.0a)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Bot</span></code></a> instance.</p>
+<dl class="field-list">
+<dt class="field-odd">Mapping</dt>
+<dd class="field-odd"><div class="table-wrapper"><table class="docutils align-default">
+<colgroup>
+<col style="width: 45%" />
+<col style="width: 55%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Function</p></td>
+<td><p>Discord Function</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#DiscordUtils.InviteTracker.cache_invites" title="DiscordUtils.InviteTracker.cache_invites"><code class="xref py py-func docutils literal notranslate"><span class="pre">cache_invites()</span></code></a></p></td>
+<td><p><a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.on_ready" title="(in discord.py v2.0.0a)"><code class="xref py py-func docutils literal notranslate"><span class="pre">on_ready()</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#DiscordUtils.InviteTracker.update_invite_cache" title="DiscordUtils.InviteTracker.update_invite_cache"><code class="xref py py-func docutils literal notranslate"><span class="pre">update_invite_cache()</span></code></a></p></td>
+<td><p><a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.on_invite_create" title="(in discord.py v2.0.0a)"><code class="xref py py-func docutils literal notranslate"><span class="pre">on_invite_create()</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#DiscordUtils.InviteTracker.remove_invite_cache" title="DiscordUtils.InviteTracker.remove_invite_cache"><code class="xref py py-func docutils literal notranslate"><span class="pre">remove_invite_cache()</span></code></a></p></td>
+<td><p><a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.on_invite_delete" title="(in discord.py v2.0.0a)"><code class="xref py py-func docutils literal notranslate"><span class="pre">on_invite_delete()</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#DiscordUtils.InviteTracker.add_guild_cache" title="DiscordUtils.InviteTracker.add_guild_cache"><code class="xref py py-func docutils literal notranslate"><span class="pre">add_guild_cache()</span></code></a></p></td>
+<td><p><a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.on_guild_join" title="(in discord.py v2.0.0a)"><code class="xref py py-func docutils literal notranslate"><span class="pre">on_guild_join()</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#DiscordUtils.InviteTracker.remove_guild_cache" title="DiscordUtils.InviteTracker.remove_guild_cache"><code class="xref py py-func docutils literal notranslate"><span class="pre">remove_guild_cache()</span></code></a></p></td>
+<td><p><a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.on_guild_remove" title="(in discord.py v2.0.0a)"><code class="xref py py-func docutils literal notranslate"><span class="pre">on_guild_remove()</span></code></a></p></td>
+</tr>
+</tbody>
+</table>
+</div></dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.InviteTracker.cache_invites">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">cache_invites</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/invitetracker.html#InviteTracker.cache_invites"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.InviteTracker.cache_invites" title="Permalink to this definition">¶</a></dt>
+<dd><p>It cache the guild invites <cite>automatically</cite> whenever the <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.on_ready" title="(in discord.py v2.0.0a)"><code class="xref py py-func docutils literal notranslate"><span class="pre">on_ready()</span></code></a> event is fired</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.InviteTracker.update_invite_cache">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">update_invite_cache</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">invite</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/invitetracker.html#InviteTracker.update_invite_cache"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.InviteTracker.update_invite_cache" title="Permalink to this definition">¶</a></dt>
+<dd><p>It updates the invite cache <cite>automatically</cite> whenever the <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.on_invite_create" title="(in discord.py v2.0.0a)"><code class="xref py py-func docutils literal notranslate"><span class="pre">on_invite_create()</span></code></a> event is fired</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>invite</strong> (<a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Invite" title="(in discord.py v2.0.0a)"><em>discord.invite.Invite</em></a>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.InviteTracker.remove_invite_cache">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">remove_invite_cache</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">invite</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/invitetracker.html#InviteTracker.remove_invite_cache"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.InviteTracker.remove_invite_cache" title="Permalink to this definition">¶</a></dt>
+<dd><p>It removes the invite cache of the deleted invite <cite>automatically</cite> whenever the <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.on_invite_delete" title="(in discord.py v2.0.0a)"><code class="xref py py-func docutils literal notranslate"><span class="pre">on_invite_delete()</span></code></a> event is fired</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>invite</strong> (<a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Invite" title="(in discord.py v2.0.0a)"><em>discord.invite.Invite</em></a>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.InviteTracker.add_guild_cache">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">add_guild_cache</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">guild</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/invitetracker.html#InviteTracker.add_guild_cache"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.InviteTracker.add_guild_cache" title="Permalink to this definition">¶</a></dt>
+<dd><p>It adds the guild to cache <cite>automatically</cite> whenever the <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.on_guild_join" title="(in discord.py v2.0.0a)"><code class="xref py py-func docutils literal notranslate"><span class="pre">on_guild_join()</span></code></a> event is fired</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>guild</strong> (<a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Guild" title="(in discord.py v2.0.0a)"><em>discord.guild.Guild</em></a>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.InviteTracker.remove_guild_cache">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">remove_guild_cache</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">guild</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/invitetracker.html#InviteTracker.remove_guild_cache"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.InviteTracker.remove_guild_cache" title="Permalink to this definition">¶</a></dt>
+<dd><p>It removes the guild from cache <cite>automatically</cite> whenever the <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.on_guild_remove" title="(in discord.py v2.0.0a)"><code class="xref py py-func docutils literal notranslate"><span class="pre">on_guild_remove()</span></code></a> event is fired</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>guild</strong> (<a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Guild" title="(in discord.py v2.0.0a)"><em>discord.guild.Guild</em></a>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.InviteTracker.fetch_inviter">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">fetch_inviter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">member</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/invitetracker.html#InviteTracker.fetch_inviter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.InviteTracker.fetch_inviter" title="Permalink to this definition">¶</a></dt>
+<dd><p>This utility function returns the <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Invite" title="(in discord.py v2.0.0a)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Invite</span></code></a> class which was used when the member joined the guild.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>member</strong> (<a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Member" title="(in discord.py v2.0.0a)"><em>discord.Member</em></a>) – The member which joined the guild. (The <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Member" title="(in discord.py v2.0.0a)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Member</span></code></a> recieved during <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.on_member_join" title="(in discord.py v2.0.0a)"><code class="xref py py-func docutils literal notranslate"><span class="pre">on_member_join()</span></code></a> event)</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>If the member was bot i.e. invited via integration then it would return <code class="xref py py-class docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Optional[<a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Invite" title="(in discord.py v2.0.0a)">discord.Invite</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="DiscordUtils.Music">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DiscordUtils.</span></span><span class="sig-name descname"><span class="pre">Music</span></span><a class="reference internal" href="_modules/DiscordUtils/music.html#Music"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.Music" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.Music.create_player">
+<span class="sig-name descname"><span class="pre">create_player</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#Music.create_player"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.Music.create_player" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.Music.get_player">
+<span class="sig-name descname"><span class="pre">get_player</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#Music.get_player"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.Music.get_player" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+    </main>
+    <footer class="grid-item">
+        &#169; Copyright 2022, Dhruvacube.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.1.
+    </footer>
+  </div>
+
+  <div id="settings" class="modal" onclick="if (event.target == this){ settingsModal.close(); }" hidden>
+    <div class="modal-content">
+      <span class="close" onclick="settingsModal.close();" title="Close">
+        <span class="material-icons">close</span>
+      </span>
+      <h1>Settings</h1>
+
+      <h2>Font</h2>
+      <div class="setting">
+        <h3>Use a serif font:
+          <label class="toggle"
+            title="Use a serif font? Your system font will be used, falling back to serif.">
+            <input type="checkbox" name="useSerifFont" onclick="updateSetting(this);">
+            <span class="toggle-slider"></span>
+          </label>
+        </h3>
+      </div>
+
+      <h2>Theme</h2>
+      <div class="setting">
+        <h3>
+          <label class="toggle" title="Set your theme based on your system preferences">
+            <input type="radio" name="setTheme" onclick="updateSetting(this);" value="automatic" checked>
+          </label>
+          Automatic
+        </h3>
+        <h3>
+          <label class="toggle" title="Set your theme to light theme">
+            <input type="radio" name="setTheme" onclick="updateSetting(this);" value="light">
+          </label>
+          Light
+        </h3>
+        <h3>
+          <label class="toggle" title="Set your theme to dark theme">
+            <input type="radio" name="setTheme" onclick="updateSetting(this);" value="dark">
+          </label>
+          Dark
+        </h3>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="to-top" onclick="scrollToTop()" hidden>
+    <span><span class="material-icons">arrow_upward</span> to top</span>
+  </div>
+
+</body>
+</html>

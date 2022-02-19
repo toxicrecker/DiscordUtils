@@ -1,5 +1,3 @@
-docs
-docs/*
 build
 build/*
 *.pyc

@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DiscordUtils.music</title> 
+  <!-- end extra head -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
+  <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/codeblocks.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/icons.css" type="text/css" />
+  <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+  <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+  <script src="../../_static/jquery.js"></script>
+  <script src="../../_static/underscore.js"></script>
+  <script src="../../_static/doctools.js"></script>
+  <script src="../../_static/custom.js"></script>
+  <script src="../../_static/settings.js"></script>
+  <script src="../../_static/copy.js"></script>
+  <script src="../../_static/sidebar.js"></script>
+  <link rel="index" title="Index" href="../../genindex.html" />
+  <link rel="search" title="Search" href="../../search.html" />
+</head>
+<body>
+  <div class="main-grid">
+    <header class="grid-item">
+      <nav>
+        <a href="../../index.html" class="main-heading">discord.py</a>
+        <a href="https://github.com/Rapptz/discord.py" title="GitHub"><span class="material-icons custom-icons">github</span></a>
+        <a href="https://discord.gg/vfXHwS3nmQ" title="Discord"><span class="material-icons custom-icons">discord</span></a>
+        <a href="../../faq.html" title="FAQ"><span class="material-icons">help_center</span></a>
+        <a onclick="mobileSearch.open();" title="Search" id="open-search" class="mobile-only"><span class="material-icons">search</span></a>
+        <a onclick="mobileSearch.close();" title="Close" id="close-search" class="mobile-only" hidden><span class="material-icons">close</span></a>
+      </nav>
+      <nav class="mobile-only">
+        <form role="search" class="search" action="../../search.html" method="get">
+          <div class="search-wrapper">
+            <input type="search" name="q" placeholder="Search documentation" />
+            <button type="submit">
+              <span class="material-icons">search</span>
+            </button>
+          </div>
+        </form>
+      </nav>
+    </header>
+    <div class="sub-header grid-item">
+      <label for="documentation_select">View Documentation For</label>
+      <select id="documentation_select" onchange="window.location = this.value;">
+        <option value="#" selected>discord</option>
+      </select>
+      <form role="search" class="search" action="../../search.html" method="get">
+        <div class="search-wrapper">
+          <input type="search" name="q" placeholder="Search documentation" />
+          <button type="submit">
+            <span class="material-icons">search</span>
+          </button>
+        </div>
+      </form>
+      <a accesskey="S" class="settings" onclick="settingsModal.open();"><span class="material-icons">settings</span></a>
+    </div>
+    <aside class="grid-item">
+      <span id="settings-toggle" class="settings" onclick="settingsModal.open();">
+        <span class="material-icons">settings</span>
+      </span>
+      <div id="sidebar">
+      </div>
+    </aside>
+    <main class="grid-item" role="main">
+      
+  <h1>Source code for DiscordUtils.music</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">aiohttp</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Optional</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">discord</span>
+    <span class="kn">import</span> <span class="nn">youtube_dl</span>
+
+    <span class="n">has_voice</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="n">has_voice</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="k">if</span> <span class="n">has_voice</span><span class="p">:</span>
+    <span class="n">youtube_dl</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">bug_reports_message</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">ydl</span> <span class="o">=</span> <span class="n">youtube_dl</span><span class="o">.</span><span class="n">YoutubeDL</span><span class="p">({</span>
+        <span class="s2">&quot;format&quot;</span><span class="p">:</span> <span class="s2">&quot;bestaudio/best&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;restrictfilenames&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s2">&quot;noplaylist&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s2">&quot;nocheckcertificate&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s2">&quot;ignoreerrors&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s2">&quot;logtostderr&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">&quot;quiet&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s2">&quot;no_warnings&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s2">&quot;source_address&quot;</span><span class="p">:</span> <span class="s2">&quot;0.0.0.0&quot;</span><span class="p">,</span>
+    <span class="p">})</span>
+
+
+<div class="viewcode-block" id="EmptyQueue"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.EmptyQueue">[docs]</a><span class="k">class</span> <span class="nc">EmptyQueue</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Cannot skip because queue is empty&quot;&quot;&quot;</span></div>
+
+
+<div class="viewcode-block" id="NotConnectedToVoice"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.NotConnectedToVoice">[docs]</a><span class="k">class</span> <span class="nc">NotConnectedToVoice</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Cannot create the player because bot is not connected to voice&quot;&quot;&quot;</span></div>
+
+
+<div class="viewcode-block" id="NotPlaying"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.NotPlaying">[docs]</a><span class="k">class</span> <span class="nc">NotPlaying</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Cannot &lt;do something&gt; because nothing is being played&quot;&quot;&quot;</span></div>
+
+
+<div class="viewcode-block" id="ytbettersearch"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.ytbettersearch">[docs]</a><span class="k">async</span> <span class="k">def</span> <span class="nf">ytbettersearch</span><span class="p">(</span><span class="n">query</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;https://www.youtube.com/results?search_query=</span><span class="si">{</span><span class="n">query</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="k">async</span> <span class="k">with</span> <span class="n">aiohttp</span><span class="o">.</span><span class="n">ClientSession</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+        <span class="k">async</span> <span class="k">with</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">resp</span><span class="p">:</span>
+            <span class="n">html</span> <span class="o">=</span> <span class="k">await</span> <span class="n">resp</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
+    <span class="n">index</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;watch?v&quot;</span><span class="p">)</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">char</span> <span class="o">=</span> <span class="n">html</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">char</span> <span class="o">==</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="n">url</span> <span class="o">+=</span> <span class="n">char</span>
+        <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;https://www.youtube.com/</span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="k">return</span> <span class="n">url</span></div>
+
+
+<div class="viewcode-block" id="get_video_data"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.get_video_data">[docs]</a><span class="k">async</span> <span class="k">def</span> <span class="nf">get_video_data</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">search</span><span class="p">,</span> <span class="n">bettersearch</span><span class="p">,</span> <span class="n">loop</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">has_voice</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+            <span class="s2">&quot;DiscordUtils[voice] install needed in order to use voice&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">search</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">bettersearch</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">loop</span><span class="o">.</span><span class="n">run_in_executor</span><span class="p">(</span>
+            <span class="kc">None</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">ydl</span><span class="o">.</span><span class="n">extract_info</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">download</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+        <span class="n">source</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;url&quot;</span><span class="p">)</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://www.youtube.com/watch?v=&quot;</span> <span class="o">+</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">)</span>
+        <span class="n">description</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;description&quot;</span><span class="p">)</span>
+        <span class="n">likes</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;like_count&quot;</span><span class="p">)</span>
+        <span class="n">dislikes</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;dislike_count&quot;</span><span class="p">)</span>
+        <span class="n">views</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;view_count&quot;</span><span class="p">)</span>
+        <span class="n">duration</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;duration&quot;</span><span class="p">)</span>
+        <span class="n">thumbnail</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;thumbnail&quot;</span><span class="p">)</span>
+        <span class="n">channel</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;uploader&quot;</span><span class="p">)</span>
+        <span class="n">channel_url</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;uploader_url&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Song</span><span class="p">(</span>
+            <span class="n">source</span><span class="p">,</span>
+            <span class="n">url</span><span class="p">,</span>
+            <span class="n">title</span><span class="p">,</span>
+            <span class="n">description</span><span class="p">,</span>
+            <span class="n">views</span><span class="p">,</span>
+            <span class="n">duration</span><span class="p">,</span>
+            <span class="n">thumbnail</span><span class="p">,</span>
+            <span class="n">channel</span><span class="p">,</span>
+            <span class="n">channel_url</span><span class="p">,</span>
+            <span class="kc">False</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">bettersearch</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="k">await</span> <span class="n">ytbettersearch</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">loop</span><span class="o">.</span><span class="n">run_in_executor</span><span class="p">(</span>
+                <span class="kc">None</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">ydl</span><span class="o">.</span><span class="n">extract_info</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">download</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+            <span class="n">source</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;url&quot;</span><span class="p">)</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://www.youtube.com/watch?v=&quot;</span> <span class="o">+</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
+            <span class="n">title</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">)</span>
+            <span class="n">description</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;description&quot;</span><span class="p">)</span>
+            <span class="n">likes</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;like_count&quot;</span><span class="p">)</span>
+            <span class="n">dislikes</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;dislike_count&quot;</span><span class="p">)</span>
+            <span class="n">views</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;view_count&quot;</span><span class="p">)</span>
+            <span class="n">duration</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;duration&quot;</span><span class="p">)</span>
+            <span class="n">thumbnail</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;thumbnail&quot;</span><span class="p">)</span>
+            <span class="n">channel</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;uploader&quot;</span><span class="p">)</span>
+            <span class="n">channel_url</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;uploader_url&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">Song</span><span class="p">(</span>
+                <span class="n">source</span><span class="p">,</span>
+                <span class="n">url</span><span class="p">,</span>
+                <span class="n">title</span><span class="p">,</span>
+                <span class="n">description</span><span class="p">,</span>
+                <span class="n">views</span><span class="p">,</span>
+                <span class="n">duration</span><span class="p">,</span>
+                <span class="n">thumbnail</span><span class="p">,</span>
+                <span class="n">channel</span><span class="p">,</span>
+                <span class="n">channel_url</span><span class="p">,</span>
+                <span class="kc">False</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">elif</span> <span class="n">search</span><span class="p">:</span>
+            <span class="n">ytdl</span> <span class="o">=</span> <span class="n">youtube_dl</span><span class="o">.</span><span class="n">YoutubeDL</span><span class="p">({</span>
+                <span class="s2">&quot;format&quot;</span><span class="p">:</span> <span class="s2">&quot;bestaudio/best&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;restrictfilenames&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                <span class="s2">&quot;noplaylist&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                <span class="s2">&quot;nocheckcertificate&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                <span class="s2">&quot;ignoreerrors&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                <span class="s2">&quot;logtostderr&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+                <span class="s2">&quot;quiet&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                <span class="s2">&quot;no_warnings&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                <span class="s2">&quot;default_search&quot;</span><span class="p">:</span> <span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;source_address&quot;</span><span class="p">:</span> <span class="s2">&quot;0.0.0.0&quot;</span><span class="p">,</span>
+            <span class="p">})</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">loop</span><span class="o">.</span><span class="n">run_in_executor</span><span class="p">(</span>
+                <span class="kc">None</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">ytdl</span><span class="o">.</span><span class="n">extract_info</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">download</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;entries&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">except</span> <span class="p">(</span><span class="ne">KeyError</span><span class="p">,</span> <span class="ne">TypeError</span><span class="p">):</span>
+                <span class="k">pass</span>
+            <span class="n">source</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;url&quot;</span><span class="p">)</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://www.youtube.com/watch?v=&quot;</span> <span class="o">+</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
+            <span class="n">title</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">)</span>
+            <span class="n">description</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;description&quot;</span><span class="p">)</span>
+            <span class="n">likes</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;like_count&quot;</span><span class="p">)</span>
+            <span class="n">dislikes</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;dislike_count&quot;</span><span class="p">)</span>
+            <span class="n">views</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;view_count&quot;</span><span class="p">)</span>
+            <span class="n">duration</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;duration&quot;</span><span class="p">)</span>
+            <span class="n">thumbnail</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;thumbnail&quot;</span><span class="p">)</span>
+            <span class="n">channel</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;uploader&quot;</span><span class="p">)</span>
+            <span class="n">channel_url</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;uploader_url&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">Song</span><span class="p">(</span>
+                <span class="n">source</span><span class="p">,</span>
+                <span class="n">url</span><span class="p">,</span>
+                <span class="n">title</span><span class="p">,</span>
+                <span class="n">description</span><span class="p">,</span>
+                <span class="n">views</span><span class="p">,</span>
+                <span class="n">duration</span><span class="p">,</span>
+                <span class="n">thumbnail</span><span class="p">,</span>
+                <span class="n">channel</span><span class="p">,</span>
+                <span class="n">channel_url</span><span class="p">,</span>
+                <span class="kc">False</span><span class="p">,</span>
+            <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="check_queue"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.check_queue">[docs]</a><span class="k">def</span> <span class="nf">check_queue</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">opts</span><span class="p">,</span> <span class="n">music</span><span class="p">,</span> <span class="n">after</span><span class="p">,</span> <span class="n">on_play</span><span class="p">,</span> <span class="n">loop</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">has_voice</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+            <span class="s2">&quot;DiscordUtils[voice] install needed in order to use voice&quot;</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">song</span> <span class="o">=</span> <span class="n">music</span><span class="o">.</span><span class="n">queue</span><span class="p">[</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+        <span class="k">return</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">song</span><span class="o">.</span><span class="n">is_looping</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">music</span><span class="o">.</span><span class="n">queue</span><span class="p">[</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span><span class="p">]</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">music</span><span class="o">.</span><span class="n">queue</span><span class="p">[</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">source</span> <span class="o">=</span> <span class="n">discord</span><span class="o">.</span><span class="n">PCMVolumeTransformer</span><span class="p">(</span>
+                <span class="n">discord</span><span class="o">.</span><span class="n">FFmpegPCMAudio</span><span class="p">(</span><span class="n">music</span><span class="o">.</span><span class="n">queue</span><span class="p">[</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">source</span><span class="p">,</span>
+                                       <span class="o">**</span><span class="n">opts</span><span class="p">))</span>
+            <span class="n">ctx</span><span class="o">.</span><span class="n">voice_client</span><span class="o">.</span><span class="n">play</span><span class="p">(</span>
+                <span class="n">source</span><span class="p">,</span>
+                <span class="n">after</span><span class="o">=</span><span class="k">lambda</span> <span class="n">error</span><span class="p">:</span> <span class="n">after</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">opts</span><span class="p">,</span> <span class="n">music</span><span class="p">,</span> <span class="n">after</span><span class="p">,</span> <span class="n">on_play</span><span class="p">,</span>
+                                          <span class="n">loop</span><span class="p">),</span>
+            <span class="p">)</span>
+            <span class="n">song</span> <span class="o">=</span> <span class="n">music</span><span class="o">.</span><span class="n">queue</span><span class="p">[</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">on_play</span><span class="p">:</span>
+                <span class="n">loop</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">on_play</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">song</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">source</span> <span class="o">=</span> <span class="n">discord</span><span class="o">.</span><span class="n">PCMVolumeTransformer</span><span class="p">(</span>
+            <span class="n">discord</span><span class="o">.</span><span class="n">FFmpegPCMAudio</span><span class="p">(</span><span class="n">music</span><span class="o">.</span><span class="n">queue</span><span class="p">[</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">source</span><span class="p">,</span>
+                                   <span class="o">**</span><span class="n">opts</span><span class="p">))</span>
+        <span class="n">ctx</span><span class="o">.</span><span class="n">voice_client</span><span class="o">.</span><span class="n">play</span><span class="p">(</span>
+            <span class="n">source</span><span class="p">,</span>
+            <span class="n">after</span><span class="o">=</span><span class="k">lambda</span> <span class="n">error</span><span class="p">:</span> <span class="n">after</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">opts</span><span class="p">,</span> <span class="n">music</span><span class="p">,</span> <span class="n">after</span><span class="p">,</span> <span class="n">on_play</span><span class="p">,</span> <span class="n">loop</span><span class="p">))</span>
+        <span class="n">song</span> <span class="o">=</span> <span class="n">music</span><span class="o">.</span><span class="n">queue</span><span class="p">[</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">on_play</span><span class="p">:</span>
+            <span class="n">loop</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">on_play</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">song</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="Music"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.Music">[docs]</a><span class="k">class</span> <span class="nc">Music</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">has_voice</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                <span class="s2">&quot;DiscordUtils[voice] install needed in order to use voice&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">queue</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">players</span> <span class="o">=</span> <span class="p">[]</span>
+
+<div class="viewcode-block" id="Music.create_player"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.Music.create_player">[docs]</a>    <span class="k">def</span> <span class="nf">create_player</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctx</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">ctx</span><span class="o">.</span><span class="n">voice_client</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NotConnectedToVoice</span><span class="p">(</span>
+                <span class="s2">&quot;Cannot create the player because bot is not connected to voice&quot;</span>
+            <span class="p">)</span>
+        <span class="n">player</span> <span class="o">=</span> <span class="n">MusicPlayer</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">players</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">player</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">player</span></div>
+
+<div class="viewcode-block" id="Music.get_player"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.Music.get_player">[docs]</a>    <span class="k">def</span> <span class="nf">get_player</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">guild</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;guild_id&quot;</span><span class="p">)</span>
+        <span class="n">channel</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;channel_id&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">player</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">players</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">guild</span> <span class="ow">and</span> <span class="n">channel</span> <span class="ow">and</span> <span class="n">player</span><span class="o">.</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="n">guild</span>
+                    <span class="ow">and</span> <span class="n">player</span><span class="o">.</span><span class="n">voice</span><span class="o">.</span><span class="n">channel</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="n">channel</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">player</span>
+            <span class="k">elif</span> <span class="ow">not</span> <span class="n">guild</span> <span class="ow">and</span> <span class="n">channel</span> <span class="ow">and</span> <span class="n">player</span><span class="o">.</span><span class="n">voice</span><span class="o">.</span><span class="n">channel</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="n">channel</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">player</span>
+            <span class="k">elif</span> <span class="ow">not</span> <span class="n">channel</span> <span class="ow">and</span> <span class="n">guild</span> <span class="ow">and</span> <span class="n">player</span><span class="o">.</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="n">guild</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">player</span>
+
+        <span class="k">return</span> <span class="kc">None</span></div></div>
+
+
+<div class="viewcode-block" id="MusicPlayer"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer">[docs]</a><span class="k">class</span> <span class="nc">MusicPlayer</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctx</span><span class="p">,</span> <span class="n">music</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">has_voice</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                <span class="s2">&quot;DiscordUtils[voice] install needed in order to use voice&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">ctx</span> <span class="o">=</span> <span class="n">ctx</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">voice</span> <span class="o">=</span> <span class="n">ctx</span><span class="o">.</span><span class="n">voice_client</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">loop</span> <span class="o">=</span> <span class="n">ctx</span><span class="o">.</span><span class="n">bot</span><span class="o">.</span><span class="n">loop</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">music</span> <span class="o">=</span> <span class="n">music</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">music</span><span class="o">.</span><span class="n">queue</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">music</span><span class="o">.</span><span class="n">queue</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">after_func</span> <span class="o">=</span> <span class="n">check_queue</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">on_play_func</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">on_queue_func</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">on_skip_func</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">on_stop_func</span>
+        <span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">on_pause_func</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">on_resume_func</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">on_loop_toggle_func</span>
+        <span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_volume_change_func</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_remove_from_queue_func</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">ffmpeg_error</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;ffmpeg_error_betterfix&quot;</span><span class="p">,</span>
+                                  <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;ffmpeg_error_fix&quot;</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">ffmpeg_error</span> <span class="ow">and</span> <span class="s2">&quot;ffmpeg_error_betterfix&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ffmpeg_opts</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;options&quot;</span><span class="p">:</span>
+                <span class="s2">&quot;-vn -loglevel quiet -hide_banner -nostats&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;before_options&quot;</span><span class="p">:</span>
+                <span class="s2">&quot;-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 0 -nostdin&quot;</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="k">elif</span> <span class="n">ffmpeg_error</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ffmpeg_opts</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;options&quot;</span><span class="p">:</span>
+                <span class="s2">&quot;-vn&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;before_options&quot;</span><span class="p">:</span>
+                <span class="s2">&quot;-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 0 -nostdin&quot;</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ffmpeg_opts</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;options&quot;</span><span class="p">:</span> <span class="s2">&quot;-vn&quot;</span><span class="p">,</span> <span class="s2">&quot;before_options&quot;</span><span class="p">:</span> <span class="s2">&quot;-nostdin&quot;</span><span class="p">}</span>
+
+<div class="viewcode-block" id="MusicPlayer.disable"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.disable">[docs]</a>    <span class="k">def</span> <span class="nf">disable</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">music</span><span class="o">.</span><span class="n">players</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="MusicPlayer.on_queue"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.on_queue">[docs]</a>    <span class="k">def</span> <span class="nf">on_queue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">on_queue_func</span> <span class="o">=</span> <span class="n">func</span></div>
+
+<div class="viewcode-block" id="MusicPlayer.on_play"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.on_play">[docs]</a>    <span class="k">def</span> <span class="nf">on_play</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">on_play_func</span> <span class="o">=</span> <span class="n">func</span></div>
+
+<div class="viewcode-block" id="MusicPlayer.on_skip"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.on_skip">[docs]</a>    <span class="k">def</span> <span class="nf">on_skip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">on_skip_func</span> <span class="o">=</span> <span class="n">func</span></div>
+
+<div class="viewcode-block" id="MusicPlayer.on_stop"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.on_stop">[docs]</a>    <span class="k">def</span> <span class="nf">on_stop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">on_stop_func</span> <span class="o">=</span> <span class="n">func</span></div>
+
+<div class="viewcode-block" id="MusicPlayer.on_pause"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.on_pause">[docs]</a>    <span class="k">def</span> <span class="nf">on_pause</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">on_pause_func</span> <span class="o">=</span> <span class="n">func</span></div>
+
+<div class="viewcode-block" id="MusicPlayer.on_resume"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.on_resume">[docs]</a>    <span class="k">def</span> <span class="nf">on_resume</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">on_resume_func</span> <span class="o">=</span> <span class="n">func</span></div>
+
+<div class="viewcode-block" id="MusicPlayer.on_loop_toggle"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.on_loop_toggle">[docs]</a>    <span class="k">def</span> <span class="nf">on_loop_toggle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">on_loop_toggle_func</span> <span class="o">=</span> <span class="n">func</span></div>
+
+<div class="viewcode-block" id="MusicPlayer.on_volume_change"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.on_volume_change">[docs]</a>    <span class="k">def</span> <span class="nf">on_volume_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">on_volume_change_func</span> <span class="o">=</span> <span class="n">func</span></div>
+
+<div class="viewcode-block" id="MusicPlayer.on_remove_from_queue"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.on_remove_from_queue">[docs]</a>    <span class="k">def</span> <span class="nf">on_remove_from_queue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">on_remove_from_queue_func</span> <span class="o">=</span> <span class="n">func</span></div>
+
+<div class="viewcode-block" id="MusicPlayer.queue"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.queue">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">queue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">search</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">bettersearch</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="n">song</span> <span class="o">=</span> <span class="k">await</span> <span class="n">get_video_data</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">search</span><span class="p">,</span> <span class="n">bettersearch</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">loop</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">music</span><span class="o">.</span><span class="n">queue</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">song</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_queue_func</span><span class="p">:</span>
+            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_queue_func</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="p">,</span> <span class="n">song</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">song</span></div>
+
+<div class="viewcode-block" id="MusicPlayer.play"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.play">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">play</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">source</span> <span class="o">=</span> <span class="n">discord</span><span class="o">.</span><span class="n">PCMVolumeTransformer</span><span class="p">(</span>
+            <span class="n">discord</span><span class="o">.</span><span class="n">FFmpegPCMAudio</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">music</span><span class="o">.</span><span class="n">queue</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">source</span><span class="p">,</span>
+                <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">ffmpeg_opts</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">voice</span><span class="o">.</span><span class="n">play</span><span class="p">(</span>
+            <span class="n">source</span><span class="p">,</span>
+            <span class="n">after</span><span class="o">=</span><span class="k">lambda</span> <span class="n">error</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">after_func</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">ffmpeg_opts</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">music</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">after_func</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">on_play_func</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">loop</span><span class="p">,</span>
+            <span class="p">),</span>
+        <span class="p">)</span>
+        <span class="n">song</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">music</span><span class="o">.</span><span class="n">queue</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_play_func</span><span class="p">:</span>
+            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_play_func</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="p">,</span> <span class="n">song</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">song</span></div>
+
+<div class="viewcode-block" id="MusicPlayer.skip"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.skip">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">skip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">music</span><span class="o">.</span><span class="n">queue</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NotPlaying</span><span class="p">(</span><span class="s2">&quot;Cannot loop because nothing is being played&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">music</span><span class="o">.</span><span class="n">queue</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">force</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">EmptyQueue</span><span class="p">(</span><span class="s2">&quot;Cannot skip because queue is empty&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">old</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">music</span><span class="o">.</span><span class="n">queue</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">old</span><span class="o">.</span><span class="n">is_looping</span> <span class="o">=</span> <span class="kc">False</span> <span class="k">if</span> <span class="n">old</span><span class="o">.</span><span class="n">is_looping</span> <span class="k">else</span> <span class="kc">False</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">voice</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">new</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">music</span><span class="o">.</span><span class="n">queue</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_skip_func</span><span class="p">:</span>
+                    <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_skip_func</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="p">,</span> <span class="n">old</span><span class="p">,</span> <span class="n">new</span><span class="p">)</span>
+                <span class="k">return</span> <span class="p">(</span><span class="n">old</span><span class="p">,</span> <span class="n">new</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_skip_func</span><span class="p">:</span>
+                    <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_skip_func</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="p">,</span> <span class="n">old</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">old</span></div>
+
+<div class="viewcode-block" id="MusicPlayer.stop"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.stop">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">music</span><span class="o">.</span><span class="n">queue</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">voice</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">music</span><span class="o">.</span><span class="n">players</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NotPlaying</span><span class="p">(</span><span class="s2">&quot;Cannot loop because nothing is being played&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_stop_func</span><span class="p">:</span>
+            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_stop_func</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="MusicPlayer.pause"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.pause">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">pause</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">voice</span><span class="o">.</span><span class="n">pause</span><span class="p">()</span>
+            <span class="n">song</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">music</span><span class="o">.</span><span class="n">queue</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NotPlaying</span><span class="p">(</span><span class="s2">&quot;Cannot pause because nothing is being played&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_pause_func</span><span class="p">:</span>
+            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_pause_func</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="p">,</span> <span class="n">song</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">song</span></div>
+
+<div class="viewcode-block" id="MusicPlayer.resume"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.resume">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">resume</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">voice</span><span class="o">.</span><span class="n">resume</span><span class="p">()</span>
+            <span class="n">song</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">music</span><span class="o">.</span><span class="n">queue</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NotPlaying</span><span class="p">(</span><span class="s2">&quot;Cannot resume because nothing is being played&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_resume_func</span><span class="p">:</span>
+            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_resume_func</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="p">,</span> <span class="n">song</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">song</span></div>
+
+<div class="viewcode-block" id="MusicPlayer.current_queue"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.current_queue">[docs]</a>    <span class="k">def</span> <span class="nf">current_queue</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">music</span><span class="o">.</span><span class="n">queue</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">EmptyQueue</span><span class="p">(</span><span class="s2">&quot;Queue is empty&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="MusicPlayer.now_playing"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.now_playing">[docs]</a>    <span class="k">def</span> <span class="nf">now_playing</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">music</span><span class="o">.</span><span class="n">queue</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span></div>
+
+<div class="viewcode-block" id="MusicPlayer.toggle_song_loop"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.toggle_song_loop">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">toggle_song_loop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">song</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">music</span><span class="o">.</span><span class="n">queue</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NotPlaying</span><span class="p">(</span><span class="s2">&quot;Cannot loop because nothing is being played&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">song</span><span class="o">.</span><span class="n">is_looping</span><span class="p">:</span>
+            <span class="n">song</span><span class="o">.</span><span class="n">is_looping</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">song</span><span class="o">.</span><span class="n">is_looping</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_loop_toggle_func</span><span class="p">:</span>
+            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_loop_toggle_func</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="p">,</span> <span class="n">song</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">song</span></div>
+
+<div class="viewcode-block" id="MusicPlayer.change_volume"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.change_volume">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">change_volume</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vol</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">voice</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">volume</span> <span class="o">=</span> <span class="n">vol</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">song</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">music</span><span class="o">.</span><span class="n">queue</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NotPlaying</span><span class="p">(</span><span class="s2">&quot;Cannot loop because nothing is being played&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_volume_change_func</span><span class="p">:</span>
+            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_volume_change_func</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="p">,</span> <span class="n">song</span><span class="p">,</span> <span class="n">vol</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">song</span><span class="p">,</span> <span class="n">vol</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="MusicPlayer.remove_from_queue"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.remove_from_queue">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">remove_from_queue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">index</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">song</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">music</span><span class="o">.</span><span class="n">queue</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">NotPlaying</span><span class="p">(</span><span class="s2">&quot;Cannot loop because nothing is being played&quot;</span><span class="p">)</span>
+            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">skip</span><span class="p">(</span><span class="n">force</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">song</span>
+        <span class="n">song</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">music</span><span class="o">.</span><span class="n">queue</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span><span class="p">][</span><span class="n">index</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">music</span><span class="o">.</span><span class="n">queue</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span><span class="p">]</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_remove_from_queue_func</span><span class="p">:</span>
+            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_remove_from_queue_func</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="p">,</span> <span class="n">song</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">song</span></div>
+
+<div class="viewcode-block" id="MusicPlayer.delete"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.MusicPlayer.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">music</span><span class="o">.</span><span class="n">players</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="Song"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.music.Song">[docs]</a><span class="k">class</span> <span class="nc">Song</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">source</span><span class="p">,</span>
+        <span class="n">url</span><span class="p">,</span>
+        <span class="n">title</span><span class="p">,</span>
+        <span class="n">description</span><span class="p">,</span>
+        <span class="n">views</span><span class="p">,</span>
+        <span class="n">duration</span><span class="p">,</span>
+        <span class="n">thumbnail</span><span class="p">,</span>
+        <span class="n">channel</span><span class="p">,</span>
+        <span class="n">channel_url</span><span class="p">,</span>
+        <span class="n">loop</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">source</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">url</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="n">title</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="n">description</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">views</span> <span class="o">=</span> <span class="n">views</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">title</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">duration</span> <span class="o">=</span> <span class="n">duration</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">thumbnail</span> <span class="o">=</span> <span class="n">thumbnail</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">channel</span> <span class="o">=</span> <span class="n">channel</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">channel_url</span> <span class="o">=</span> <span class="n">channel_url</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_looping</span> <span class="o">=</span> <span class="n">loop</span></div>
+</pre></div>
+
+    </main>
+    <footer class="grid-item">
+        &#169; Copyright 2022, Dhruvacube.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.1.
+    </footer>
+  </div>
+
+  <div id="settings" class="modal" onclick="if (event.target == this){ settingsModal.close(); }" hidden>
+    <div class="modal-content">
+      <span class="close" onclick="settingsModal.close();" title="Close">
+        <span class="material-icons">close</span>
+      </span>
+      <h1>Settings</h1>
+
+      <h2>Font</h2>
+      <div class="setting">
+        <h3>Use a serif font:
+          <label class="toggle"
+            title="Use a serif font? Your system font will be used, falling back to serif.">
+            <input type="checkbox" name="useSerifFont" onclick="updateSetting(this);">
+            <span class="toggle-slider"></span>
+          </label>
+        </h3>
+      </div>
+
+      <h2>Theme</h2>
+      <div class="setting">
+        <h3>
+          <label class="toggle" title="Set your theme based on your system preferences">
+            <input type="radio" name="setTheme" onclick="updateSetting(this);" value="automatic" checked>
+          </label>
+          Automatic
+        </h3>
+        <h3>
+          <label class="toggle" title="Set your theme to light theme">
+            <input type="radio" name="setTheme" onclick="updateSetting(this);" value="light">
+          </label>
+          Light
+        </h3>
+        <h3>
+          <label class="toggle" title="Set your theme to dark theme">
+            <input type="radio" name="setTheme" onclick="updateSetting(this);" value="dark">
+          </label>
+          Dark
+        </h3>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="to-top" onclick="scrollToTop()" hidden>
+    <span><span class="material-icons">arrow_upward</span> to top</span>
+  </div>
+
+</body>
+</html>

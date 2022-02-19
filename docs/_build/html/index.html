@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DiscordUtils</title> 
+  <!-- end extra head -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+  <link rel="stylesheet" type="text/css" href="_static/basic.css" />
+  <link rel="stylesheet" href="_static/style.css" type="text/css" />
+  <link rel="stylesheet" href="_static/codeblocks.css" type="text/css" />
+  <link rel="stylesheet" href="_static/icons.css" type="text/css" />
+  <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+  <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+  <script src="_static/jquery.js"></script>
+  <script src="_static/underscore.js"></script>
+  <script src="_static/doctools.js"></script>
+  <script src="_static/custom.js"></script>
+  <script src="_static/settings.js"></script>
+  <script src="_static/copy.js"></script>
+  <script src="_static/sidebar.js"></script>
+  <link rel="index" title="Index" href="genindex.html" />
+  <link rel="search" title="Search" href="search.html" />
+</head>
+<body>
+  <div class="main-grid">
+    <header class="grid-item">
+      <nav>
+        <a href="#" class="main-heading">DiscordUtils</a>
+        <a href="https://github.com/The-4th-Hokage/DiscordUtils" title="GitHub"><span class="material-icons custom-icons">github</span></a>
+        <a href="https://discord.gg/vfXHwS3nmQ" title="Discord"><span class="material-icons custom-icons">discord</span></a>
+        <a onclick="mobileSearch.open();" title="Search" id="open-search" class="mobile-only"><span class="material-icons">search</span></a>
+        <a onclick="mobileSearch.close();" title="Close" id="close-search" class="mobile-only" hidden><span class="material-icons">close</span></a>
+      </nav>
+      <nav class="mobile-only">
+        <form role="search" class="search" action="search.html" method="get">
+          <div class="search-wrapper">
+            <input type="search" name="q" placeholder="Search documentation" />
+            <button type="submit">
+              <span class="material-icons">search</span>
+            </button>
+          </div>
+        </form>
+      </nav>
+    </header>
+    <div class="sub-header grid-item">
+      <label for="documentation_select">View Documentation For</label>
+      <form role="search" class="search" action="search.html" method="get">
+        <div class="search-wrapper">
+          <input type="search" name="q" placeholder="Search documentation" />
+          <button type="submit">
+            <span class="material-icons">search</span>
+          </button>
+        </div>
+      </form>
+      <a accesskey="S" class="settings" onclick="settingsModal.open();"><span class="material-icons">settings</span></a>
+    </div>
+    <aside class="grid-item">
+      <span id="hamburger-toggle">
+        <span class="material-icons">menu</span>
+      </span>
+      <span id="settings-toggle" class="settings" onclick="settingsModal.open();">
+        <span class="material-icons">settings</span>
+      </span>
+      <div id="sidebar">
+  <h3><a href="#">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">DiscordUtils</a></li>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#example-code">Example code</a><ul>
+<li><a class="reference internal" href="#discordutils-invitetracker">DiscordUtils.InviteTracker</a></li>
+<li><a class="reference internal" href="#discordutils-music">DiscordUtils.Music</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#links">Links</a></li>
+<li><a class="reference internal" href="#support">Support</a></li>
+</ul>
+
+      </div>
+    </aside>
+    <main class="grid-item" role="main">
+      
+  <section id="discordutils">
+<h1>DiscordUtils<a class="headerlink" href="#discordutils" title="Permalink to this headline">¶</a></h1>
+<p>A very useful library made to be used in with
+<a class="reference external" href="https://pypi.org/project/discord.py/">discord.py</a></p>
+</section>
+<section id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<p>For access to Pagination and InviteTracker use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">DiscordUtils</span>
+</pre></div>
+</div>
+<p>or, instead use the following for access to Music functions aswell</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">DiscordUtils</span><span class="p">[</span><span class="n">voice</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Requires discord.py[voice] so make sure you have all dependencies of it
+installed.</p>
+</section>
+<section id="example-code">
+<h1>Example code<a class="headerlink" href="#example-code" title="Permalink to this headline">¶</a></h1>
+<section id="discordutils-invitetracker">
+<h2>DiscordUtils.InviteTracker<a class="headerlink" href="#discordutils-invitetracker" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">discord</span>
+<span class="kn">from</span> <span class="nn">discord.ext</span> <span class="kn">import</span> <span class="n">commands</span>
+<span class="kn">import</span> <span class="nn">DiscordUtils</span>
+
+<span class="n">intents</span> <span class="o">=</span> <span class="n">discord</span><span class="o">.</span><span class="n">intents</span><span class="o">.</span><span class="n">default</span><span class="p">()</span>
+<span class="n">intents</span><span class="o">.</span><span class="n">members</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">bot</span> <span class="o">=</span> <span class="n">commands</span><span class="o">.</span><span class="n">AutoShardedBot</span><span class="p">(</span><span class="n">command_prefix</span><span class="o">=</span><span class="s2">&quot;&gt;&quot;</span><span class="p">,</span> <span class="n">intents</span><span class="o">=</span><span class="n">intents</span><span class="p">)</span>
+<span class="n">tracker</span> <span class="o">=</span> <span class="n">DiscordUtils</span><span class="o">.</span><span class="n">InviteTracker</span><span class="p">(</span><span class="n">bot</span><span class="p">)</span>
+
+<span class="nd">@bot</span><span class="o">.</span><span class="n">event</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">on_member_join</span><span class="p">(</span><span class="n">member</span><span class="p">):</span>
+    <span class="n">inviter</span> <span class="o">=</span> <span class="k">await</span> <span class="n">tracker</span><span class="o">.</span><span class="n">fetch_inviter</span><span class="p">(</span><span class="n">member</span><span class="p">)</span> <span class="c1"># inviter is the member who invited</span>
+</pre></div>
+</div>
+</section>
+<section id="discordutils-music">
+<h2>DiscordUtils.Music<a class="headerlink" href="#discordutils-music" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">discord</span>
+<span class="kn">from</span> <span class="nn">discord.ext</span> <span class="kn">import</span> <span class="n">commands</span>
+<span class="kn">import</span> <span class="nn">DiscordUtils</span>
+
+<span class="n">bot</span> <span class="o">=</span> <span class="n">commands</span><span class="o">.</span><span class="n">AutoShardedBot</span><span class="p">(</span><span class="n">command_prefix</span><span class="o">=</span><span class="s2">&quot;&gt;&quot;</span><span class="p">)</span>
+<span class="n">music</span> <span class="o">=</span> <span class="n">DiscordUtils</span><span class="o">.</span><span class="n">Music</span><span class="p">()</span>
+
+<span class="nd">@bot</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">join</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
+    <span class="k">await</span> <span class="n">ctx</span><span class="o">.</span><span class="n">author</span><span class="o">.</span><span class="n">voice</span><span class="o">.</span><span class="n">channel</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span> <span class="c1">#Joins author&#39;s voice channel</span>
+
+<span class="nd">@bot</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">leave</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
+    <span class="k">await</span> <span class="n">ctx</span><span class="o">.</span><span class="n">voice_client</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span>
+
+<span class="nd">@bot</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">play</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">url</span><span class="p">):</span>
+    <span class="n">player</span> <span class="o">=</span> <span class="n">music</span><span class="o">.</span><span class="n">get_player</span><span class="p">(</span><span class="n">guild_id</span><span class="o">=</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">player</span><span class="p">:</span>
+        <span class="n">player</span> <span class="o">=</span> <span class="n">music</span><span class="o">.</span><span class="n">create_player</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">ffmpeg_error_betterfix</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">ctx</span><span class="o">.</span><span class="n">voice_client</span><span class="o">.</span><span class="n">is_playing</span><span class="p">():</span>
+        <span class="k">await</span> <span class="n">player</span><span class="o">.</span><span class="n">queue</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">search</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">song</span> <span class="o">=</span> <span class="k">await</span> <span class="n">player</span><span class="o">.</span><span class="n">play</span><span class="p">()</span>
+        <span class="k">await</span> <span class="n">ctx</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Playing </span><span class="si">{</span><span class="n">song</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">song</span> <span class="o">=</span> <span class="k">await</span> <span class="n">player</span><span class="o">.</span><span class="n">queue</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">search</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">await</span> <span class="n">ctx</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Queued </span><span class="si">{</span><span class="n">song</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nd">@bot</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">pause</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
+    <span class="n">player</span> <span class="o">=</span> <span class="n">music</span><span class="o">.</span><span class="n">get_player</span><span class="p">(</span><span class="n">guild_id</span><span class="o">=</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+    <span class="n">song</span> <span class="o">=</span> <span class="k">await</span> <span class="n">player</span><span class="o">.</span><span class="n">pause</span><span class="p">()</span>
+    <span class="k">await</span> <span class="n">ctx</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Paused </span><span class="si">{</span><span class="n">song</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nd">@bot</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">resume</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
+    <span class="n">player</span> <span class="o">=</span> <span class="n">music</span><span class="o">.</span><span class="n">get_player</span><span class="p">(</span><span class="n">guild_id</span><span class="o">=</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+    <span class="n">song</span> <span class="o">=</span> <span class="k">await</span> <span class="n">player</span><span class="o">.</span><span class="n">resume</span><span class="p">()</span>
+    <span class="k">await</span> <span class="n">ctx</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Resumed </span><span class="si">{</span><span class="n">song</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nd">@bot</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
+    <span class="n">player</span> <span class="o">=</span> <span class="n">music</span><span class="o">.</span><span class="n">get_player</span><span class="p">(</span><span class="n">guild_id</span><span class="o">=</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">player</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+    <span class="k">await</span> <span class="n">ctx</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;Stopped&quot;</span><span class="p">)</span>
+
+<span class="nd">@bot</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">loop</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
+    <span class="n">player</span> <span class="o">=</span> <span class="n">music</span><span class="o">.</span><span class="n">get_player</span><span class="p">(</span><span class="n">guild_id</span><span class="o">=</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+    <span class="n">song</span> <span class="o">=</span> <span class="k">await</span> <span class="n">player</span><span class="o">.</span><span class="n">toggle_song_loop</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">song</span><span class="o">.</span><span class="n">is_looping</span><span class="p">:</span>
+        <span class="k">await</span> <span class="n">ctx</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Enabled loop for </span><span class="si">{</span><span class="n">song</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">await</span> <span class="n">ctx</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Disabled loop for </span><span class="si">{</span><span class="n">song</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nd">@bot</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">queue</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
+    <span class="n">player</span> <span class="o">=</span> <span class="n">music</span><span class="o">.</span><span class="n">get_player</span><span class="p">(</span><span class="n">guild_id</span><span class="o">=</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">ctx</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">song</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">song</span> <span class="ow">in</span> <span class="n">player</span><span class="o">.</span><span class="n">current_queue</span><span class="p">()])</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nd">@bot</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">np</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
+    <span class="n">player</span> <span class="o">=</span> <span class="n">music</span><span class="o">.</span><span class="n">get_player</span><span class="p">(</span><span class="n">guild_id</span><span class="o">=</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+    <span class="n">song</span> <span class="o">=</span> <span class="n">player</span><span class="o">.</span><span class="n">now_playing</span><span class="p">()</span>
+    <span class="k">await</span> <span class="n">ctx</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">song</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+<span class="nd">@bot</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">skip</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
+    <span class="n">player</span> <span class="o">=</span> <span class="n">music</span><span class="o">.</span><span class="n">get_player</span><span class="p">(</span><span class="n">guild_id</span><span class="o">=</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">player</span><span class="o">.</span><span class="n">skip</span><span class="p">(</span><span class="n">force</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">await</span> <span class="n">ctx</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Skipped from </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">await</span> <span class="n">ctx</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Skipped </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nd">@bot</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">volume</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">vol</span><span class="p">):</span>
+    <span class="n">player</span> <span class="o">=</span> <span class="n">music</span><span class="o">.</span><span class="n">get_player</span><span class="p">(</span><span class="n">guild_id</span><span class="o">=</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+    <span class="n">song</span><span class="p">,</span> <span class="n">volume</span> <span class="o">=</span> <span class="k">await</span> <span class="n">player</span><span class="o">.</span><span class="n">change_volume</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">vol</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span> <span class="c1"># volume should be a float between 0 to 1</span>
+    <span class="k">await</span> <span class="n">ctx</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Changed volume for </span><span class="si">{</span><span class="n">song</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">volume</span><span class="o">*</span><span class="mi">100</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+
+<span class="nd">@bot</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+    <span class="n">player</span> <span class="o">=</span> <span class="n">music</span><span class="o">.</span><span class="n">get_player</span><span class="p">(</span><span class="n">guild_id</span><span class="o">=</span><span class="n">ctx</span><span class="o">.</span><span class="n">guild</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+    <span class="n">song</span> <span class="o">=</span> <span class="k">await</span> <span class="n">player</span><span class="o">.</span><span class="n">remove_from_queue</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">index</span><span class="p">))</span>
+    <span class="k">await</span> <span class="n">ctx</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Removed </span><span class="si">{</span><span class="n">song</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> from queue&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>For further information please read the docs</p>
+</section>
+</section>
+<section id="links">
+<h1>Links<a class="headerlink" href="#links" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://docs.discordutils.gq">Documentation</a></p>
+<p><a class="reference external" href="https://github.discordutils.gq">Github</a></p>
+</section>
+<section id="support">
+<h1>Support<a class="headerlink" href="#support" title="Permalink to this headline">¶</a></h1>
+<p><strong>Please make sure that you are on the latest version
+of**`DiscordUtils &lt;https://pypi.org/project/DiscordUtils&gt;`__**and**`youtube_dl &lt;https://pypi.org/project/youtube_dl&gt;`__**before
+contacting for support</strong></p>
+<p>DM/PM <code class="docutils literal notranslate"><span class="pre">toxic_recker#2795</span></code> on Discord for support</p>
+</section>
+
+
+    </main>
+    <footer class="grid-item">
+        &#169; Copyright 2022, Dhruvacube.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.1.
+    </footer>
+  </div>
+
+  <div id="settings" class="modal" onclick="if (event.target == this){ settingsModal.close(); }" hidden>
+    <div class="modal-content">
+      <span class="close" onclick="settingsModal.close();" title="Close">
+        <span class="material-icons">close</span>
+      </span>
+      <h1>Settings</h1>
+
+      <h2>Font</h2>
+      <div class="setting">
+        <h3>Use a serif font:
+          <label class="toggle"
+            title="Use a serif font? Your system font will be used, falling back to serif.">
+            <input type="checkbox" name="useSerifFont" onclick="updateSetting(this);">
+            <span class="toggle-slider"></span>
+          </label>
+        </h3>
+      </div>
+
+      <h2>Theme</h2>
+      <div class="setting">
+        <h3>
+          <label class="toggle" title="Set your theme based on your system preferences">
+            <input type="radio" name="setTheme" onclick="updateSetting(this);" value="automatic" checked>
+          </label>
+          Automatic
+        </h3>
+        <h3>
+          <label class="toggle" title="Set your theme to light theme">
+            <input type="radio" name="setTheme" onclick="updateSetting(this);" value="light">
+          </label>
+          Light
+        </h3>
+        <h3>
+          <label class="toggle" title="Set your theme to dark theme">
+            <input type="radio" name="setTheme" onclick="updateSetting(this);" value="dark">
+          </label>
+          Dark
+        </h3>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="to-top" onclick="scrollToTop()" hidden>
+    <span><span class="material-icons">arrow_upward</span> to top</span>
+  </div>
+
+</body>
+</html>
