@@ -51,7 +51,7 @@ also use the following for access to Paginator classes aswell
 ::
 
    pip install git+https://github.com/The-4th-Hokage/DiscordUtils.git@master
-   pip install .[menus]
+   pip install git+https://github.com/Rapptz/discord-ext-menus.git@master
 
 Example code
 ============

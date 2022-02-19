@@ -26,6 +26,5 @@ setuptools.setup(
             'sphinxcontrib_trio==1.1.2',
             'sphinxcontrib-websupport',
         ],
-        'menus': ['git+https://github.com/Rapptz/discord-ext-menus.git@master']
     }
 )
