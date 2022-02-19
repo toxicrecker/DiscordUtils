@@ -27,10 +27,9 @@
   <div class="main-grid">
     <header class="grid-item">
       <nav>
-        <a href="../../index.html" class="main-heading">discord.py</a>
-        <a href="https://github.com/Rapptz/discord.py" title="GitHub"><span class="material-icons custom-icons">github</span></a>
+        <a href="../../index.html" class="main-heading">DiscordUtils</a>
+        <a href="https://github.com/The-4th-Hokage/DiscordUtils" title="GitHub"><span class="material-icons custom-icons">github</span></a>
         <a href="https://discord.gg/vfXHwS3nmQ" title="Discord"><span class="material-icons custom-icons">discord</span></a>
-        <a href="../../faq.html" title="FAQ"><span class="material-icons">help_center</span></a>
         <a onclick="mobileSearch.open();" title="Search" id="open-search" class="mobile-only"><span class="material-icons">search</span></a>
         <a onclick="mobileSearch.close();" title="Close" id="close-search" class="mobile-only" hidden><span class="material-icons">close</span></a>
       </nav>
@@ -47,9 +46,6 @@
     </header>
     <div class="sub-header grid-item">
       <label for="documentation_select">View Documentation For</label>
-      <select id="documentation_select" onchange="window.location = this.value;">
-        <option value="#" selected>discord</option>
-      </select>
       <form role="search" class="search" action="../../search.html" method="get">
         <div class="search-wrapper">
           <input type="search" name="q" placeholder="Search documentation" />
@@ -70,11 +66,16 @@
     <main class="grid-item" role="main">
       
   <h1>Source code for DiscordUtils.embeds</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">discord</span>
+<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span> <span class="nn">discord</span>
 <span class="kn">from</span> <span class="nn">discord</span> <span class="kn">import</span> <span class="n">embeds</span>
 
 
 <div class="viewcode-block" id="Embed"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.embeds.Embed">[docs]</a><span class="k">class</span> <span class="nc">Embed</span><span class="p">(</span><span class="n">embeds</span><span class="o">.</span><span class="n">Embed</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Embed which has whoose colors are randomly generated</span>
+<span class="sd">    The `random` color are generated using :func:`discord.Color.random()`</span>
+<span class="sd">    &#39;&#39;&#39;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="k">if</span> <span class="s2">&quot;colour&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
             <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;colour&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">discord</span><span class="o">.</span><span class="n">Color</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
@@ -83,6 +84,9 @@
 
 
 <div class="viewcode-block" id="ErrorEmbed"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.embeds.ErrorEmbed">[docs]</a><span class="k">class</span> <span class="nc">ErrorEmbed</span><span class="p">(</span><span class="n">embeds</span><span class="o">.</span><span class="n">Embed</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;The Embed used to depict an :class:`Exception`</span>
+<span class="sd">    The `red` color are generated using :func:`discord.Color.red()`</span>
+<span class="sd">    &#39;&#39;&#39;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="k">if</span> <span class="s2">&quot;colour&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
             <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;colour&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">discord</span><span class="o">.</span><span class="n">Color</span><span class="o">.</span><span class="n">red</span><span class="p">()</span>
@@ -91,6 +95,9 @@
 
 
 <div class="viewcode-block" id="SuccessEmbed"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.embeds.SuccessEmbed">[docs]</a><span class="k">class</span> <span class="nc">SuccessEmbed</span><span class="p">(</span><span class="n">embeds</span><span class="o">.</span><span class="n">Embed</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;The Embed used to depict any kind of `success`</span>
+<span class="sd">    The `green` color are generated using :func:`discord.Color.green()`</span>
+<span class="sd">    &#39;&#39;&#39;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="k">if</span> <span class="s2">&quot;colour&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
             <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;colour&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">discord</span><span class="o">.</span><span class="n">Color</span><span class="o">.</span><span class="n">green</span><span class="p">()</span>
@@ -99,6 +106,9 @@
 
 
 <div class="viewcode-block" id="StarboardEmbed"><a class="viewcode-back" href="../../DiscordUtils.html#DiscordUtils.embeds.StarboardEmbed">[docs]</a><span class="k">class</span> <span class="nc">StarboardEmbed</span><span class="p">(</span><span class="n">embeds</span><span class="o">.</span><span class="n">Embed</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;The Embed used to depict any kind of `warning` or `starboard` kind of :class:`~discord.Embed`</span>
+<span class="sd">    The `green` color are generated using :func:`discord.Color.green()`</span>
+<span class="sd">    &#39;&#39;&#39;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="k">if</span> <span class="s2">&quot;colour&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
             <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;colour&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">discord</span><span class="o">.</span><span class="n">Color</span><span class="o">.</span><span class="n">yellow</span><span class="p">()</span>

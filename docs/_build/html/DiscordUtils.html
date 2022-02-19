@@ -92,6 +92,8 @@
 <dt class="sig sig-object py" id="DiscordUtils.embeds.Embed">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DiscordUtils.embeds.</span></span><span class="sig-name descname"><span class="pre">Embed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/embeds.html#Embed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.embeds.Embed" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Embed" title="(in discord.py v2.0.0a)"><code class="xref py py-class docutils literal notranslate"><span class="pre">discord.embeds.Embed</span></code></a></p>
+<p>Embed which has whoose colors are randomly generated
+The <cite>random</cite> color are generated using <code class="xref py py-func docutils literal notranslate"><span class="pre">discord.Color.random()</span></code></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="DiscordUtils.embeds.Embed.title">
 <span class="sig-name descname"><span class="pre">title</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">MaybeEmpty</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#DiscordUtils.embeds.Embed.title" title="Permalink to this definition">¶</a></dt>
@@ -118,6 +120,8 @@
 <dt class="sig sig-object py" id="DiscordUtils.embeds.ErrorEmbed">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DiscordUtils.embeds.</span></span><span class="sig-name descname"><span class="pre">ErrorEmbed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/embeds.html#ErrorEmbed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.embeds.ErrorEmbed" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Embed" title="(in discord.py v2.0.0a)"><code class="xref py py-class docutils literal notranslate"><span class="pre">discord.embeds.Embed</span></code></a></p>
+<p>The Embed used to depict an <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a>
+The <cite>red</cite> color are generated using <code class="xref py py-func docutils literal notranslate"><span class="pre">discord.Color.red()</span></code></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="DiscordUtils.embeds.ErrorEmbed.title">
 <span class="sig-name descname"><span class="pre">title</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">MaybeEmpty</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#DiscordUtils.embeds.ErrorEmbed.title" title="Permalink to this definition">¶</a></dt>
@@ -144,6 +148,8 @@
 <dt class="sig sig-object py" id="DiscordUtils.embeds.SuccessEmbed">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DiscordUtils.embeds.</span></span><span class="sig-name descname"><span class="pre">SuccessEmbed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/embeds.html#SuccessEmbed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.embeds.SuccessEmbed" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Embed" title="(in discord.py v2.0.0a)"><code class="xref py py-class docutils literal notranslate"><span class="pre">discord.embeds.Embed</span></code></a></p>
+<p>The Embed used to depict any kind of <cite>success</cite>
+The <cite>green</cite> color are generated using <code class="xref py py-func docutils literal notranslate"><span class="pre">discord.Color.green()</span></code></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="DiscordUtils.embeds.SuccessEmbed.title">
 <span class="sig-name descname"><span class="pre">title</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">MaybeEmpty</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#DiscordUtils.embeds.SuccessEmbed.title" title="Permalink to this definition">¶</a></dt>
@@ -170,6 +176,8 @@
 <dt class="sig sig-object py" id="DiscordUtils.embeds.StarboardEmbed">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DiscordUtils.embeds.</span></span><span class="sig-name descname"><span class="pre">StarboardEmbed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/embeds.html#StarboardEmbed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.embeds.StarboardEmbed" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Embed" title="(in discord.py v2.0.0a)"><code class="xref py py-class docutils literal notranslate"><span class="pre">discord.embeds.Embed</span></code></a></p>
+<p>The Embed used to depict any kind of <cite>warning</cite> or <cite>starboard</cite> kind of <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Embed" title="(in discord.py v2.0.0a)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Embed</span></code></a>
+The <cite>green</cite> color are generated using <code class="xref py py-func docutils literal notranslate"><span class="pre">discord.Color.green()</span></code></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="DiscordUtils.embeds.StarboardEmbed.title">
 <span class="sig-name descname"><span class="pre">title</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">MaybeEmpty</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#DiscordUtils.embeds.StarboardEmbed.title" title="Permalink to this definition">¶</a></dt>
@@ -947,7 +955,7 @@ and <a class="reference external" href="https://discordpy.readthedocs.io/en/mast
 <dt class="sig sig-object py" id="DiscordUtils.paginator.EmbedPaginator.is_paginating">
 <em class="property"><span class="pre">staticmethod</span> </em><span class="sig-name descname"><span class="pre">is_paginating</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#EmbedPaginator.is_paginating"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.paginator.EmbedPaginator.is_paginating" title="Permalink to this definition">¶</a></dt>
 <dd><p>The pagination is in the paginating state or not.
-:note: This forces the buttons to appear even in the front page</p>
+This forces the buttons to appear even in the front page</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
@@ -1123,6 +1131,439 @@ and <a class="reference external" href="https://discordpy.readthedocs.io/en/mast
 <dt class="sig sig-object py" id="DiscordUtils.Music.get_player">
 <span class="sig-name descname"><span class="pre">get_player</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/music.html#Music.get_player"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.Music.get_player" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="DiscordUtils.RoboPages">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DiscordUtils.</span></span><span class="sig-name descname"><span class="pre">RoboPages</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_embeds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compact</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#RoboPages"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.RoboPages" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.ui.View" title="(in discord.py v2.0.0a)"><code class="xref py py-class docutils literal notranslate"><span class="pre">discord.ui.view.View</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source</strong> (<em>menus.PageSource</em>) – </p></li>
+<li><p><strong>ctx</strong> (<em>commands.Context</em>) – </p></li>
+<li><p><strong>check_embeds</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – </p></li>
+<li><p><strong>compact</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.RoboPages.fill_items">
+<span class="sig-name descname"><span class="pre">fill_items</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#RoboPages.fill_items"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.RoboPages.fill_items" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.RoboPages.show_page">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">show_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interaction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page_number</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#RoboPages.show_page"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.RoboPages.show_page" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>interaction</strong> (<a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Interaction" title="(in discord.py v2.0.0a)"><em>discord.interactions.Interaction</em></a>) – </p></li>
+<li><p><strong>page_number</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.RoboPages.show_checked_page">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">show_checked_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interaction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page_number</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#RoboPages.show_checked_page"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.RoboPages.show_checked_page" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>interaction</strong> (<a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Interaction" title="(in discord.py v2.0.0a)"><em>discord.interactions.Interaction</em></a>) – </p></li>
+<li><p><strong>page_number</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.RoboPages.interaction_check">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">interaction_check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interaction</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#RoboPages.interaction_check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.RoboPages.interaction_check" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function is a <a class="reference external" href="https://docs.python.org/3/library/asyncio-task.html#coroutine"><em>coroutine</em></a>.</p>
+<p>A callback that is called when an interaction happens within the view
+that checks whether the view should process item callbacks for the interaction.</p>
+<p>This is useful to override if, for example, you want to ensure that the
+interaction author is a given user.</p>
+<p>The default implementation of this returns <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If an exception occurs within the body then the check
+is considered a failure and <a class="reference internal" href="#DiscordUtils.RoboPages.on_error" title="DiscordUtils.RoboPages.on_error"><code class="xref py py-meth docutils literal notranslate"><span class="pre">on_error()</span></code></a> is called.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>interaction</strong> (<a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Interaction" title="(in discord.py v2.0.0a)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Interaction</span></code></a>) – The interaction that occurred.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Whether the view children’s callbacks should be called.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.RoboPages.on_timeout">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">on_timeout</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#RoboPages.on_timeout"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.RoboPages.on_timeout" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function is a <a class="reference external" href="https://docs.python.org/3/library/asyncio-task.html#coroutine"><em>coroutine</em></a>.</p>
+<p>A callback that is called when a view’s timeout elapses without being explicitly stopped.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.RoboPages.on_error">
+<em class="property"><span class="pre">staticmethod</span> <span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">on_error</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">error</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">item</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interaction</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#RoboPages.on_error"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.RoboPages.on_error" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function is a <a class="reference external" href="https://docs.python.org/3/library/asyncio-task.html#coroutine"><em>coroutine</em></a>.</p>
+<p>A callback that is called when an item’s callback or <a class="reference internal" href="#DiscordUtils.RoboPages.interaction_check" title="DiscordUtils.RoboPages.interaction_check"><code class="xref py py-meth docutils literal notranslate"><span class="pre">interaction_check()</span></code></a>
+fails with an error.</p>
+<p>The default implementation prints the traceback to stderr.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>error</strong> (<a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a>) – The exception that was raised.</p></li>
+<li><p><strong>item</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Item</span></code>) – The item that failed the dispatch.</p></li>
+<li><p><strong>interaction</strong> (<a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Interaction" title="(in discord.py v2.0.0a)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Interaction</span></code></a>) – The interaction that led to the failure.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.RoboPages.start">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#RoboPages.start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.RoboPages.start" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.RoboPages.go_to_first_page">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">go_to_first_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">button</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interaction</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#RoboPages.go_to_first_page"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.RoboPages.go_to_first_page" title="Permalink to this definition">¶</a></dt>
+<dd><p>Go to the first page</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>button</strong> (<a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.ui.Button" title="(in discord.py v2.0.0a)"><em>discord.ui.button.Button</em></a>) – </p></li>
+<li><p><strong>interaction</strong> (<a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Interaction" title="(in discord.py v2.0.0a)"><em>discord.interactions.Interaction</em></a>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.RoboPages.go_to_previous_page">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">go_to_previous_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">button</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interaction</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#RoboPages.go_to_previous_page"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.RoboPages.go_to_previous_page" title="Permalink to this definition">¶</a></dt>
+<dd><p>Go to the previous page</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>button</strong> (<a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.ui.Button" title="(in discord.py v2.0.0a)"><em>discord.ui.button.Button</em></a>) – </p></li>
+<li><p><strong>interaction</strong> (<a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Interaction" title="(in discord.py v2.0.0a)"><em>discord.interactions.Interaction</em></a>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.RoboPages.go_to_current_page">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">go_to_current_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">button</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interaction</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#RoboPages.go_to_current_page"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.RoboPages.go_to_current_page" title="Permalink to this definition">¶</a></dt>
+<dd><p>As the name suggests, goes to the current page</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>button</strong> (<a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.ui.Button" title="(in discord.py v2.0.0a)"><em>discord.ui.button.Button</em></a>) – </p></li>
+<li><p><strong>interaction</strong> (<a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Interaction" title="(in discord.py v2.0.0a)"><em>discord.interactions.Interaction</em></a>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.RoboPages.go_to_next_page">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">go_to_next_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">button</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interaction</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#RoboPages.go_to_next_page"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.RoboPages.go_to_next_page" title="Permalink to this definition">¶</a></dt>
+<dd><p>Go to the next page</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>button</strong> (<a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.ui.Button" title="(in discord.py v2.0.0a)"><em>discord.ui.button.Button</em></a>) – </p></li>
+<li><p><strong>interaction</strong> (<a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Interaction" title="(in discord.py v2.0.0a)"><em>discord.interactions.Interaction</em></a>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.RoboPages.go_to_last_page">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">go_to_last_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">button</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interaction</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#RoboPages.go_to_last_page"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.RoboPages.go_to_last_page" title="Permalink to this definition">¶</a></dt>
+<dd><p>Go to the last page</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>button</strong> (<a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.ui.Button" title="(in discord.py v2.0.0a)"><em>discord.ui.button.Button</em></a>) – </p></li>
+<li><p><strong>interaction</strong> (<a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Interaction" title="(in discord.py v2.0.0a)"><em>discord.interactions.Interaction</em></a>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.RoboPages.numbered_page">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">numbered_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">button</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interaction</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#RoboPages.numbered_page"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.RoboPages.numbered_page" title="Permalink to this definition">¶</a></dt>
+<dd><p>lets you type a page number to go to</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>button</strong> (<a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.ui.Button" title="(in discord.py v2.0.0a)"><em>discord.ui.button.Button</em></a>) – </p></li>
+<li><p><strong>interaction</strong> (<a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Interaction" title="(in discord.py v2.0.0a)"><em>discord.interactions.Interaction</em></a>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.RoboPages.stop_pages">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">stop_pages</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">button</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interaction</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#RoboPages.stop_pages"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.RoboPages.stop_pages" title="Permalink to this definition">¶</a></dt>
+<dd><p>stops the pagination session.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>button</strong> (<a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.ui.Button" title="(in discord.py v2.0.0a)"><em>discord.ui.button.Button</em></a>) – </p></li>
+<li><p><strong>interaction</strong> (<a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Interaction" title="(in discord.py v2.0.0a)"><em>discord.interactions.Interaction</em></a>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="DiscordUtils.FieldPageSource">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DiscordUtils.</span></span><span class="sig-name descname"><span class="pre">FieldPageSource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entries</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">per_page</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">12</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#FieldPageSource"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.FieldPageSource" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">discord.ext.menus.ListPageSource</span></code></p>
+<p>A page source that requires (field_name, field_value) tuple items.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.FieldPageSource.format_page">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">format_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">menu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">entries</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#FieldPageSource.format_page"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.FieldPageSource.format_page" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function <em>could be a</em> <a class="reference external" href="https://docs.python.org/3/library/asyncio-task.html#coroutine"><em>coroutine</em></a>.</p>
+<p>An abstract method to format the page.</p>
+<p>This method must return one of the following types.</p>
+<p>If this method returns a <code class="docutils literal notranslate"><span class="pre">str</span></code> then it is interpreted as returning
+the <code class="docutils literal notranslate"><span class="pre">content</span></code> keyword argument in <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Message.edit" title="(in discord.py v2.0.0a)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">discord.Message.edit()</span></code></a>
+and <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.abc.Messageable.send" title="(in discord.py v2.0.0a)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">discord.abc.Messageable.send()</span></code></a>.</p>
+<p>If this method returns a <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Embed" title="(in discord.py v2.0.0a)"><code class="xref py py-class docutils literal notranslate"><span class="pre">discord.Embed</span></code></a> then it is interpreted
+as returning the <code class="docutils literal notranslate"><span class="pre">embed</span></code> keyword argument in <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Message.edit" title="(in discord.py v2.0.0a)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">discord.Message.edit()</span></code></a>
+and <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.abc.Messageable.send" title="(in discord.py v2.0.0a)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">discord.abc.Messageable.send()</span></code></a>.</p>
+<p>If this method returns a <code class="docutils literal notranslate"><span class="pre">dict</span></code> then it is interpreted as the
+keyword-arguments that are used in both <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Message.edit" title="(in discord.py v2.0.0a)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">discord.Message.edit()</span></code></a>
+and <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.abc.Messageable.send" title="(in discord.py v2.0.0a)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">discord.abc.Messageable.send()</span></code></a>. The two of interest are
+<code class="docutils literal notranslate"><span class="pre">embed</span></code> and <code class="docutils literal notranslate"><span class="pre">content</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>menu</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Menu</span></code>) – The menu that wants to format this page.</p></li>
+<li><p><strong>page</strong> (<em>Any</em>) – The page returned by <code class="xref py py-meth docutils literal notranslate"><span class="pre">PageSource.get_page()</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>See above.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Union[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Embed" title="(in discord.py v2.0.0a)"><code class="xref py py-class docutils literal notranslate"><span class="pre">discord.Embed</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="DiscordUtils.TextPageSource">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DiscordUtils.</span></span><span class="sig-name descname"><span class="pre">TextPageSource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'```'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">suffix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'```'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2000</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#TextPageSource"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.TextPageSource" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">discord.ext.menus.ListPageSource</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.TextPageSource.format_page">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">format_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">menu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#TextPageSource.format_page"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.TextPageSource.format_page" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function <em>could be a</em> <a class="reference external" href="https://docs.python.org/3/library/asyncio-task.html#coroutine"><em>coroutine</em></a>.</p>
+<p>An abstract method to format the page.</p>
+<p>This method must return one of the following types.</p>
+<p>If this method returns a <code class="docutils literal notranslate"><span class="pre">str</span></code> then it is interpreted as returning
+the <code class="docutils literal notranslate"><span class="pre">content</span></code> keyword argument in <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Message.edit" title="(in discord.py v2.0.0a)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">discord.Message.edit()</span></code></a>
+and <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.abc.Messageable.send" title="(in discord.py v2.0.0a)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">discord.abc.Messageable.send()</span></code></a>.</p>
+<p>If this method returns a <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Embed" title="(in discord.py v2.0.0a)"><code class="xref py py-class docutils literal notranslate"><span class="pre">discord.Embed</span></code></a> then it is interpreted
+as returning the <code class="docutils literal notranslate"><span class="pre">embed</span></code> keyword argument in <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Message.edit" title="(in discord.py v2.0.0a)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">discord.Message.edit()</span></code></a>
+and <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.abc.Messageable.send" title="(in discord.py v2.0.0a)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">discord.abc.Messageable.send()</span></code></a>.</p>
+<p>If this method returns a <code class="docutils literal notranslate"><span class="pre">dict</span></code> then it is interpreted as the
+keyword-arguments that are used in both <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Message.edit" title="(in discord.py v2.0.0a)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">discord.Message.edit()</span></code></a>
+and <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.abc.Messageable.send" title="(in discord.py v2.0.0a)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">discord.abc.Messageable.send()</span></code></a>. The two of interest are
+<code class="docutils literal notranslate"><span class="pre">embed</span></code> and <code class="docutils literal notranslate"><span class="pre">content</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>menu</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Menu</span></code>) – The menu that wants to format this page.</p></li>
+<li><p><strong>page</strong> (<em>Any</em>) – The page returned by <code class="xref py py-meth docutils literal notranslate"><span class="pre">PageSource.get_page()</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>See above.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Union[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Embed" title="(in discord.py v2.0.0a)"><code class="xref py py-class docutils literal notranslate"><span class="pre">discord.Embed</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.TextPageSource.is_paginating">
+<span class="sig-name descname"><span class="pre">is_paginating</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#TextPageSource.is_paginating"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.TextPageSource.is_paginating" title="Permalink to this definition">¶</a></dt>
+<dd><p>This forces the buttons to appear even in the front page</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="DiscordUtils.SimplePageSource">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DiscordUtils.</span></span><span class="sig-name descname"><span class="pre">SimplePageSource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entries</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">per_page</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#SimplePageSource"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.SimplePageSource" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">discord.ext.menus.ListPageSource</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.SimplePageSource.format_page">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">format_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">menu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">entries</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#SimplePageSource.format_page"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.SimplePageSource.format_page" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function <em>could be a</em> <a class="reference external" href="https://docs.python.org/3/library/asyncio-task.html#coroutine"><em>coroutine</em></a>.</p>
+<p>An abstract method to format the page.</p>
+<p>This method must return one of the following types.</p>
+<p>If this method returns a <code class="docutils literal notranslate"><span class="pre">str</span></code> then it is interpreted as returning
+the <code class="docutils literal notranslate"><span class="pre">content</span></code> keyword argument in <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Message.edit" title="(in discord.py v2.0.0a)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">discord.Message.edit()</span></code></a>
+and <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.abc.Messageable.send" title="(in discord.py v2.0.0a)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">discord.abc.Messageable.send()</span></code></a>.</p>
+<p>If this method returns a <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Embed" title="(in discord.py v2.0.0a)"><code class="xref py py-class docutils literal notranslate"><span class="pre">discord.Embed</span></code></a> then it is interpreted
+as returning the <code class="docutils literal notranslate"><span class="pre">embed</span></code> keyword argument in <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Message.edit" title="(in discord.py v2.0.0a)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">discord.Message.edit()</span></code></a>
+and <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.abc.Messageable.send" title="(in discord.py v2.0.0a)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">discord.abc.Messageable.send()</span></code></a>.</p>
+<p>If this method returns a <code class="docutils literal notranslate"><span class="pre">dict</span></code> then it is interpreted as the
+keyword-arguments that are used in both <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Message.edit" title="(in discord.py v2.0.0a)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">discord.Message.edit()</span></code></a>
+and <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.abc.Messageable.send" title="(in discord.py v2.0.0a)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">discord.abc.Messageable.send()</span></code></a>. The two of interest are
+<code class="docutils literal notranslate"><span class="pre">embed</span></code> and <code class="docutils literal notranslate"><span class="pre">content</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>menu</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Menu</span></code>) – The menu that wants to format this page.</p></li>
+<li><p><strong>page</strong> (<em>Any</em>) – The page returned by <code class="xref py py-meth docutils literal notranslate"><span class="pre">PageSource.get_page()</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>See above.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Union[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Embed" title="(in discord.py v2.0.0a)"><code class="xref py py-class docutils literal notranslate"><span class="pre">discord.Embed</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="DiscordUtils.SimplePages">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DiscordUtils.</span></span><span class="sig-name descname"><span class="pre">SimplePages</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entries</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">per_page</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">12</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#SimplePages"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.SimplePages" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#DiscordUtils.paginator.RoboPages" title="DiscordUtils.paginator.RoboPages"><code class="xref py py-class docutils literal notranslate"><span class="pre">DiscordUtils.paginator.RoboPages</span></code></a></p>
+<p>A simple pagination session reminiscent of the old Pages interface.
+Basically an embed with some normal formatting.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctx</strong> (<em>commands.Context</em>) – </p></li>
+<li><p><strong>per_page</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="DiscordUtils.EmbedPageSource">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DiscordUtils.</span></span><span class="sig-name descname"><span class="pre">EmbedPageSource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entries</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">per_page</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#EmbedPageSource"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.EmbedPageSource" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">discord.ext.menus.ListPageSource</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.EmbedPageSource.format_page">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">format_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">menu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">entries</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#EmbedPageSource.format_page"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.EmbedPageSource.format_page" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function <em>could be a</em> <a class="reference external" href="https://docs.python.org/3/library/asyncio-task.html#coroutine"><em>coroutine</em></a>.</p>
+<p>An abstract method to format the page.</p>
+<p>This method must return one of the following types.</p>
+<p>If this method returns a <code class="docutils literal notranslate"><span class="pre">str</span></code> then it is interpreted as returning
+the <code class="docutils literal notranslate"><span class="pre">content</span></code> keyword argument in <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Message.edit" title="(in discord.py v2.0.0a)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">discord.Message.edit()</span></code></a>
+and <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.abc.Messageable.send" title="(in discord.py v2.0.0a)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">discord.abc.Messageable.send()</span></code></a>.</p>
+<p>If this method returns a <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Embed" title="(in discord.py v2.0.0a)"><code class="xref py py-class docutils literal notranslate"><span class="pre">discord.Embed</span></code></a> then it is interpreted
+as returning the <code class="docutils literal notranslate"><span class="pre">embed</span></code> keyword argument in <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Message.edit" title="(in discord.py v2.0.0a)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">discord.Message.edit()</span></code></a>
+and <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.abc.Messageable.send" title="(in discord.py v2.0.0a)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">discord.abc.Messageable.send()</span></code></a>.</p>
+<p>If this method returns a <code class="docutils literal notranslate"><span class="pre">dict</span></code> then it is interpreted as the
+keyword-arguments that are used in both <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Message.edit" title="(in discord.py v2.0.0a)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">discord.Message.edit()</span></code></a>
+and <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.abc.Messageable.send" title="(in discord.py v2.0.0a)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">discord.abc.Messageable.send()</span></code></a>. The two of interest are
+<code class="docutils literal notranslate"><span class="pre">embed</span></code> and <code class="docutils literal notranslate"><span class="pre">content</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>menu</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Menu</span></code>) – The menu that wants to format this page.</p></li>
+<li><p><strong>page</strong> (<em>Any</em>) – The page returned by <code class="xref py py-meth docutils literal notranslate"><span class="pre">PageSource.get_page()</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>See above.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Union[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://discordpy.readthedocs.io/en/master/api.html#discord.Embed" title="(in discord.py v2.0.0a)"><code class="xref py py-class docutils literal notranslate"><span class="pre">discord.Embed</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="DiscordUtils.EmbedPaginator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DiscordUtils.</span></span><span class="sig-name descname"><span class="pre">EmbedPaginator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entries</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#EmbedPaginator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.EmbedPaginator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#DiscordUtils.paginator.RoboPages" title="DiscordUtils.paginator.RoboPages"><code class="xref py py-class docutils literal notranslate"><span class="pre">DiscordUtils.paginator.RoboPages</span></code></a></p>
+<p>A simple paginator for the embeds. In entries you provides a list of embeds</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>ctx</strong> (<em>commands.Context</em>) – </p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="DiscordUtils.EmbedPaginator.is_paginating">
+<em class="property"><span class="pre">staticmethod</span> </em><span class="sig-name descname"><span class="pre">is_paginating</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiscordUtils/paginator.html#EmbedPaginator.is_paginating"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiscordUtils.EmbedPaginator.is_paginating" title="Permalink to this definition">¶</a></dt>
+<dd><p>The pagination is in the paginating state or not.
+This forces the buttons to appear even in the front page</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
