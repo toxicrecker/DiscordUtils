@@ -4,23 +4,53 @@ DiscordUtils
 A very useful library made to be used in with
 `discord.py <https://pypi.org/project/discord.py/>`__
 
+Note
+====
+
+This is my version of DiscordUtils, as the original is no longer
+maintained. [`See
+Here <https://github.com/toxicrecker/DiscordUtils#readme>`__]
+
+I have started to maintain this lib for my own bot which is `Minato
+Namikaze <https://minato-namikaze.readthedocs.io/>`__. I don’t know if
+this works with ``pycord`` or not since I don’t use pycord personally
+for my any of the projects. So please do not dm me about this, if this
+lib supports ``pycord`` or not.
+
+I use `StockerMC discord.py <https://github.com/StockerMC/discord.py>`__
+and it works very well with that lib. But if you want to use my fork of
+``DiscordUtils`` then you can use it as I have removed the
+``discord.py`` as a ``required`` dependency.
+
+.. code::
+
+   This lib would work with any discord.py fork, as long as that fork provides the functions, classes and namespace that the original discord.py used to provide
+
 Installation
 ============
 
-For access to Pagination and InviteTracker use:
+For access to many utily classes:
 
 ::
 
-   pip install DiscordUtils
+   pip install git+https://github.com/The-4th-Hokage/DiscordUtils.git@master
 
-or, instead use the following for access to Music functions aswell
+instead use the following for access to Music functions aswell
 
 ::
 
-   pip install DiscordUtils[voice]
+   pip install git+https://github.com/The-4th-Hokage/DiscordUtils.git@master
+   pip install .[voice]
 
 Requires discord.py[voice] so make sure you have all dependencies of it
 installed.
+
+also use the following for access to Paginator classes aswell
+
+::
+
+   pip install git+https://github.com/The-4th-Hokage/DiscordUtils.git@master
+   pip install .[menus]
 
 Example code
 ============
@@ -135,20 +165,47 @@ DiscordUtils.Music
        song = await player.remove_from_queue(int(index))
        await ctx.send(f"Removed {song.name} from queue")
 
+DiscordUtils.embeds
+~~~~~~~~~~~~~~~~~~~
+
+.. code:: python
+
+   import discord
+   from discord.ext import commands
+   import DiscordUtils import Embed, ErrorEmbed, SuccessEmbed, StarboardEmbed
+
+   bot = commands.AutoShardedBot(command_prefix=">")
+
+   @bot.command()
+   async def embed(ctx):
+       await ctx.send(embed=Embed(title="Embed",description="A embed with random colors"))
+
+   @bot.command()
+   async def error_emebed(ctx):
+       await ctx.send(embed=ErrorEmbed(title="Embed",description="Oh no an error happened"))
+
+   @bot.command()
+   async def success(ctx):
+       await ctx.send(embed=SuccessEmbed(title="Embed",description="Yaay! task executed successfully"))
+
+   @bot.command()
+   async def starboard(ctx):
+       await ctx.send(embed=StarboardEmbed(title="Embed",description="Warning given/ starboard embed"))
+
 For further information please read the docs
 
 Links
 =====
 
-`Documentation <https://docs.discordutils.gq>`__
+`Documentation <modules.html>`__
 
-`Github <https://github.discordutils.gq>`__
+`Github <https://github.com/The-4th-Hokage/DiscordUtils>`__
 
 Support
 =======
 
 **Please make sure that you are on the latest version
-of\ **\ `DiscordUtils <https://pypi.org/project/DiscordUtils>`__\ **\ and\ **\ `youtube_dl <https://pypi.org/project/youtube_dl>`__\ **\ before
+of DiscordUtils and youtube_dl before
 contacting for support**
 
-DM/PM ``toxic_recker#2795`` on Discord for support
+DM/PM ``HATSUNE MIKU#9955`` on Discord for support

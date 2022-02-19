@@ -20,12 +20,18 @@ For access to many utily classes:
 pip install git+https://github.com/The-4th-Hokage/DiscordUtils.git@master
 ```
 
-or, instead use the following for access to Music functions aswell
+instead use the following for access to Music functions aswell
 ```
 pip install git+https://github.com/The-4th-Hokage/DiscordUtils.git@master
 pip install .[voice]
 ```
 Requires discord.py[voice] so make sure you have all dependencies of it installed.
+
+also use the following for access to Paginator classes aswell
+```
+pip install git+https://github.com/The-4th-Hokage/DiscordUtils.git@master
+pip install .[menus]
+```
 
 # Example code
 
