@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-from .invitetracker import InviteTracker
-from .music import Music, MusicPlayer, NotPlaying, NotConnectedToVoice, EmptyQueue
+from .invitetracker import *
+from .music import *
 from .embeds import *
 from .paginator import *
 
