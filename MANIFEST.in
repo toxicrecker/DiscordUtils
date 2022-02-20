@@ -1,4 +1,3 @@
-include DiscordUtils/embeds.py
-include DiscordUtils/invitetracker.py
-include DiscordUtils/music.py
-include DiscordUtils/paginator.py
+include README.md
+include LICENSE
+include requirements.txt
