@@ -1,9 +1,9 @@
 from __future__ import annotations
 
-from DiscordUtils.invitetracker import *
-from DiscordUtils.music import *
-from DiscordUtils.embeds import *
-from DiscordUtils.paginator import *
+from .invitetracker import *
+from .music import *
+from .embeds import *
+from .paginator import *
 
 __title__ = "DiscordUtils"
 __version__ = "1.3.5"
