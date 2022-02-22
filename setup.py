@@ -25,12 +25,14 @@ setuptools.setup(
             'sphinx==4.3.1',
             'sphinxcontrib_trio==1.1.2',
             'sphinxcontrib-websupport',
+            'sphinx-autoapi==1.8.4'
         ],
         "all": [
             "youtube-dl",
             'sphinx==4.3.1',
             'sphinxcontrib_trio==1.1.2',
-            'sphinxcontrib-websupport'
+            'sphinxcontrib-websupport',
+            'sphinx-autoapi==1.8.4'
         ]
     }
 )

@@ -34,6 +34,7 @@ sys.path.append(os.path.abspath('extensions'))
 extensions = [
     'builder',
     'sphinx.ext.autodoc',
+    'autoapi.extension',
     'sphinx.ext.extlinks',
     'sphinx.ext.viewcode',
     'sphinx.ext.intersphinx',
@@ -45,7 +46,7 @@ extensions = [
     'resourcelinks',
     'nitpick_file_ignorer',
 ]
-
+autoapi_dirs = ['../DiscordUtils']
 autodoc_member_order = 'bysource'
 autodoc_typehints = 'description'
 # maybe consider this?
