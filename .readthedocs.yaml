@@ -18,7 +18,7 @@ sphinx:
   configuration: docs/conf.py
   fail_on_warning: false
 
-formats:
-  - epub
-  - pdf
-
+search:
+  ranking:
+    api/v1/*: -1
+    api/v2/*: 4
