@@ -47,7 +47,7 @@ bot = commands.AutoShardedBot(command_prefix=">", intents=intents)
 tracker = DiscordUtils.InviteTracker(bot)
 
 @bot.event
-async def on_member_join(member):
+async def on_member_join(member) -> discord.Invite:
     inviter = await tracker.fetch_inviter(member) # inviter is the member who invited
 ```
 
@@ -166,6 +166,8 @@ async def starboard(ctx):
     await ctx.send(embed=StarboardEmbed(title="Embed",description="Warning given/ starboard embed"))
 ```
 
+For the `DiscordUtils.paginator` see this file [Click Here](https://github.com/The-4th-Hokage/yondaime-hokage/blob/master/minato_namikaze/lib/classes/select_help.py)
+
 For further information please read the docs
 
 # Links
@@ -177,3 +179,6 @@ For further information please read the docs
 **__Please make sure that you are on the latest version of [DiscordUtils](https://github.com/The-4th-Hokage/DiscordUtils) and [youtube_dl](https://pypi.org/project/youtube_dl) before contacting for support__**
 
 DM/PM `HATSUNE MIKU#9955` on Discord for support
+
+# Credits
+This project is forked version of [toxicrecker/DiscordUtils](https://github.com/toxicrecker/DiscordUtils) and also most of the paginator code is taken from [Rapptz/RoboDanny](https://github.com/Rapptz/RoboDanny)

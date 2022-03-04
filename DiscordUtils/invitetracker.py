@@ -55,7 +55,7 @@ class InviteTracker:
                 self._cache[guild.id] = {}
                 for invite in await guild.invites():
                     self._cache[guild.id][invite.code] = invite
-            except Forbidden:
+            except (Forbidden, discord.HTTPException):
                 continue
 
     async def update_invite_cache(self, invite: discord.Invite) -> None:
@@ -81,7 +81,7 @@ class InviteTracker:
                 else:
                     self._cache[invite.guild.id][ref_invite.code].revoked = True
                     return
-            except Forbidden:
+            except (Forbidden, discord.HTTPException):
                 self._cache[invite.guild.id][ref_invite.code].revoked = True
                 return
         else:
@@ -90,8 +90,12 @@ class InviteTracker:
     async def add_guild_cache(self, guild: discord.Guild) -> None:
         '''It adds the guild to cache `automatically` whenever the :func:`~discord.on_guild_join` event is fired'''
         self._cache[guild.id] = {}
-        for invite in await guild.invites():
-            self._cache[guild.id][invite.code] = invite
+        try:
+            for invite in await guild.invites():
+                self._cache[guild.id][invite.code] = invite
+        except (discord.Forbidden, discord.HttpException):
+            pass
+
 
     async def remove_guild_cache(self, guild: discord.Guild) -> None:
         '''It removes the guild from cache `automatically` whenever the :func:`~discord.on_guild_remove` event is fired'''
@@ -109,15 +113,18 @@ class InviteTracker:
         :rtype: Optional[discord.Invite]
         """        
         await sleep(self.bot.latency)
-        async for new_invite in member.guild.invites():
-            for cached_invite in self._cache[member.guild.id].values():
-                if (new_invite.code == cached_invite.code
-                        and new_invite.uses - cached_invite.uses == 1
-                        or cached_invite.revoked):
-                    if cached_invite.revoked:
-                        self._cache[member.guild.id].pop(cached_invite.code)
-                    elif new_invite.inviter == cached_invite.inviter:
-                        self._cache[member.guild.id][cached_invite.code] = new_invite
-                    else:
-                        self._cache[member.guild.id][cached_invite.code].uses += 1
-                    return cached_invite
+        try:
+            async for new_invite in member.guild.invites():
+                for cached_invite in self._cache[member.guild.id].values():
+                    if (new_invite.code == cached_invite.code
+                            and new_invite.uses - cached_invite.uses == 1
+                            or cached_invite.revoked):
+                        if cached_invite.revoked:
+                            self._cache[member.guild.id].pop(cached_invite.code)
+                        elif new_invite.inviter == cached_invite.inviter:
+                            self._cache[member.guild.id][cached_invite.code] = new_invite
+                        else:
+                            self._cache[member.guild.id][cached_invite.code].uses += 1
+                        return cached_invite
+        except (discord.Forbidden, discord.HttpException):
+            pass
