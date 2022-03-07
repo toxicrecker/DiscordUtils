@@ -1,4 +1,6 @@
 # DiscordUtils
+[![Documentation Status](https://readthedocs.org/projects/discordutils/badge/?version=latest)](https://discordutils.readthedocs.io/en/latest/?badge=latest)
+
 A very useful library made to be used in with [discord.py](https://pypi.org/project/discord.py/)
 
 # Note
