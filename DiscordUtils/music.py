@@ -447,7 +447,7 @@ class MusicPlayer:
         elif not len(self.music.queue[self.ctx.guild.id]) > 1 and not force:
             raise EmptyQueue("Cannot skip because queue is empty")
         old = self.music.queue[self.ctx.guild.id][0]
-        old.is_looping = False if old.is_looping else False
+        old.is_looping = True if old.is_looping else False
         self.voice.stop()
         try:
             new = self.music.queue[self.ctx.guild.id][0]
