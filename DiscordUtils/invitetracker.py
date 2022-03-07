@@ -93,7 +93,7 @@ class InviteTracker:
         try:
             for invite in await guild.invites():
                 self._cache[guild.id][invite.code] = invite
-        except (discord.Forbidden, discord.HttpException):
+        except (discord.Forbidden, discord.HTTPException):
             pass
 
 
