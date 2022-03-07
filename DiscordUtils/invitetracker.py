@@ -53,7 +53,7 @@ class InviteTracker:
         for guild in self.bot.guilds:
             try:
                 self._cache[guild.id] = {}
-                async for invite in guild.invites():
+                for invite in await guild.invites():
                     self._cache[guild.id][invite.code] = invite
             except (Forbidden, discord.HTTPException):
                 continue
@@ -91,7 +91,7 @@ class InviteTracker:
         '''It adds the guild to cache `automatically` whenever the :func:`~discord.on_guild_join` event is fired'''
         self._cache[guild.id] = {}
         try:
-            async for invite in guild.invites():
+            for invite in await guild.invites():
                 self._cache[guild.id][invite.code] = invite
         except (discord.Forbidden, discord.HTTPException):
             pass
@@ -114,7 +114,7 @@ class InviteTracker:
         """        
         await sleep(self.bot.latency)
         try:
-            async for new_invite in await member.guild.invites():
+            for new_invite in await member.guild.invites():
                 for cached_invite in self._cache[member.guild.id].values():
                     if (new_invite.code == cached_invite.code
                             and new_invite.uses - cached_invite.uses == 1
