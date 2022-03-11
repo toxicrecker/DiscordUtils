@@ -549,7 +549,7 @@ class MusicPlayer:
             await self.on_loop_toggle_func(self.ctx, song)
         return song
 
-    async def change_volume(self, vol: int) -> Tuple[Song, int]:
+    async def change_volume(self, vol: Union[int, float]) -> Tuple[Song, int]:
         """Change the song volume of the currently played song
 
         :param vol: The amount by the volume needs to increased or decreased
