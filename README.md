@@ -1,9 +1,6 @@
 # Future
 For around 6-7 months I've not been working on DiscordUtils due to a few simple reasons i stated earlier, but since danny decided to resume the development of discord.py I will most likely come back to this and rewrite everything from start as soon as my personal life gets sorted out (probably sometime in April). Thanks for reading, have a nice day.
 
-# Also, read this
-Those of you who tried to message me earlier for support and I never replied, it was just because I stopped working and caring about the library but now you could DM me once again and I will reply to you all.
-
 # DiscordUtils
 A very useful library made to be used in with [discord.py](https://pypi.org/project/discord.py/)
 
