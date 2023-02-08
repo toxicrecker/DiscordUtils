@@ -77,7 +77,10 @@ async def join(ctx):
     
 @bot.command()
 async def leave(ctx):
+    player = music.get_player(guild_id=ctx.guild.id)
+    await player.stop()
     await ctx.voice_client.disconnect()
+    await ctx.send("Stopped")
     
 @bot.command()
 async def play(ctx, *, url):
